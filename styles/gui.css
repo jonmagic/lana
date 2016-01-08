@@ -8,11 +8,8 @@ body {
 }
 
 .channel {
-  /*background-color: #161719;*/
-  background-color: #FFFFFF;
-  border: 1px solid #000;
-  height: 180px;
-  padding: 10px;
+  background-color: #161719;
+  height: 200px;
 }
 
 .channel canvas {
