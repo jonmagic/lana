@@ -1,0 +1,20 @@
+body {
+  background-color: #1F2123;
+  color: #E8E9E8;
+}
+
+.channels {
+  padding: 2em;
+}
+
+.channel {
+  /*background-color: #161719;*/
+  background-color: #FFFFFF;
+  border: 1px solid #000;
+  height: 180px;
+  padding: 10px;
+}
+
+.channel canvas {
+  background-color: #FFFFFF;
+}

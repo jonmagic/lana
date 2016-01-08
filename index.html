@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Logic Analyzer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/gui.css">
+  </head>
+  <body>
+    <div class="channels">
+      <div class="channel">
+        <canvas id="channel_00" width="600" height="180">
+          hello world
+        </canvas>
+      </div>
+    </div>
+
+    <script>
+      var canvas = document.getElementById("channel_00");
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineWidth = 2;
+      ctx.lineTo(10, 0);
+      ctx.lineTo(10,180);
+      ctx.lineTo(110,180);
+      ctx.stroke();
+    </script>
+  </body>
+</html>
