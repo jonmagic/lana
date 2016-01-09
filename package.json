@@ -1,12 +1,26 @@
 {
-  "name": "logic_analyzer_gui",
+  "name": "Lana",
   "version": "1.0.0",
-  "description": "A logic analyzer gui",
+  "description": "Graphical analyzer for timestamped binary data.",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonmagic/lana.git"
+  },
+  "keywords": [
+    "graphical",
+    "logic",
+    "analyzer",
+    "binary"
+  ],
   "author": "Jonathan Hoyt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonmagic/lana/issues"
+  },
   "dependencies": {
     "backbone": "^1.2.3",
     "csv": "^0.4.6",
