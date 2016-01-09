@@ -12,6 +12,7 @@ body {
   height: 200px;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding: 10px 0px 25px;
 }
 
 .channel canvas {
