@@ -1,179 +1,7129 @@
-(function(){var e=this,g=e._,p={},n=Array.prototype,q=Object.prototype,k=n.push,l=n.slice,a=n.concat,c=q.toString,f=q.hasOwnProperty,m=n.forEach,d=n.map,u=n.reduce,v=n.reduceRight,s=n.filter,A=n.every,w=n.some,x=n.indexOf,j=n.lastIndexOf,q=Array.isArray,y=Object.keys,t=Function.prototype.bind,h=function(a){if(a instanceof h)return a;if(!(this instanceof h))return new h(a);this._wrapped=a};"undefined"!==typeof exports?("undefined"!==typeof module&&module.exports&&(exports=module.exports=h),exports._=
-h):e._=h;h.VERSION="1.5.1";var z=h.each=h.forEach=function(a,d,c){if(null!=a)if(m&&a.forEach===m)a.forEach(d,c);else if(a.length===+a.length)for(var f=0,r=a.length;f<r&&d.call(c,a[f],f,a)!==p;f++);else for(f in a)if(h.has(a,f)&&d.call(c,a[f],f,a)===p)break};h.map=h.collect=function(a,c,f){var r=[];if(null==a)return r;if(d&&a.map===d)return a.map(c,f);z(a,function(a,D,d){r.push(c.call(f,a,D,d))});return r};h.reduce=h.foldl=h.inject=function(a,d,c,f){var r=2<arguments.length;null==a&&(a=[]);if(u&&a.reduce===
-u)return f&&(d=h.bind(d,f)),r?a.reduce(d,c):a.reduce(d);z(a,function(a,D,h){r?c=d.call(f,c,a,D,h):(c=a,r=!0)});if(!r)throw new TypeError("Reduce of empty array with no initial value");return c};h.reduceRight=h.foldr=function(a,d,c,f){var r=2<arguments.length;null==a&&(a=[]);if(v&&a.reduceRight===v)return f&&(d=h.bind(d,f)),r?a.reduceRight(d,c):a.reduceRight(d);var j=a.length;if(j!==+j)var e=h.keys(a),j=e.length;z(a,function(h,m,g){m=e?e[--j]:--j;r?c=d.call(f,c,a[m],m,g):(c=a[m],r=!0)});if(!r)throw new TypeError("Reduce of empty array with no initial value");
-return c};h.find=h.detect=function(a,d,c){var f;E(a,function(a,D,r){if(d.call(c,a,D,r))return f=a,!0});return f};h.filter=h.select=function(a,d,c){var f=[];if(null==a)return f;if(s&&a.filter===s)return a.filter(d,c);z(a,function(a,D,r){d.call(c,a,D,r)&&f.push(a)});return f};h.reject=function(a,d,c){return h.filter(a,function(a,f,D){return!d.call(c,a,f,D)},c)};h.every=h.all=function(a,d,c){d||(d=h.identity);var f=!0;if(null==a)return f;if(A&&a.every===A)return a.every(d,c);z(a,function(a,D,r){if(!(f=
-f&&d.call(c,a,D,r)))return p});return!!f};var E=h.some=h.any=function(a,d,c){d||(d=h.identity);var f=!1;if(null==a)return f;if(w&&a.some===w)return a.some(d,c);z(a,function(a,D,r){if(f||(f=d.call(c,a,D,r)))return p});return!!f};h.contains=h.include=function(a,d){return null==a?!1:x&&a.indexOf===x?-1!=a.indexOf(d):E(a,function(a){return a===d})};h.invoke=function(a,d){var c=l.call(arguments,2),f=h.isFunction(d);return h.map(a,function(a){return(f?d:a[d]).apply(a,c)})};h.pluck=function(a,d){return h.map(a,
-function(a){return a[d]})};h.where=function(a,d,c){return h.isEmpty(d)?c?void 0:[]:h[c?"find":"filter"](a,function(a){for(var c in d)if(d[c]!==a[c])return!1;return!0})};h.findWhere=function(a,d){return h.where(a,d,!0)};h.max=function(a,d,c){if(!d&&h.isArray(a)&&a[0]===+a[0]&&65535>a.length)return Math.max.apply(Math,a);if(!d&&h.isEmpty(a))return-Infinity;var f={computed:-Infinity,value:-Infinity};z(a,function(a,D,r){D=d?d.call(c,a,D,r):a;D>f.computed&&(f={value:a,computed:D})});return f.value};h.min=
-function(a,d,c){if(!d&&h.isArray(a)&&a[0]===+a[0]&&65535>a.length)return Math.min.apply(Math,a);if(!d&&h.isEmpty(a))return Infinity;var f={computed:Infinity,value:Infinity};z(a,function(a,D,r){D=d?d.call(c,a,D,r):a;D<f.computed&&(f={value:a,computed:D})});return f.value};h.shuffle=function(a){var d,c=0,f=[];z(a,function(a){d=h.random(c++);f[c-1]=f[d];f[d]=a});return f};var C=function(a){return h.isFunction(a)?a:function(d){return d[a]}};h.sortBy=function(a,d,c){var f=C(d);return h.pluck(h.map(a,function(a,
-d,D){return{value:a,index:d,criteria:f.call(c,a,d,D)}}).sort(function(a,d){var c=a.criteria,f=d.criteria;if(c!==f){if(c>f||void 0===c)return 1;if(c<f||void 0===f)return-1}return a.index<d.index?-1:1}),"value")};var H=function(a,d,c,f){var r={},j=C(null==d?h.identity:d);z(a,function(d,h){var e=j.call(c,d,h,a);f(r,e,d)});return r};h.groupBy=function(a,d,c){return H(a,d,c,function(a,d,c){(h.has(a,d)?a[d]:a[d]=[]).push(c)})};h.countBy=function(a,d,c){return H(a,d,c,function(a,d){h.has(a,d)||(a[d]=0);
-a[d]++})};h.sortedIndex=function(a,d,c,f){c=null==c?h.identity:C(c);d=c.call(f,d);for(var r=0,j=a.length;r<j;){var e=r+j>>>1;c.call(f,a[e])<d?r=e+1:j=e}return r};h.toArray=function(a){return!a?[]:h.isArray(a)?l.call(a):a.length===+a.length?h.map(a,h.identity):h.values(a)};h.size=function(a){return null==a?0:a.length===+a.length?a.length:h.keys(a).length};h.first=h.head=h.take=function(a,d,c){return null==a?void 0:null!=d&&!c?l.call(a,0,d):a[0]};h.initial=function(a,d,c){return l.call(a,0,a.length-
-(null==d||c?1:d))};h.last=function(a,d,c){return null==a?void 0:null!=d&&!c?l.call(a,Math.max(a.length-d,0)):a[a.length-1]};h.rest=h.tail=h.drop=function(a,d,c){return l.call(a,null==d||c?1:d)};h.compact=function(a){return h.filter(a,h.identity)};var F=function(d,c,f){if(c&&h.every(d,h.isArray))return a.apply(f,d);z(d,function(a){h.isArray(a)||h.isArguments(a)?c?k.apply(f,a):F(a,c,f):f.push(a)});return f};h.flatten=function(a,d){return F(a,d,[])};h.without=function(a){return h.difference(a,l.call(arguments,
-1))};h.uniq=h.unique=function(a,d,c,f){h.isFunction(d)&&(f=c,c=d,d=!1);c=c?h.map(a,c,f):a;var r=[],j=[];z(c,function(c,f){if(d?!f||j[j.length-1]!==c:!h.contains(j,c))j.push(c),r.push(a[f])});return r};h.union=function(){return h.uniq(h.flatten(arguments,!0))};h.intersection=function(a){var d=l.call(arguments,1);return h.filter(h.uniq(a),function(a){return h.every(d,function(d){return 0<=h.indexOf(d,a)})})};h.difference=function(d){var c=a.apply(n,l.call(arguments,1));return h.filter(d,function(a){return!h.contains(c,
-a)})};h.zip=function(){for(var a=h.max(h.pluck(arguments,"length").concat(0)),d=Array(a),c=0;c<a;c++)d[c]=h.pluck(arguments,""+c);return d};h.object=function(a,d){if(null==a)return{};for(var c={},f=0,r=a.length;f<r;f++)d?c[a[f]]=d[f]:c[a[f][0]]=a[f][1];return c};h.indexOf=function(a,d,c){if(null==a)return-1;var f=0,r=a.length;if(c)if("number"==typeof c)f=0>c?Math.max(0,r+c):c;else return f=h.sortedIndex(a,d),a[f]===d?f:-1;if(x&&a.indexOf===x)return a.indexOf(d,c);for(;f<r;f++)if(a[f]===d)return f;
-return-1};h.lastIndexOf=function(a,d,c){if(null==a)return-1;var f=null!=c;if(j&&a.lastIndexOf===j)return f?a.lastIndexOf(d,c):a.lastIndexOf(d);for(c=f?c:a.length;c--;)if(a[c]===d)return c;return-1};h.range=function(a,d,c){1>=arguments.length&&(d=a||0,a=0);c=arguments[2]||1;for(var f=Math.max(Math.ceil((d-a)/c),0),r=0,j=Array(f);r<f;)j[r++]=a,a+=c;return j};var G=function(){};h.bind=function(a,d){var c,f;if(t&&a.bind===t)return t.apply(a,l.call(arguments,1));if(!h.isFunction(a))throw new TypeError;
-c=l.call(arguments,2);return f=function(){if(!(this instanceof f))return a.apply(d,c.concat(l.call(arguments)));G.prototype=a.prototype;var r=new G;G.prototype=null;var j=a.apply(r,c.concat(l.call(arguments)));return Object(j)===j?j:r}};h.partial=function(a){var d=l.call(arguments,1);return function(){return a.apply(this,d.concat(l.call(arguments)))}};h.bindAll=function(a){var d=l.call(arguments,1);if(0===d.length)throw Error("bindAll must be passed function names");z(d,function(d){a[d]=h.bind(a[d],
-a)});return a};h.memoize=function(a,d){var c={};d||(d=h.identity);return function(){var f=d.apply(this,arguments);return h.has(c,f)?c[f]:c[f]=a.apply(this,arguments)}};h.delay=function(a,d){var c=l.call(arguments,2);return setTimeout(function(){return a.apply(null,c)},d)};h.defer=function(a){return h.delay.apply(h,[a,1].concat(l.call(arguments,1)))};h.throttle=function(a,d,c){var f,r,j,h=null,e=0;c||(c={});var m=function(){e=!1===c.leading?0:new Date;h=null;j=a.apply(f,r)};return function(){var g=
-new Date;!e&&!1===c.leading&&(e=g);var B=d-(g-e);f=this;r=arguments;0>=B?(clearTimeout(h),h=null,e=g,j=a.apply(f,r)):!h&&!1!==c.trailing&&(h=setTimeout(m,B));return j}};h.debounce=function(a,d,c){var f,r=null;return function(){var j=this,h=arguments,e=c&&!r;clearTimeout(r);r=setTimeout(function(){r=null;c||(f=a.apply(j,h))},d);e&&(f=a.apply(j,h));return f}};h.once=function(a){var d=!1,c;return function(){if(d)return c;d=!0;c=a.apply(this,arguments);a=null;return c}};h.wrap=function(a,d){return function(){var c=
-[a];k.apply(c,arguments);return d.apply(this,c)}};h.compose=function(){var a=arguments;return function(){for(var d=arguments,c=a.length-1;0<=c;c--)d=[a[c].apply(this,d)];return d[0]}};h.after=function(a,d){return function(){if(1>--a)return d.apply(this,arguments)}};h.keys=y||function(a){if(a!==Object(a))throw new TypeError("Invalid object");var d=[],c;for(c in a)h.has(a,c)&&d.push(c);return d};h.values=function(a){var d=[],c;for(c in a)h.has(a,c)&&d.push(a[c]);return d};h.pairs=function(a){var d=
-[],c;for(c in a)h.has(a,c)&&d.push([c,a[c]]);return d};h.invert=function(a){var d={},c;for(c in a)h.has(a,c)&&(d[a[c]]=c);return d};h.functions=h.methods=function(a){var d=[],c;for(c in a)h.isFunction(a[c])&&d.push(c);return d.sort()};h.extend=function(a){z(l.call(arguments,1),function(d){if(d)for(var c in d)a[c]=d[c]});return a};h.pick=function(d){var c={},f=a.apply(n,l.call(arguments,1));z(f,function(a){a in d&&(c[a]=d[a])});return c};h.omit=function(d){var c={},f=a.apply(n,l.call(arguments,1)),
-r;for(r in d)h.contains(f,r)||(c[r]=d[r]);return c};h.defaults=function(a){z(l.call(arguments,1),function(d){if(d)for(var c in d)void 0===a[c]&&(a[c]=d[c])});return a};h.clone=function(a){return!h.isObject(a)?a:h.isArray(a)?a.slice():h.extend({},a)};h.tap=function(a,d){d(a);return a};var r=function(a,d,f,j){if(a===d)return 0!==a||1/a==1/d;if(null==a||null==d)return a===d;a instanceof h&&(a=a._wrapped);d instanceof h&&(d=d._wrapped);var e=c.call(a);if(e!=c.call(d))return!1;switch(e){case "[object String]":return a==
-String(d);case "[object Number]":return a!=+a?d!=+d:0==a?1/a==1/d:a==+d;case "[object Date]":case "[object Boolean]":return+a==+d;case "[object RegExp]":return a.source==d.source&&a.global==d.global&&a.multiline==d.multiline&&a.ignoreCase==d.ignoreCase}if("object"!=typeof a||"object"!=typeof d)return!1;for(var m=f.length;m--;)if(f[m]==a)return j[m]==d;var m=a.constructor,g=d.constructor;if(m!==g&&(!h.isFunction(m)||!(m instanceof m&&h.isFunction(g)&&g instanceof g)))return!1;f.push(a);j.push(d);m=
-0;g=!0;if("[object Array]"==e){if(m=a.length,g=m==d.length)for(;m--&&(g=r(a[m],d[m],f,j)););}else{for(var B in a)if(h.has(a,B)&&(m++,!(g=h.has(d,B)&&r(a[B],d[B],f,j))))break;if(g){for(B in d)if(h.has(d,B)&&!m--)break;g=!m}}f.pop();j.pop();return g};h.isEqual=function(a,d){return r(a,d,[],[])};h.isEmpty=function(a){if(null==a)return!0;if(h.isArray(a)||h.isString(a))return 0===a.length;for(var d in a)if(h.has(a,d))return!1;return!0};h.isElement=function(a){return!!(a&&1===a.nodeType)};h.isArray=q||
-function(a){return"[object Array]"==c.call(a)};h.isObject=function(a){return a===Object(a)};z("Arguments Function String Number Date RegExp".split(" "),function(a){h["is"+a]=function(d){return c.call(d)=="[object "+a+"]"}});h.isArguments(arguments)||(h.isArguments=function(a){return!(!a||!h.has(a,"callee"))});"function"!==typeof/./&&(h.isFunction=function(a){return"function"===typeof a});h.isFinite=function(a){return isFinite(a)&&!isNaN(parseFloat(a))};h.isNaN=function(a){return h.isNumber(a)&&a!=
-+a};h.isBoolean=function(a){return!0===a||!1===a||"[object Boolean]"==c.call(a)};h.isNull=function(a){return null===a};h.isUndefined=function(a){return void 0===a};h.has=function(a,d){return f.call(a,d)};h.noConflict=function(){e._=g;return this};h.identity=function(a){return a};h.times=function(a,d,c){for(var f=Array(Math.max(0,a)),r=0;r<a;r++)f[r]=d.call(c,r);return f};h.random=function(a,d){null==d&&(d=a,a=0);return a+Math.floor(Math.random()*(d-a+1))};var B={escape:{"&":"&amp;","<":"&lt;",">":"&gt;",
-'"':"&quot;","'":"&#x27;","/":"&#x2F;"}};B.unescape=h.invert(B.escape);var K={escape:RegExp("["+h.keys(B.escape).join("")+"]","g"),unescape:RegExp("("+h.keys(B.unescape).join("|")+")","g")};h.each(["escape","unescape"],function(a){h[a]=function(d){return null==d?"":(""+d).replace(K[a],function(d){return B[a][d]})}});h.result=function(a,d){if(null!=a){var c=a[d];return h.isFunction(c)?c.call(a):c}};h.mixin=function(a){z(h.functions(a),function(d){var c=h[d]=a[d];h.prototype[d]=function(){var a=[this._wrapped];
-k.apply(a,arguments);a=c.apply(h,a);return this._chain?h(a).chain():a}})};var L=0;h.uniqueId=function(a){var d=++L+"";return a?a+d:d};h.templateSettings={evaluate:/<%([\s\S]+?)%>/g,interpolate:/<%=([\s\S]+?)%>/g,escape:/<%-([\s\S]+?)%>/g};var J=/(.)^/,M={"'":"'","\\":"\\","\r":"r","\n":"n","\t":"t","\u2028":"u2028","\u2029":"u2029"},O=/\\|'|\r|\n|\t|\u2028|\u2029/g;h.template=function(a,d,c){var f;c=h.defaults({},c,h.templateSettings);var r=RegExp([(c.escape||J).source,(c.interpolate||J).source,(c.evaluate||
-J).source].join("|")+"|$","g"),j=0,e="__p+='";a.replace(r,function(d,c,f,r,h){e+=a.slice(j,h).replace(O,function(a){return"\\"+M[a]});c&&(e+="'+\n((__t=("+c+"))==null?'':_.escape(__t))+\n'");f&&(e+="'+\n((__t=("+f+"))==null?'':__t)+\n'");r&&(e+="';\n"+r+"\n__p+='");j=h+d.length;return d});e+="';\n";c.variable||(e="with(obj||{}){\n"+e+"}\n");e="var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};\n"+e+"return __p;\n";try{f=new Function(c.variable||"obj","_",e)}catch(m){throw m.source=
-e,m;}if(d)return f(d,h);d=function(a){return f.call(this,a,h)};d.source="function("+(c.variable||"obj")+"){\n"+e+"}";return d};h.chain=function(a){return h(a).chain()};h.mixin(h);z("pop push reverse shift sort splice unshift".split(" "),function(a){var d=n[a];h.prototype[a]=function(){var c=this._wrapped;d.apply(c,arguments);("shift"==a||"splice"==a)&&0===c.length&&delete c[0];return this._chain?h(c).chain():c}});z(["concat","join","slice"],function(a){var d=n[a];h.prototype[a]=function(){var a=d.apply(this._wrapped,
-arguments);return this._chain?h(a).chain():a}});h.extend(h.prototype,{chain:function(){this._chain=!0;return this},value:function(){return this._wrapped}})}).call(this);var Backbone=Backbone||{};
-(function(){var e=[].slice,g=function(e,g,k){var l;e=-1;var a=g.length;switch(k.length){case 0:for(;++e<a;)(l=g[e]).callback.call(l.ctx);break;case 1:for(;++e<a;)(l=g[e]).callback.call(l.ctx,k[0]);break;case 2:for(;++e<a;)(l=g[e]).callback.call(l.ctx,k[0],k[1]);break;case 3:for(;++e<a;)(l=g[e]).callback.call(l.ctx,k[0],k[1],k[2]);break;default:for(;++e<a;)(l=g[e]).callback.apply(l.ctx,k)}},p=Backbone.Events={on:function(e,g,k){this._events||(this._events={});(this._events[e]||(this._events[e]=[])).push({callback:g,
-context:k,ctx:k||this});return this},once:function(e,g,k){var l=this,a=_.once(function(){l.off(e,a);g.apply(this,arguments)});a._callback=g;this.on(e,a,k);return this},off:function(e,g,k){var l,a,c,f,m,d,u,v;if(!this._events)return this;if(!e&&!g&&!k)return this._events={},this;f=e?[e]:_.keys(this._events);m=0;for(d=f.length;m<d;m++)if(e=f[m],l=this._events[e]){c=[];if(g||k){u=0;for(v=l.length;u<v;u++)a=l[u],(g&&g!==(a.callback._callback||a.callback)||k&&k!==a.context)&&c.push(a)}this._events[e]=
-c}return this},trigger:function(n){if(!this._events)return this;var q=e.call(arguments,1),k=this._events[n],l=this._events.all;k&&g(this,k,q);l&&g(this,l,arguments);return this},listenTo:function(e,g,k){var l=this._listeners||(this._listeners={}),a=e._listenerId||(e._listenerId=_.uniqueId("l"));l[a]=e;e.on(g,k||this,this);return this},stopListening:function(e,g,k){var l=this._listeners;if(l){if(e)e.off(g,k,this),!g&&!k&&delete l[e._listenerId];else{for(var a in l)l[a].off(null,null,this);this._listeners=
-{}}return this}}};p.bind=p.on;p.unbind=p.off;"undefined"!==typeof exports&&("undefined"!==typeof module&&module.exports&&(exports=module.exports=p),exports.Backbone=exports.Backbone||Backbone)})();(function(){function e(e){var l=(new Date).getTime(),a=Math.max(0,16-(l-p)),c=g.setTimeout(function(){e(l+a)},a);p=l+a;return c}var g=this,p=0,n=["ms","moz","webkit","o"];if("undefined"!==typeof exports)"undefined"!==typeof module&&module.exports&&(exports=module.exports=e),exports.requestAnimationFrame=e;else{for(var q=0;q<n.length&&!g.requestAnimationFrame;++q)g.requestAnimationFrame=g[n[q]+"RequestAnimationFrame"],g.cancelAnimationFrame=g[n[q]+"CancelAnimationFrame"]||g[n[q]+"CancelRequestAnimationFrame"];
-g.requestAnimationFrame||(g.requestAnimationFrame=e);g.cancelAnimationFrame||(g.cancelAnimationFrame=function(e){clearTimeout(e)})}})();(function(e,g,p,n){function q(){var a=document.body.getBoundingClientRect(),d=this.width=a.width,a=this.height=a.height;this.renderer.setSize(d,a,this.ratio);this.trigger(j.Events.resize,d,a)}var k=this,l=Math.sin,a=Math.cos,c=Math.atan2,f=Math.sqrt,m=Math.PI,d=2*m,u=m/2,v=Math.pow,s=Math.min,A=Math.max,w=0,x={temp:document.createElement("div"),hasEventListeners:g.isFunction(k.addEventListener),bind:function(a,d,c,f){this.hasEventListeners?a.addEventListener(d,c,!!f):a.attachEvent("on"+d,c);return this},
-unbind:function(a,d,c,f){this.hasEventListeners?a.removeEventListeners(d,c,!!f):a.detachEvent("on"+d,c);return this}},j=k.Two=function(a){a=g.defaults(a||{},{fullscreen:!1,width:640,height:480,type:j.Types.svg,autostart:!1});g.each(a,function(a,d){"fullscreen"===d||("width"===d||"height"===d||"autostart"===d)||(this[d]=a)},this);g.isElement(a.domElement)&&(this.type=j.Types[a.domElement.tagName.toLowerCase()]);this.renderer=new j[this.type](this);j.Utils.setPlaying.call(this,a.autostart);this.frameCount=
-0;a.fullscreen?(a=g.bind(q,this),g.extend(document.body.style,{overflow:"hidden",margin:0,padding:0,top:0,left:0,right:0,bottom:0,position:"fixed"}),g.extend(this.renderer.domElement.style,{display:"block",top:0,left:0,right:0,bottom:0,position:"fixed"}),x.bind(k,"resize",a),a()):g.isElement(a.domElement)||(this.renderer.setSize(a.width,a.height,this.ratio),this.width=a.width,this.height=a.height);this.scene=this.renderer.scene;j.Instances.push(this)};g.extend(j,{Array:k.Float32Array||Array,Types:{webgl:"WebGLRenderer",
-svg:"SVGRenderer",canvas:"CanvasRenderer"},Version:"v0.5.0",Identifier:"two_",Properties:{hierarchy:"hierarchy",demotion:"demotion"},Events:{play:"play",pause:"pause",update:"update",render:"render",resize:"resize",change:"change",remove:"remove",insert:"insert",order:"order"},Commands:{move:"M",line:"L",curve:"C",close:"Z"},Resolution:8,Instances:[],noConflict:function(){k.Two=e;return this},uniqueId:function(){var a=w;w++;return a},Utils:{defineProperty:function(a){var d="_"+a,c="_flag"+a.charAt(0).toUpperCase()+
-a.slice(1);Object.defineProperty(this,a,{get:function(){return this[d]},set:function(a){this[d]=a;this[c]=!0}})},release:function(a){g.isObject(a)&&(g.isFunction(a.unbind)&&a.unbind(),a.vertices&&(g.isFunction(a.vertices.unbind)&&a.vertices.unbind(),g.each(a.vertices,function(a){g.isFunction(a.unbind)&&a.unbind()})),a.children&&g.each(a.children,function(a){j.Utils.release(a)}))},xhr:function(a,d){var c=new XMLHttpRequest;c.open("GET",a);c.onreadystatechange=function(){4===c.readyState&&200===c.status&&
-d(c.responseText)};c.send();return c},Curve:{CollinearityEpsilon:v(10,-30),RecursionLimit:16,CuspLimit:0,Tolerance:{distance:0.25,angle:0,epsilon:0.01},abscissas:[[0.5773502691896257],[0,0.7745966692414834],[0.33998104358485626,0.8611363115940526],[0,0.5384693101056831,0.906179845938664],[0.2386191860831969,0.6612093864662645,0.932469514203152],[0,0.4058451513773972,0.7415311855993945,0.9491079123427585],[0.1834346424956498,0.525532409916329,0.7966664774136267,0.9602898564975363],[0,0.3242534234038089,
-0.6133714327005904,0.8360311073266358,0.9681602395076261],[0.14887433898163122,0.4333953941292472,0.6794095682990244,0.8650633666889845,0.9739065285171717],[0,0.26954315595234496,0.5190961292068118,0.7301520055740494,0.8870625997680953,0.978228658146057],[0.1252334085114689,0.3678314989981802,0.5873179542866175,0.7699026741943047,0.9041172563704749,0.9815606342467192],[0,0.2304583159551348,0.44849275103644687,0.6423493394403402,0.8015780907333099,0.9175983992229779,0.9841830547185881],[0.10805494870734367,
-0.31911236892788974,0.5152486363581541,0.6872929048116855,0.827201315069765,0.9284348836635735,0.9862838086968123],[0,0.20119409399743451,0.3941513470775634,0.5709721726085388,0.7244177313601701,0.8482065834104272,0.937273392400706,0.9879925180204854],[0.09501250983763744,0.2816035507792589,0.45801677765722737,0.6178762444026438,0.755404408355003,0.8656312023878318,0.9445750230732326,0.9894009349916499]],weights:[[1],[0.8888888888888888,0.5555555555555556],[0.6521451548625461,0.34785484513745385],
-[0.5688888888888889,0.47862867049936647,0.23692688505618908],[0.46791393457269104,0.3607615730481386,0.17132449237917036],[0.4179591836734694,0.3818300505051189,0.27970539148927664,0.1294849661688697],[0.362683783378362,0.31370664587788727,0.22238103445337448,0.10122853629037626],[0.3302393550012598,0.31234707704000286,0.26061069640293544,0.1806481606948574,0.08127438836157441],[0.29552422471475287,0.26926671930999635,0.21908636251598204,0.1494513491505806,0.06667134430868814],[0.2729250867779006,
-0.26280454451024665,0.23319376459199048,0.18629021092773426,0.1255803694649046,0.05566856711617366],[0.24914704581340277,0.2334925365383548,0.20316742672306592,0.16007832854334622,0.10693932599531843,0.04717533638651183],[0.2325515532308739,0.22628318026289723,0.2078160475368885,0.17814598076194574,0.13887351021978725,0.09212149983772845,0.04048400476531588],[0.2152638534631578,0.2051984637212956,0.18553839747793782,0.15720316715819355,0.12151857068790319,0.08015808715976021,0.03511946033175186],
-[0.2025782419255613,0.19843148532711158,0.1861610000155622,0.16626920581699392,0.13957067792615432,0.10715922046717194,0.07036604748810812,0.03075324199611727],[0.1894506104550685,0.18260341504492358,0.16915651939500254,0.14959598881657674,0.12462897125553388,0.09515851168249279,0.062253523938647894,0.027152459411754096]]},devicePixelRatio:k.devicePixelRatio||1,getBackingStoreRatio:function(a){return a.webkitBackingStorePixelRatio||a.mozBackingStorePixelRatio||a.msBackingStorePixelRatio||a.oBackingStorePixelRatio||
-a.backingStorePixelRatio||1},getRatio:function(a){return j.Utils.devicePixelRatio/C(a)},setPlaying:function(a){this.playing=!!a;return this},getComputedMatrix:function(a,d){d=d&&d.identity()||new j.Matrix;for(var c=a,f=[];c&&c._matrix;)f.push(c._matrix),c=c.parent;f.reverse();g.each(f,function(a){a=a.elements;d.multiply(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9])});return d},deltaTransformPoint:function(a,d,c){return new j.Vector(d*a.a+c*a.c+0,d*a.b+c*a.d+0)},decomposeMatrix:function(a){var d=
-j.Utils.deltaTransformPoint(a,0,1),c=j.Utils.deltaTransformPoint(a,1,0),d=180/Math.PI*Math.atan2(d.y,d.x)-90,c=180/Math.PI*Math.atan2(c.y,c.x);return{translateX:a.e,translateY:a.f,scaleX:Math.sqrt(a.a*a.a+a.b*a.b),scaleY:Math.sqrt(a.c*a.c+a.d*a.d),skewX:d,skewY:c,rotation:d}},applySvgAttributes:function(a,d){var c={},f={},e,h,m;if(getComputedStyle){var v=getComputedStyle(a);for(e=v.length;e--;)h=v[e],m=v[h],void 0!==m&&(f[h]=m)}for(e=a.attributes.length;e--;)m=a.attributes[e],c[m.nodeName]=m.value;
-g.isUndefined(f.opacity)||(f["stroke-opacity"]=f.opacity,f["fill-opacity"]=f.opacity);g.extend(f,c);f.visible=!(g.isUndefined(f.display)&&"none"===f.display)||g.isUndefined(f.visibility)&&"hidden"===f.visibility;for(h in f)switch(m=f[h],h){case "transform":if("none"===m)break;if(null===a.getCTM())break;c=j.Utils.decomposeMatrix(a.getCTM());d.translation.set(c.translateX,c.translateY);d.rotation=c.rotation;d.scale=c.scaleX;f.x&&(d.translation.x=f.x);f.y&&(d.translation.y=f.y);break;case "visible":d.visible=
-m;break;case "stroke-linecap":d.cap=m;break;case "stroke-linejoin":d.join=m;break;case "stroke-miterlimit":d.miter=m;break;case "stroke-width":d.linewidth=parseFloat(m);break;case "stroke-opacity":case "fill-opacity":case "opacity":d.opacity=parseFloat(m);break;case "fill":case "stroke":d[h]=/url\(\#.*\)/i.test(m)?this.getById(m.replace(/url\(\#(.*)\)/i,"$1")):"none"===m?"transparent":m;break;case "id":d.id=m;break;case "class":d.classList=m.split(" ")}return d},read:{svg:function(){return j.Utils.read.g.apply(this,
-arguments)},g:function(a){var d=new j.Group;j.Utils.applySvgAttributes.call(this,a,d);for(var c=0,f=a.childNodes.length;c<f;c++){var e=a.childNodes[c],m=e.nodeName;if(!m)return;m=m.replace(/svg\:/ig,"").toLowerCase();m in j.Utils.read&&(e=j.Utils.read[m].call(d,e),d.add(e))}return d},polygon:function(a,d){var c=[];a.getAttribute("points").replace(/(-?[\d\.?]+),(-?[\d\.?]+)/g,function(a,d,f){c.push(new j.Anchor(parseFloat(d),parseFloat(f)))});var f=(new j.Path(c,!d)).noStroke();f.fill="black";return j.Utils.applySvgAttributes.call(this,
-a,f)},polyline:function(a){return j.Utils.read.polygon.call(this,a,!0)},path:function(a){var d=a.getAttribute("d"),c=new j.Anchor,f,e,m=!1,h=!1,u=d.match(/[a-df-z][^a-df-z]*/ig),k=u.length-1;g.each(u.slice(0),function(a,d){var c=a[0],f=c.toLowerCase(),e=a.slice(1).trim().split(/[\s,]+|(?=\s?[+\-])/),m=[],j;0>=d&&(u=[]);switch(f){case "h":case "v":1<e.length&&(j=1);break;case "m":case "l":case "t":2<e.length&&(j=2);break;case "s":case "q":4<e.length&&(j=4);break;case "c":6<e.length&&(j=6)}if(j){for(var f=
-0,h=e.length,g=0;f<h;f+=j){var r=c;if(0<g)switch(c){case "m":r="l";break;case "M":r="L"}m.push([r].concat(e.slice(f,f+j)).join(" "));g++}u=Array.prototype.concat.apply(u,m)}else u.push(a)});d=g.flatten(g.map(u,function(a,d){var r,u,B;u=a[0];var s=u.toLowerCase();e=a.slice(1).trim();e=e.replace(/(-?\d+(?:\.\d*)?)[eE]([+\-]?\d+)/g,function(a,d,c){return parseFloat(d)*v(10,c)});e=e.split(/[\s,]+|(?=\s?[+\-])/);h=u===s;var l,w,n,A;switch(s){case "z":d>=k?m=!0:(u=c.x,B=c.y,r=new j.Anchor(u,B,void 0,void 0,
-void 0,void 0,j.Commands.close));break;case "m":case "l":u=parseFloat(e[0]);B=parseFloat(e[1]);r=new j.Anchor(u,B,void 0,void 0,void 0,void 0,"m"===s?j.Commands.move:j.Commands.line);h&&r.addSelf(c);c=r;break;case "h":case "v":B="h"===s?"x":"y";s="x"===B?"y":"x";r=new j.Anchor(void 0,void 0,void 0,void 0,void 0,void 0,j.Commands.line);r[B]=parseFloat(e[0]);r[s]=c[s];h&&(r[B]+=c[B]);c=r;break;case "c":case "s":r=c.x;B=c.y;f||(f=new j.Vector);"c"===s?(l=parseFloat(e[0]),w=parseFloat(e[1]),n=parseFloat(e[2]),
-A=parseFloat(e[3]),s=parseFloat(e[4]),u=parseFloat(e[5])):(s=G(c,f,h),l=s.x,w=s.y,n=parseFloat(e[0]),A=parseFloat(e[1]),s=parseFloat(e[2]),u=parseFloat(e[3]));h&&(l+=r,w+=B,n+=r,A+=B,s+=r,u+=B);g.isObject(c.controls)||j.Anchor.AppendCurveProperties(c);c.controls.right.set(l-c.x,w-c.y);c=r=new j.Anchor(s,u,n-s,A-u,void 0,void 0,j.Commands.curve);f=r.controls.left;break;case "t":case "q":r=c.x;B=c.y;f||(f=new j.Vector);f.isZero()?(l=r,w=B):(l=f.x,B=f.y);"q"===s?(n=parseFloat(e[0]),A=parseFloat(e[1]),
-s=parseFloat(e[1]),u=parseFloat(e[2])):(s=G(c,f,h),n=s.x,A=s.y,s=parseFloat(e[0]),u=parseFloat(e[1]));h&&(l+=r,w+=B,n+=r,A+=B,s+=r,u+=B);g.isObject(c.controls)||j.Anchor.AppendCurveProperties(c);c.controls.right.set(l-c.x,w-c.y);c=r=new j.Anchor(s,u,n-s,A-u,void 0,void 0,j.Commands.curve);f=r.controls.left;break;case "a":r=c.x;B=c.y;var q=parseFloat(e[0]),x=parseFloat(e[1]);w=parseFloat(e[2])*Math.PI/180;l=parseFloat(e[3]);n=parseFloat(e[4]);s=parseFloat(e[5]);u=parseFloat(e[6]);h&&(s+=r,u+=B);var y=
-(s-r)/2,t=(u-B)/2;A=y*Math.cos(w)+t*Math.sin(w);var y=-y*Math.sin(w)+t*Math.cos(w),t=q*q,p=x*x,z=A*A,D=y*y,C=z/t+D/p;1<C&&(q*=Math.sqrt(C),x*=Math.sqrt(C));p=Math.sqrt((t*p-t*D-p*z)/(t*D+p*z));g.isNaN(p)?p=0:l!=n&&0<p&&(p*=-1);t=p*q*y/x;p=-p*x*A/q;r=t*Math.cos(w)-p*Math.sin(w)+(r+s)/2;var z=t*Math.sin(w)+p*Math.cos(w)+(B+u)/2,F=function(a,d){return(a[0]*d[0]+a[1]*d[1])/(Math.sqrt(Math.pow(a[0],2)+Math.pow(a[1],2))*Math.sqrt(Math.pow(d[0],2)+Math.pow(d[1],2)))};B=function(a,d){return(a[0]*d[1]<a[1]*
-d[0]?-1:1)*Math.acos(F(a,d))};var H=B([1,0],[(A-t)/q,(y-p)/x]),D=[(A-t)/q,(y-p)/x];A=[(-A-t)/q,(-y-p)/x];var I=B(D,A);-1>=F(D,A)&&(I=Math.PI);1<=F(D,A)&&(I=0);l&&(I=E(I,2*Math.PI));n&&0<I&&(I-=2*Math.PI);var N=j.Resolution,P=(new j.Matrix).translate(r,z).rotate(w);r=g.map(g.range(N),function(a){var d=(1-a/(N-1))*I+H;a=q*Math.cos(d);d=x*Math.sin(d);a=P.multiply(a,d,1);return new j.Anchor(a.x,a.y,!1,!1,!1,!1,j.Commands.line)});r.push(new j.Anchor(s,u,!1,!1,!1,!1,j.Commands.line));c=r[r.length-1];f=
-c.controls.left}return r}));if(!(1>=d.length))return d=g.compact(d),d=(new j.Path(d,m,void 0,!0)).noStroke(),d.fill="black",j.Utils.applySvgAttributes.call(this,a,d)},circle:function(c){var f=parseFloat(c.getAttribute("cx")),e=parseFloat(c.getAttribute("cy")),m=parseFloat(c.getAttribute("r")),h=j.Resolution,u=g.map(g.range(h),function(c){var f=c/h*d;c=m*a(f);f=m*l(f);return new j.Anchor(c,f)}),u=(new j.Path(u,!0,!0)).noStroke();u.translation.set(f,e);u.fill="black";return j.Utils.applySvgAttributes.call(this,
-c,u)},ellipse:function(c){var f=parseFloat(c.getAttribute("cx")),e=parseFloat(c.getAttribute("cy")),m=parseFloat(c.getAttribute("rx")),h=parseFloat(c.getAttribute("ry")),u=j.Resolution,v=g.map(g.range(u),function(c){var f=c/u*d;c=m*a(f);f=h*l(f);return new j.Anchor(c,f)}),v=(new j.Path(v,!0,!0)).noStroke();v.translation.set(f,e);v.fill="black";return j.Utils.applySvgAttributes.call(this,c,v)},rect:function(a){var d=parseFloat(a.getAttribute("x"))||0,c=parseFloat(a.getAttribute("y"))||0,f=parseFloat(a.getAttribute("width")),
-e=parseFloat(a.getAttribute("height")),f=f/2,e=e/2,m=[new j.Anchor(f,e),new j.Anchor(-f,e),new j.Anchor(-f,-e),new j.Anchor(f,-e)],m=(new j.Path(m,!0)).noStroke();m.translation.set(d+f,c+e);m.fill="black";return j.Utils.applySvgAttributes.call(this,a,m)},line:function(a){var d=parseFloat(a.getAttribute("x1")),c=parseFloat(a.getAttribute("y1")),f=parseFloat(a.getAttribute("x2")),e=parseFloat(a.getAttribute("y2")),f=(f-d)/2,e=(e-c)/2,m=[new j.Anchor(-f,-e),new j.Anchor(f,e)],m=(new j.Path(m)).noFill();
-m.translation.set(d+f,c+e);return j.Utils.applySvgAttributes.call(this,a,m)},lineargradient:function(a){for(var d=parseFloat(a.getAttribute("x1")),c=parseFloat(a.getAttribute("y1")),f=parseFloat(a.getAttribute("x2")),e=parseFloat(a.getAttribute("y2")),m=(f+d)/2,h=(e+c)/2,u=[],v=0;v<a.children.length;v++){var s=a.children[v],k=parseFloat(s.getAttribute("offset")),l=s.getAttribute("stop-color"),w=s.getAttribute("stop-opacity"),s=s.getAttribute("style");if(g.isNull(l))var A=s.match(/stop\-color\:\s?([\#a-fA-F0-9]*)/),
-l=A&&1<A.length?A[1]:void 0;g.isNull(w)&&(w=(A=s.match(/stop\-opacity\:\s?([0-1\.\-]*)/))&&1<A.length?parseFloat(A[1]):1);u.push(new j.Gradient.Stop(k,l,w))}d=new j.LinearGradient(d-m,c-h,f-m,e-h,u);return j.Utils.applySvgAttributes.call(this,a,d)},radialgradient:function(a){var d=parseFloat(a.getAttribute("cx"))||0,c=parseFloat(a.getAttribute("cy"))||0,f=parseFloat(a.getAttribute("r")),e=parseFloat(a.getAttribute("fx")),m=parseFloat(a.getAttribute("fy"));g.isNaN(e)&&(e=d);g.isNaN(m)&&(m=c);for(var h=
-Math.abs(d+e)/2,u=Math.abs(c+m)/2,v=[],s=0;s<a.children.length;s++){var k=a.children[s],l=parseFloat(k.getAttribute("offset")),w=k.getAttribute("stop-color"),A=k.getAttribute("stop-opacity"),k=k.getAttribute("style");if(g.isNull(w))var n=k.match(/stop\-color\:\s?([\#a-fA-F0-9]*)/),w=n&&1<n.length?n[1]:void 0;g.isNull(A)&&(A=(n=k.match(/stop\-opacity\:\s?([0-1\.\-]*)/))&&1<n.length?parseFloat(n[1]):1);v.push(new j.Gradient.Stop(l,w,A))}d=new j.RadialGradient(d-h,c-u,f,v,e-h,m-u);return j.Utils.applySvgAttributes.call(this,
-a,d)}},subdivide:function(a,d,c,f,e,m,h,u,v){v=v||j.Utils.Curve.RecursionLimit;var s=v+1;return a===h&&d===u?[new j.Anchor(h,u)]:g.map(g.range(0,s),function(g){var v=g/s;g=H(v,a,c,e,h);v=H(v,d,f,m,u);return new j.Anchor(g,v)})},getPointOnCubicBezier:function(a,d,c,f,e){var m=1-a;return m*m*m*d+3*m*m*a*c+3*m*a*a*f+a*a*a*e},getCurveLength:function(a,d,c,e,m,h,g,u,v){if(a===c&&d===e&&m===g&&h===u)return a=g-a,d=u-d,f(a*a+d*d);var s=9*(c-m)+3*(g-a),k=6*(a+m)-12*c,l=3*(c-a),w=9*(e-h)+3*(u-d),A=6*(d+h)-
-12*e,n=3*(e-d);return F(function(a){var d=(s*a+k)*a+l;a=(w*a+A)*a+n;return f(d*d+a*a)},0,1,v||j.Utils.Curve.RecursionLimit)},integrate:function(a,d,c,f){var e=j.Utils.Curve.abscissas[f-2],m=j.Utils.Curve.weights[f-2];c=0.5*(c-d);d=c+d;var h=0,g=f+1>>1;for(f=f&1?m[h++]*a(d):0;h<g;){var u=c*e[h];f+=m[h++]*(a(d+u)+a(d-u))}return c*f},getCurveFromPoints:function(a,d){for(var c=a.length,f=c-1,e=0;e<c;e++){var m=a[e];g.isObject(m.controls)||j.Anchor.AppendCurveProperties(m);var h=d?E(e-1,c):A(e-1,0),u=
-d?E(e+1,c):s(e+1,f);z(a[h],m,a[u]);m._command=0===e?j.Commands.move:j.Commands.curve;m.controls.left.x=g.isNumber(m.controls.left.x)?m.controls.left.x:m.x;m.controls.left.y=g.isNumber(m.controls.left.y)?m.controls.left.y:m.y;m.controls.right.x=g.isNumber(m.controls.right.x)?m.controls.right.x:m.x;m.controls.right.y=g.isNumber(m.controls.right.y)?m.controls.right.y:m.y}},getControlPoints:function(d,c,f){var e=h(d,c),v=h(f,c);d=y(d,c);f=y(f,c);var s=(e+v)/2;c.u=g.isObject(c.controls.left)?c.controls.left:
-new j.Vector(0,0);c.v=g.isObject(c.controls.right)?c.controls.right:new j.Vector(0,0);if(1E-4>d||1E-4>f)return c._relative||(c.controls.left.copy(c),c.controls.right.copy(c)),c;d*=0.33;f*=0.33;s=v<e?s+u:s-u;c.controls.left.x=a(s)*d;c.controls.left.y=l(s)*d;s-=m;c.controls.right.x=a(s)*f;c.controls.right.y=l(s)*f;c._relative||(c.controls.left.x+=c.x,c.controls.left.y+=c.y,c.controls.right.x+=c.x,c.controls.right.y+=c.y);return c},getReflection:function(a,d,c){return new j.Vector(2*a.x-(d.x+a.x)-(c?
-a.x:0),2*a.y-(d.y+a.y)-(c?a.y:0))},getAnchorsFromArcData:function(a,d,c,f,e,m,h){(new j.Matrix).translate(a.x,a.y).rotate(d);var u=j.Resolution;return g.map(g.range(u),function(a){a=(a+1)/u;h&&(a=1-a);var d=a*m+e;a=c*Math.cos(d);d=f*Math.sin(d);a=new j.Anchor(a,d);j.Anchor.AppendCurveProperties(a);a.command=j.Commands.line;return a})},ratioBetween:function(a,d){return(a.x*d.x+a.y*d.y)/(a.length()*d.length())},angleBetween:function(a,d){var f,e;if(4<=arguments.length)return f=arguments[0]-arguments[2],
-e=arguments[1]-arguments[3],c(e,f);f=a.x-d.x;e=a.y-d.y;return c(e,f)},distanceBetweenSquared:function(a,d){var c=a.x-d.x,f=a.y-d.y;return c*c+f*f},distanceBetween:function(a,d){return f(t(a,d))},toFixed:function(a){return Math.floor(1E3*a)/1E3},mod:function(a,d){for(;0>a;)a+=d;return a%d},Collection:function(){Array.call(this);1<arguments.length?Array.prototype.push.apply(this,arguments):arguments[0]&&Array.isArray(arguments[0])&&Array.prototype.push.apply(this,arguments[0])},Error:function(a){this.name=
-"two.js";this.message=a}}});j.Utils.Error.prototype=Error();j.Utils.Error.prototype.constructor=j.Utils.Error;j.Utils.Collection.prototype=[];j.Utils.Collection.constructor=j.Utils.Collection;g.extend(j.Utils.Collection.prototype,p.Events,{pop:function(){var a=Array.prototype.pop.apply(this,arguments);this.trigger(j.Events.remove,[a]);return a},shift:function(){var a=Array.prototype.shift.apply(this,arguments);this.trigger(j.Events.remove,[a]);return a},push:function(){var a=Array.prototype.push.apply(this,
-arguments);this.trigger(j.Events.insert,arguments);return a},unshift:function(){var a=Array.prototype.unshift.apply(this,arguments);this.trigger(j.Events.insert,arguments);return a},splice:function(){var a=Array.prototype.splice.apply(this,arguments),d;this.trigger(j.Events.remove,a);2<arguments.length&&(d=this.slice(arguments[0],arguments.length-2),this.trigger(j.Events.insert,d),this.trigger(j.Events.order));return a},sort:function(){Array.prototype.sort.apply(this,arguments);this.trigger(j.Events.order);
-return this},reverse:function(){Array.prototype.reverse.apply(this,arguments);this.trigger(j.Events.order);return this}});var y=j.Utils.distanceBetween,t=j.Utils.distanceBetweenSquared,h=j.Utils.angleBetween,z=j.Utils.getControlPoints,E=j.Utils.mod,C=j.Utils.getBackingStoreRatio,H=j.Utils.getPointOnCubicBezier,F=j.Utils.integrate,G=j.Utils.getReflection;g.extend(j.prototype,p.Events,{appendTo:function(a){a.appendChild(this.renderer.domElement);return this},play:function(){j.Utils.setPlaying.call(this,
-!0);return this.trigger(j.Events.play)},pause:function(){this.playing=!1;return this.trigger(j.Events.pause)},update:function(){var a=!!this._lastFrame,d=(k.performance&&k.performance.now?k.performance:Date).now();this.frameCount++;a&&(this.timeDelta=parseFloat((d-this._lastFrame).toFixed(3)));this._lastFrame=d;var a=this.width,d=this.height,c=this.renderer;(a!==c.width||d!==c.height)&&c.setSize(a,d,this.ratio);this.trigger(j.Events.update,this.frameCount,this.timeDelta);return this.render()},render:function(){this.renderer.render();
-return this.trigger(j.Events.render,this.frameCount)},add:function(a){var d=a;d instanceof Array||(d=g.toArray(arguments));this.scene.add(d);return this},remove:function(a){var d=a;d instanceof Array||(d=g.toArray(arguments));this.scene.remove(d);return this},clear:function(){this.scene.remove(g.toArray(this.scene.children));return this},makeLine:function(a,d,c,f){a=new j.Line(a,d,c,f);this.scene.add(a);return a},makeRectangle:function(a,d,c,f){a=new j.Rectangle(a,d,c,f);this.scene.add(a);return a},
-makeRoundedRectangle:function(a,d,c,f,e){a=new j.RoundedRectangle(a,d,c,f,e);this.scene.add(a);return a},makeCircle:function(a,d,c){return this.makeEllipse(a,d,c,c)},makeEllipse:function(a,d,c,f){a=new j.Ellipse(a,d,c,f);this.scene.add(a);return a},makeStar:function(a,d,c,f,e){a=new j.Star(a,d,c,f,e);this.scene.add(a);return a},makeCurve:function(a){var d=arguments.length,c=a;if(!g.isArray(a))for(var c=[],f=0;f<d;f+=2){var e=arguments[f];if(!g.isNumber(e))break;c.push(new j.Anchor(e,arguments[f+1]))}d=
-arguments[d-1];c=new j.Path(c,!(g.isBoolean(d)&&d),!0);d=c.getBoundingClientRect();c.center().translation.set(d.left+d.width/2,d.top+d.height/2);this.scene.add(c);return c},makePolygon:function(a,d,c,f){a=new j.Polygon(a,d,c,f);this.scene.add(a);return a},makeArcSegment:function(a,d,c,f,e,m,h){a=new j.ArcSegment(a,d,c,f,e,m,h);this.scene.add(a);return a},makePath:function(a){var d=arguments.length,c=a;if(!g.isArray(a))for(var c=[],f=0;f<d;f+=2){var e=arguments[f];if(!g.isNumber(e))break;c.push(new j.Anchor(e,
-arguments[f+1]))}d=arguments[d-1];c=new j.Path(c,!(g.isBoolean(d)&&d));d=c.getBoundingClientRect();c.center().translation.set(d.left+d.width/2,d.top+d.height/2);this.scene.add(c);return c},makeLinearGradient:function(a,d,c,f){var e=Array.prototype.slice.call(arguments,4),e=new j.LinearGradient(a,d,c,f,e);this.add(e);return e},makeRadialGradient:function(a,d,c){var f=Array.prototype.slice.call(arguments,3),f=new j.RadialGradient(a,d,c,f);this.add(f);return f},makeGroup:function(a){var d=a;d instanceof
-Array||(d=g.toArray(arguments));var c=new j.Group;this.scene.add(c);c.add(d);return c},interpret:function(a,d){var c=a.tagName.toLowerCase();if(!(c in j.Utils.read))return null;c=j.Utils.read[c].call(this,a);d&&c instanceof j.Group?this.add(c.children):this.add(c);return c},load:function(a,d){var c=[],f,e;if(/.*\.svg/ig.test(a))return j.Utils.xhr(a,g.bind(function(a){x.temp.innerHTML=a;for(e=0;e<x.temp.children.length;e++)f=x.temp.children[e],c.push(this.interpret(f));d(1>=c.length?c[0]:c,1>=x.temp.children.length?
-x.temp.children[0]:x.temp.children)},this)),this;x.temp.innerHTML=a;for(e=0;e<x.temp.children.length;e++)f=x.temp.children[e],c.push(this.interpret(f));d(1>=c.length?c[0]:c,1>=x.temp.children.length?x.temp.children[0]:x.temp.children);return this}});(function(){n(arguments.callee);j.Instances.forEach(function(a){a.playing&&a.update()})})();"function"===typeof define&&define.amd?define(function(){return j}):"undefined"!=typeof module&&module.exports&&(module.exports=j)})(this.Two||{},"function"===
-typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Vector=function(a,c){this.x=a||0;this.y=c||0};g.extend(n,{zero:new e.Vector});g.extend(n.prototype,p.Events,{set:function(a,c){this.x=a;this.y=c;return this},copy:function(a){this.x=a.x;this.y=a.y;return this},clear:function(){this.y=this.x=0;return this},clone:function(){return new n(this.x,this.y)},add:function(a,c){this.x=a.x+c.x;this.y=a.y+c.y;return this},addSelf:function(a){this.x+=a.x;this.y+=a.y;return this},sub:function(a,c){this.x=a.x-c.x;this.y=a.y-c.y;return this},
-subSelf:function(a){this.x-=a.x;this.y-=a.y;return this},multiplySelf:function(a){this.x*=a.x;this.y*=a.y;return this},multiplyScalar:function(a){this.x*=a;this.y*=a;return this},divideScalar:function(a){a?(this.x/=a,this.y/=a):this.set(0,0);return this},negate:function(){return this.multiplyScalar(-1)},dot:function(a){return this.x*a.x+this.y*a.y},lengthSquared:function(){return this.x*this.x+this.y*this.y},length:function(){return Math.sqrt(this.lengthSquared())},normalize:function(){return this.divideScalar(this.length())},
-distanceTo:function(a){return Math.sqrt(this.distanceToSquared(a))},distanceToSquared:function(a){var c=this.x-a.x;a=this.y-a.y;return c*c+a*a},setLength:function(a){return this.normalize().multiplyScalar(a)},equals:function(a,c){return this.distanceTo(a)<("undefined"===typeof c?1E-4:c)},lerp:function(a,c){return this.set((a.x-this.x)*c+this.x,(a.y-this.y)*c+this.y)},isZero:function(a){return this.length()<("undefined"===typeof a?1E-4:a)},toString:function(){return this.x+","+this.y},toObject:function(){return{x:this.x,
-y:this.y}}});var q={set:function(a,c){this._x=a;this._y=c;return this.trigger(e.Events.change)},copy:function(a){this._x=a.x;this._y=a.y;return this.trigger(e.Events.change)},clear:function(){this._y=this._x=0;return this.trigger(e.Events.change)},clone:function(){return new n(this._x,this._y)},add:function(a,c){this._x=a.x+c.x;this._y=a.y+c.y;return this.trigger(e.Events.change)},addSelf:function(a){this._x+=a.x;this._y+=a.y;return this.trigger(e.Events.change)},sub:function(a,c){this._x=a.x-c.x;
-this._y=a.y-c.y;return this.trigger(e.Events.change)},subSelf:function(a){this._x-=a.x;this._y-=a.y;return this.trigger(e.Events.change)},multiplySelf:function(a){this._x*=a.x;this._y*=a.y;return this.trigger(e.Events.change)},multiplyScalar:function(a){this._x*=a;this._y*=a;return this.trigger(e.Events.change)},divideScalar:function(a){return a?(this._x/=a,this._y/=a,this.trigger(e.Events.change)):this.clear()},negate:function(){return this.multiplyScalar(-1)},dot:function(a){return this._x*a.x+
-this._y*a.y},lengthSquared:function(){return this._x*this._x+this._y*this._y},length:function(){return Math.sqrt(this.lengthSquared())},normalize:function(){return this.divideScalar(this.length())},distanceTo:function(a){return Math.sqrt(this.distanceToSquared(a))},distanceToSquared:function(a){var c=this._x-a.x;a=this._y-a.y;return c*c+a*a},setLength:function(a){return this.normalize().multiplyScalar(a)},equals:function(a,c){return this.distanceTo(a)<("undefined"===typeof c?1E-4:c)},lerp:function(a,
-c){return this.set((a.x-this._x)*c+this._x,(a.y-this._y)*c+this._y)},isZero:function(a){return this.length()<("undefined"===typeof a?1E-4:a)},toString:function(){return this._x+","+this._y},toObject:function(){return{x:this._x,y:this._y}}},k={get:function(){return this._x},set:function(a){this._x=a;this.trigger(e.Events.change,"x")}},l={get:function(){return this._y},set:function(a){this._y=a;this.trigger(e.Events.change,"y")}};e.Vector.prototype.bind=e.Vector.prototype.on=function(){this._bound||
-(this._x=this.x,this._y=this.y,Object.defineProperty(this,"x",k),Object.defineProperty(this,"y",l),g.extend(this,q),this._bound=!0);p.Events.bind.apply(this,arguments);return this}})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.Commands,n=e.Anchor=function(k,l,a,c,f,m,d){e.Vector.call(this,k,l);this._broadcast=g.bind(function(){this.trigger(e.Events.change)},this);this._command=d||p.move;this._relative=!0;if(!d)return this;n.AppendCurveProperties(this);g.isNumber(a)&&(this.controls.left.x=a);g.isNumber(c)&&(this.controls.left.y=c);g.isNumber(f)&&(this.controls.right.x=f);g.isNumber(m)&&(this.controls.right.y=m)};g.extend(n,{AppendCurveProperties:function(g){g.controls={left:new e.Vector(0,0),right:new e.Vector(0,
-0)}}});var q={listen:function(){g.isObject(this.controls)||n.AppendCurveProperties(this);this.controls.left.bind(e.Events.change,this._broadcast);this.controls.right.bind(e.Events.change,this._broadcast);return this},ignore:function(){this.controls.left.unbind(e.Events.change,this._broadcast);this.controls.right.unbind(e.Events.change,this._broadcast);return this},clone:function(){var g=this.controls,g=new e.Anchor(this.x,this.y,g&&g.left.x,g&&g.left.y,g&&g.right.x,g&&g.right.y,this.command);g.relative=
-this._relative;return g},toObject:function(){var e={x:this.x,y:this.y};this._command&&(e.command=this._command);this._relative&&(e.relative=this._relative);this.controls&&(e.controls={left:this.controls.left.toObject(),right:this.controls.right.toObject()});return e}};Object.defineProperty(n.prototype,"command",{get:function(){return this._command},set:function(k){this._command=k;this._command===p.curve&&!g.isObject(this.controls)&&n.AppendCurveProperties(this);return this.trigger(e.Events.change)}});
-Object.defineProperty(n.prototype,"relative",{get:function(){return this._relative},set:function(g){if(this._relative==g)return this;this._relative=!!g;return this.trigger(e.Events.change)}});g.extend(n.prototype,e.Vector.prototype,q);e.Anchor.prototype.bind=e.Anchor.prototype.on=function(){e.Vector.prototype.bind.apply(this,arguments);g.extend(this,q)};e.Anchor.prototype.unbind=e.Anchor.prototype.off=function(){e.Vector.prototype.unbind.apply(this,arguments);g.extend(this,q)}})(Two,"function"===
-typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=Math.cos,q=Math.sin,k=Math.tan,l=e.Matrix=function(a,c,f,m,d,u){this.elements=new e.Array(9);var v=a;g.isArray(v)||(v=g.toArray(arguments));this.identity().set(v)};g.extend(l,{Identity:[1,0,0,0,1,0,0,0,1],Multiply:function(a,c,f){if(3>=c.length){f=c[0]||0;var m=c[1]||0;c=c[2]||0;return{x:a[0]*f+a[1]*m+a[2]*c,y:a[3]*f+a[4]*m+a[5]*c,z:a[6]*f+a[7]*m+a[8]*c}}var m=a[0],d=a[1],g=a[2],v=a[3],s=a[4],l=a[5],k=a[6],n=a[7];a=a[8];var j=c[0],q=c[1],t=c[2],h=c[3],p=c[4],E=c[5],C=c[6],H=
-c[7];c=c[8];f=f||new e.Array(9);f[0]=m*j+d*h+g*C;f[1]=m*q+d*p+g*H;f[2]=m*t+d*E+g*c;f[3]=v*j+s*h+l*C;f[4]=v*q+s*p+l*H;f[5]=v*t+s*E+l*c;f[6]=k*j+n*h+a*C;f[7]=k*q+n*p+a*H;f[8]=k*t+n*E+a*c;return f}});g.extend(l.prototype,p.Events,{set:function(a){var c=a;g.isArray(c)||(c=g.toArray(arguments));g.extend(this.elements,c);return this.trigger(e.Events.change)},identity:function(){this.set(l.Identity);return this},multiply:function(a,c,f,m,d,u,v,s,l){var k=arguments,n=k.length;if(1>=n)return g.each(this.elements,
-function(d,c){this.elements[c]=d*a},this),this.trigger(e.Events.change);if(3>=n)return a=a||0,c=c||0,f=f||0,d=this.elements,{x:d[0]*a+d[1]*c+d[2]*f,y:d[3]*a+d[4]*c+d[5]*f,z:d[6]*a+d[7]*c+d[8]*f};var j=this.elements,q=k,k=j[0],n=j[1],t=j[2],h=j[3],p=j[4],E=j[5],C=j[6],H=j[7],j=j[8],F=q[0],G=q[1],r=q[2],B=q[3],K=q[4],L=q[5],J=q[6],M=q[7],q=q[8];this.elements[0]=k*F+n*B+t*J;this.elements[1]=k*G+n*K+t*M;this.elements[2]=k*r+n*L+t*q;this.elements[3]=h*F+p*B+E*J;this.elements[4]=h*G+p*K+E*M;this.elements[5]=
-h*r+p*L+E*q;this.elements[6]=C*F+H*B+j*J;this.elements[7]=C*G+H*K+j*M;this.elements[8]=C*r+H*L+j*q;return this.trigger(e.Events.change)},inverse:function(a){var c=this.elements;a=a||new e.Matrix;var f=c[0],m=c[1],d=c[2],g=c[3],v=c[4],s=c[5],l=c[6],k=c[7],c=c[8],n=c*v-s*k,j=-c*g+s*l,q=k*g-v*l,t=f*n+m*j+d*q;if(!t)return null;t=1/t;a.elements[0]=n*t;a.elements[1]=(-c*m+d*k)*t;a.elements[2]=(s*m-d*v)*t;a.elements[3]=j*t;a.elements[4]=(c*f-d*l)*t;a.elements[5]=(-s*f+d*g)*t;a.elements[6]=q*t;a.elements[7]=
-(-k*f+m*l)*t;a.elements[8]=(v*f-m*g)*t;return a},scale:function(a,c){1>=arguments.length&&(c=a);return this.multiply(a,0,0,0,c,0,0,0,1)},rotate:function(a){var c=n(a);a=q(a);return this.multiply(c,-a,0,a,c,0,0,0,1)},translate:function(a,c){return this.multiply(1,0,a,0,1,c,0,0,1)},skewX:function(a){a=k(a);return this.multiply(1,a,0,0,1,0,0,0,1)},skewY:function(a){a=k(a);return this.multiply(1,0,0,a,1,0,0,0,1)},toString:function(a){var c=[];this.toArray(a,c);return c.join(" ")},toArray:function(a,c){var f=
-this.elements,e=!!c,d=parseFloat(f[0].toFixed(3)),g=parseFloat(f[1].toFixed(3)),v=parseFloat(f[2].toFixed(3)),s=parseFloat(f[3].toFixed(3)),l=parseFloat(f[4].toFixed(3)),k=parseFloat(f[5].toFixed(3));if(a){var n=parseFloat(f[6].toFixed(3)),j=parseFloat(f[7].toFixed(3)),f=parseFloat(f[8].toFixed(3));if(e){c[0]=d;c[1]=s;c[2]=n;c[3]=g;c[4]=l;c[5]=j;c[6]=v;c[7]=k;c[8]=f;return}return[d,s,n,g,l,j,v,k,f]}if(e)c[0]=d,c[1]=s,c[2]=g,c[3]=l,c[4]=v,c[5]=k;else return[d,s,g,l,v,k]},clone:function(){return new e.Matrix(this.elements[0],
-this.elements[1],this.elements[2],this.elements[3],this.elements[4],this.elements[5],this.elements[6],this.elements[7],this.elements[8])}})})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Utils.mod,q=e.Utils.toFixed,k={version:1.1,ns:"http://www.w3.org/2000/svg",xlink:"http://www.w3.org/1999/xlink",createElement:function(a,c){var f=document.createElementNS(this.ns,a);"svg"===a&&(c=g.defaults(c||{},{version:this.version}));g.isEmpty(c)||k.setAttributes(f,c);return f},setAttributes:function(a,c){for(var f=Object.keys(c),e=0;e<f.length;e++)a.setAttribute(f[e],c[f[e]]);return this},removeAttributes:function(a,c){for(var f in c)a.removeAttribute(f);return this},
-toString:function(a,c){for(var f=a.length,m=f-1,d,g="",v=0;v<f;v++){var s=a[v],l,k=c?n(v-1,f):Math.max(v-1,0),x=c?n(v+1,f):Math.min(v+1,m);l=a[k];var j=a[x],p,t,h,k=q(s._x),j=q(s._y);switch(s._command){case e.Commands.close:l=e.Commands.close;break;case e.Commands.curve:p=l.controls&&l.controls.right||l;h=s.controls&&s.controls.left||s;l._relative?(x=q(p.x+l.x),p=q(p.y+l.y)):(x=q(p.x),p=q(p.y));s._relative?(t=q(h.x+s.x),h=q(h.y+s.y)):(t=q(h.x),h=q(h.y));l=(0===v?e.Commands.move:e.Commands.curve)+
-" "+x+" "+p+" "+t+" "+h+" "+k+" "+j;break;case e.Commands.move:d=s;l=e.Commands.move+" "+k+" "+j;break;default:l=s._command+" "+k+" "+j}v>=m&&c&&(s._command===e.Commands.curve&&(j=d,p=s.controls&&s.controls.right||s,k=j.controls&&j.controls.left||j,s._relative?(x=q(p.x+s.x),p=q(p.y+s.y)):(x=q(p.x),p=q(p.y)),j._relative?(t=q(k.x+j.x),h=q(k.y+j.y)):(t=q(k.x),h=q(k.y)),k=q(j.x),j=q(j.y),l+=" C "+x+" "+p+" "+t+" "+h+" "+k+" "+j),l+=" Z");g+=l+" "}return g},getClip:function(a){var c=a._renderer.clip;if(!c){for(var f=
-a;f.parent;)f=f.parent;c=a._renderer.clip=k.createElement("clipPath");f.defs.appendChild(c)}return c},group:{appendChild:function(a){var c=a._renderer.elem;if(c){var f=c.nodeName;f&&(!/(radial|linear)gradient/i.test(f)&&!a._clip)&&this.elem.appendChild(c)}},removeChild:function(a){var c=a._renderer.elem;c&&c.parentElement==this.elem&&c.nodeName&&(a._clip||this.elem.removeChild(c))},orderChild:function(a){this.elem.appendChild(a._renderer.elem)},renderChild:function(a){k[a._renderer.type].render.call(a,
-this)},render:function(a){this._update();if(0===this._opacity&&!this._flagOpacity)return this;this._renderer.elem||(this._renderer.elem=k.createElement("g",{id:this.id}),a.appendChild(this._renderer.elem));var c={domElement:a,elem:this._renderer.elem};(this._matrix.manual||this._flagMatrix)&&this._renderer.elem.setAttribute("transform","matrix("+this._matrix.toString()+")");for(var f=0;f<this.children.length;f++){var e=this.children[f];k[e._renderer.type].render.call(e,a)}this._flagOpacity&&this._renderer.elem.setAttribute("opacity",
-this._opacity);this._flagAdditions&&this.additions.forEach(k.group.appendChild,c);this._flagSubtractions&&this.subtractions.forEach(k.group.removeChild,c);this._flagOrder&&this.children.forEach(k.group.orderChild,c);this._flagMask&&(this._mask?this._renderer.elem.setAttribute("clip-path","url(#"+this._mask.id+")"):this._renderer.elem.removeAttribute("clip-path"));return this.flagReset()}},path:{render:function(a){this._update();if(0===this._opacity&&!this._flagOpacity)return this;var c={};if(this._matrix.manual||
-this._flagMatrix)c.transform="matrix("+this._matrix.toString()+")";if(this._flagVertices){var f=k.toString(this._vertices,this._closed);c.d=f}this._flagFill&&(c.fill=this._fill&&this._fill.id?"url(#"+this._fill.id+")":this._fill);this._flagStroke&&(c.stroke=this._stroke);this._flagLinewidth&&(c["stroke-width"]=this._linewidth);this._flagOpacity&&(c["stroke-opacity"]=this._opacity,c["fill-opacity"]=this._opacity);this._flagVisible&&(c.visibility=this._visible?"visible":"hidden");this._flagCap&&(c["stroke-linecap"]=
-this._cap);this._flagJoin&&(c["stroke-linejoin"]=this._join);this._flagMiter&&(c["stroke-miterlimit"]=this._miter);this._renderer.elem?k.setAttributes(this._renderer.elem,c):(c.id=this.id,this._renderer.elem=k.createElement("path",c),a.appendChild(this._renderer.elem));this._flagClip&&(a=k.getClip(this),c=this._renderer.elem,this._clip?(c.removeAttribute("id"),a.setAttribute("id",this.id),a.appendChild(c)):(a.removeAttribute("id"),c.setAttribute("id",this.id),this.parent._renderer.elem.appendChild(c)));
-return this.flagReset()}},"linear-gradient":{render:function(a){this._update();var c={};this._flagEndPoints&&(c.x1=this.left._x,c.y1=this.left._y,c.x2=this.right._x,c.y2=this.right._y);this._flagSpread&&(c.spreadMethod=this._spread);this._renderer.elem?k.setAttributes(this._renderer.elem,c):(c.id=this.id,c.gradientUnits="userSpaceOnUse",this._renderer.elem=k.createElement("linearGradient",c),a.defs.appendChild(this._renderer.elem));if(this._flagStops)for(a=this._renderer.elem.childNodes.length=0;a<
-this.stops.length;a++){var c=this.stops[a],f={};c._flagOffset&&(f.offset=100*c._offset+"%");c._flagColor&&(f["stop-color"]=c._color);c._flagOpacity&&(f["stop-opacity"]=c._opacity);c._renderer.elem?k.setAttributes(c._renderer.elem,f):c._renderer.elem=k.createElement("stop",f);this._renderer.elem.appendChild(c._renderer.elem);c.flagReset()}return this.flagReset()}},"radial-gradient":{render:function(a){this._update();var c={};this._flagCenter&&(c.cx=this.center._x,c.cy=this.center._y);this._flagFocal&&
-(c.fx=this.focal._x,c.fy=this.focal._y);this._flagRadius&&(c.r=this._radius);this._flagSpread&&(c.spreadMethod=this._spread);this._renderer.elem?k.setAttributes(this._renderer.elem,c):(c.id=this.id,c.gradientUnits="userSpaceOnUse",this._renderer.elem=k.createElement("radialGradient",c),a.defs.appendChild(this._renderer.elem));if(this._flagStops)for(a=this._renderer.elem.childNodes.length=0;a<this.stops.length;a++){var c=this.stops[a],f={};c._flagOffset&&(f.offset=100*c._offset+"%");c._flagColor&&
-(f["stop-color"]=c._color);c._flagOpacity&&(f["stop-opacity"]=c._opacity);c._renderer.elem?k.setAttributes(c._renderer.elem,f):c._renderer.elem=k.createElement("stop",f);this._renderer.elem.appendChild(c._renderer.elem);c.flagReset()}return this.flagReset()}}},l=e[e.Types.svg]=function(a){this.domElement=a.domElement||k.createElement("svg");this.scene=new e.Group;this.scene.parent=this;this.defs=k.createElement("defs");this.domElement.appendChild(this.defs);this.domElement.defs=this.defs;this.domElement.style.overflow=
-"hidden"};g.extend(l,{Utils:k});g.extend(l.prototype,p.Events,{setSize:function(a,c){this.width=a;this.height=c;k.setAttributes(this.domElement,{width:a,height:c});return this},render:function(){k.group.render.call(this.scene,this.domElement);return this}})})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Utils.mod,q=e.Utils.toFixed,k=e.Utils.getRatio,l=function(a){return 1==a[0]&&0==a[3]&&0==a[1]&&1==a[4]&&0==a[2]&&0==a[5]},a={isHidden:/(none|transparent)/i,group:{renderChild:function(c){a[c._renderer.type].render.call(c,this.ctx,!0,this.clip)},render:function(c){this._update();var e=this._matrix.elements,d=this.parent;this._renderer.opacity=this._opacity*(d&&d._renderer?d._renderer.opacity:1);var d=l(e),g=this._mask;this._renderer.context||(this._renderer.context={});this._renderer.context.ctx=
-c;d||(c.save(),c.transform(e[0],e[3],e[1],e[4],e[2],e[5]));g&&a[g._renderer.type].render.call(g,c,!0);for(e=0;e<this.children.length;e++)g=this.children[e],a[g._renderer.type].render.call(g,c);d||c.restore();return this.flagReset()}},path:{render:function(c,m,d){var u,v,s,k,w,p,j,y,t,h,z,E,C,H,F,G;this._update();u=this._matrix.elements;v=this._stroke;s=this._linewidth;k=this._fill;w=this._opacity*this.parent._renderer.opacity;p=this._visible;j=this._cap;y=this._join;t=this._miter;h=this._closed;z=
-this._vertices;E=z.length;C=E-1;G=l(u);F=this._clip;if(!m&&(!p||F))return this;G||(c.save(),c.transform(u[0],u[3],u[1],u[4],u[2],u[5]));k&&(g.isString(k)?c.fillStyle=k:(a[k._renderer.type].render.call(k,c),c.fillStyle=k._renderer.gradient));v&&(g.isString(v)?c.strokeStyle=v:(a[v._renderer.type].render.call(v,c),c.strokeStyle=v._renderer.gradient));s&&(c.lineWidth=s);t&&(c.miterLimit=t);y&&(c.lineJoin=y);j&&(c.lineCap=j);g.isNumber(w)&&(c.globalAlpha=w);c.beginPath();for(u=0;u<z.length;u++)switch(m=
-z[u],w=q(m._x),p=q(m._y),m._command){case e.Commands.close:c.closePath();break;case e.Commands.curve:s=h?n(u-1,E):Math.max(u-1,0);h?n(u+1,E):Math.min(u+1,C);j=z[s];y=j.controls&&j.controls.right||j;t=m.controls&&m.controls.left||m;j._relative?(s=y.x+q(j._x),y=y.y+q(j._y)):(s=q(y.x),y=q(y.y));m._relative?(j=t.x+q(m._x),t=t.y+q(m._y)):(j=q(t.x),t=q(t.y));c.bezierCurveTo(s,y,j,t,w,p);u>=C&&h&&(p=H,j=m.controls&&m.controls.right||m,w=p.controls&&p.controls.left||p,m._relative?(s=j.x+q(m._x),y=j.y+q(m._y)):
-(s=q(j.x),y=q(j.y)),p._relative?(j=w.x+q(p._x),t=w.y+q(p._y)):(j=q(w.x),t=q(w.y)),w=q(p._x),p=q(p._y),c.bezierCurveTo(s,y,j,t,w,p));break;case e.Commands.line:c.lineTo(w,p);break;case e.Commands.move:H=m,c.moveTo(w,p)}h&&c.closePath();!F&&!d&&(a.isHidden.test(k)||c.fill(),a.isHidden.test(v)||c.stroke());G||c.restore();F&&!d&&c.clip();return this.flagReset()}},"linear-gradient":{render:function(a){this._update();if(!this._renderer.gradient||this._flagEndPoints||this._flagStops){this._renderer.gradient=
-a.createLinearGradient(this.left._x,this.left._y,this.right._x,this.right._y);for(a=0;a<this.stops.length;a++){var c=this.stops[a];this._renderer.gradient.addColorStop(c._offset,c._color)}}return this.flagReset()}},"radial-gradient":{render:function(a){this._update();if(!this._renderer.gradient||this._flagCenter||this._flagFocal||this._flagRadius||this._flagStops){this._renderer.gradient=a.createRadialGradient(this.center._x,this.center._y,0,this.focal._x,this.focal._y,this._radius);for(a=0;a<this.stops.length;a++){var c=
-this.stops[a];this._renderer.gradient.addColorStop(c._offset,c._color)}}return this.flagReset()}}},c=e[e.Types.canvas]=function(a){var c=!1!==a.smoothing;this.domElement=a.domElement||document.createElement("canvas");this.ctx=this.domElement.getContext("2d");this.overdraw=a.overdraw||!1;this.ctx.imageSmoothingEnabled=c;this.ctx.mozImageSmoothingEnabled=c;this.ctx.oImageSmoothingEnabled=c;this.ctx.webkitImageSmoothingEnabled=c;this.ctx.imageSmoothingEnabled=c;this.scene=new e.Group;this.scene.parent=
-this};g.extend(c,{Utils:a});g.extend(c.prototype,p.Events,{setSize:function(a,c,d){this.width=a;this.height=c;this.ratio=g.isUndefined(d)?k(this.ctx):d;this.domElement.width=a*this.ratio;this.domElement.height=c*this.ratio;g.extend(this.domElement.style,{width:a+"px",height:c+"px"});return this},render:function(){var c=1===this.ratio;c||(this.ctx.save(),this.ctx.scale(this.ratio,this.ratio));this.overdraw||this.ctx.clearRect(0,0,this.width,this.height);a.group.render.call(this.scene,this.ctx);c||
-this.ctx.restore();return this}})})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Matrix.Multiply,q=e.Utils.mod,k=[1,0,0,0,1,0,0,0,1],l=new e.Array(9),a=e.Utils.getRatio,c=e.Utils.toFixed,f={isHidden:/(none|transparent)/i,canvas:document.createElement("canvas"),matrix:new e.Matrix,uv:new e.Array([0,0,1,0,0,1,0,1,1,0,1,1]),group:{removeChild:function(a,c){if(a.children)for(var e=0;e<a.children.length;e++)f.group.removeChild(a.children[e],c);else c.deleteTexture(a._renderer.texture),delete a._renderer.texture},renderChild:function(a){f[a._renderer.type].render.call(a,
-this.gl,this.program)},render:function(a,c){this._update();var g=this.parent,m=g._matrix&&g._matrix.manual||g._flagMatrix,k=this._matrix.manual||this._flagMatrix;if(m||k)this._renderer.matrix||(this._renderer.matrix=new e.Array(9)),this._matrix.toArray(!0,l),n(l,g._renderer.matrix,this._renderer.matrix),this._renderer.scale=this._scale*g._renderer.scale,m&&(this._flagMatrix=!0);this._mask&&(a.enable(a.STENCIL_TEST),a.stencilFunc(a.ALWAYS,1,1),a.colorMask(!1,!1,!1,!0),a.stencilOp(a.KEEP,a.KEEP,a.INCR),
-f[this._mask._renderer.type].render.call(this._mask,a,c,this),a.colorMask(!0,!0,!0,!0),a.stencilFunc(a.NOTEQUAL,0,1),a.stencilOp(a.KEEP,a.KEEP,a.KEEP));this._flagOpacity=g._flagOpacity||this._flagOpacity;this._renderer.opacity=this._opacity*(g&&g._renderer?g._renderer.opacity:1);if(this._flagSubtractions)for(g=0;g<this.subtractions.length;g++)f.group.removeChild(this.subtractions[g],a);this.children.forEach(f.group.renderChild,{gl:a,program:c});this._mask&&(a.colorMask(!1,!1,!1,!1),a.stencilOp(a.KEEP,
-a.KEEP,a.DECR),f[this._mask._renderer.type].render.call(this._mask,a,c,this),a.colorMask(!0,!0,!0,!0),a.stencilFunc(a.NOTEQUAL,0,1),a.stencilOp(a.KEEP,a.KEEP,a.KEEP),a.disable(a.STENCIL_TEST));return this.flagReset()}},path:{render:function(a,c,g){if(!this._visible||!this._opacity)return this;var m=this.parent,k=m._matrix.manual||m._flagMatrix,q=this._matrix.manual||this._flagMatrix,p=this._flagVertices||this._flagFill||this._fill instanceof e.LinearGradient&&(this._fill._flagSpread||this._fill._flagStops||
-this._fill._flagEndPoints)||this._fill instanceof e.RadialGradient&&(this._fill._flagSpread||this._fill._flagStops||this._fill._flagRadius||this._fill._flagCenter||this._fill._flagFocal)||this._stroke instanceof e.LinearGradient&&(this._stroke._flagSpread||this._stroke._flagStops||this._stroke._flagEndPoints)||this._stroke instanceof e.RadialGradient&&(this._stroke._flagSpread||this._stroke._flagStops||this._stroke._flagRadius||this._stroke._flagCenter||this._stroke._flagFocal)||this._flagStroke||
-this._flagLinewidth||this._flagOpacity||m._flagOpacity||this._flagVisible||this._flagCap||this._flagJoin||this._flagMiter||this._flagScale||!this._renderer.texture;this._update();if(k||q)this._renderer.matrix||(this._renderer.matrix=new e.Array(9)),this._matrix.toArray(!0,l),n(l,m._renderer.matrix,this._renderer.matrix),this._renderer.scale=this._scale*m._renderer.scale;p&&(this._renderer.rect||(this._renderer.rect={}),this._renderer.triangles||(this._renderer.triangles=new e.Array(12)),this._renderer.opacity=
-this._opacity*m._renderer.opacity,f.getBoundingClientRect(this._vertices,this._linewidth,this._renderer.rect),f.getTriangles(this._renderer.rect,this._renderer.triangles),f.updateBuffer(a,this,c),f.updateTexture(a,this));if(!this._clip||g)return a.bindBuffer(a.ARRAY_BUFFER,this._renderer.textureCoordsBuffer),a.vertexAttribPointer(c.textureCoords,2,a.FLOAT,!1,0,0),a.bindTexture(a.TEXTURE_2D,this._renderer.texture),a.uniformMatrix3fv(c.matrix,!1,this._renderer.matrix),a.bindBuffer(a.ARRAY_BUFFER,this._renderer.buffer),
-a.vertexAttribPointer(c.position,2,a.FLOAT,!1,0,0),a.drawArrays(a.TRIANGLES,0,6),this.flagReset()}},"linear-gradient":{render:function(a,c){if(a.canvas.getContext("2d")){this._update();if(!this._renderer.gradient||this._flagEndPoints||this._flagStops){var f=a.canvas.width/2,e=a.canvas.height/2,g=c._renderer.scale;this._renderer.gradient=a.createLinearGradient(this.left._x*g+f,this.left._y*g+e,this.right._x*g+f,this.right._y*g+e);for(f=0;f<this.stops.length;f++)e=this.stops[f],this._renderer.gradient.addColorStop(e._offset,
-e._color)}return this.flagReset()}}},"radial-gradient":{render:function(a,c){if(a.canvas.getContext("2d")){this._update();if(!this._renderer.gradient||this._flagCenter||this._flagFocal||this._flagRadius||this._flagStops){var f=a.canvas.width/2,e=a.canvas.height/2;this._renderer.gradient=a.createRadialGradient(this.center._x+f,this.center._y+e,0,this.focal._x+f,this.focal._y+e,this._radius*c._renderer.scale);for(f=0;f<this.stops.length;f++)e=this.stops[f],this._renderer.gradient.addColorStop(e._offset,
-e._color)}return this.flagReset()}}},getBoundingClientRect:function(a,c,f){var e=Infinity,m=-Infinity,k=Infinity,l=-Infinity;a.forEach(function(a){var c=a.x,d=a.y,f=a.controls,g,u;k=Math.min(d,k);e=Math.min(c,e);m=Math.max(c,m);l=Math.max(d,l);a.controls&&(g=f.left,u=f.right,g&&u&&(f=a._relative?g.x+c:g.x,g=a._relative?g.y+d:g.y,c=a._relative?u.x+c:u.x,a=a._relative?u.y+d:u.y,f&&(g&&c&&a)&&(k=Math.min(g,a,k),e=Math.min(f,c,e),m=Math.max(f,c,m),l=Math.max(g,a,l))))});g.isNumber(c)&&(k-=c,e-=c,m+=c,
-l+=c);f.top=k;f.left=e;f.right=m;f.bottom=l;f.width=m-e;f.height=l-k;f.centroid||(f.centroid={});f.centroid.x=-e;f.centroid.y=-k},getTriangles:function(a,c){var f=a.top,e=a.left,g=a.right,m=a.bottom;c[0]=e;c[1]=f;c[2]=g;c[3]=f;c[4]=e;c[5]=m;c[6]=e;c[7]=m;c[8]=g;c[9]=f;c[10]=g;c[11]=m},updateCanvas:function(a){var m,k,l,n,p,x,j=a._vertices;m=this.canvas;var y=this.ctx,t=a._renderer.scale,h=a._stroke;x=a._linewidth*t;var z=a._fill;l=a._renderer.opacity||a._opacity;k=a._cap;p=a._join;n=a._miter;var E=
-a._closed,C=j.length,H=C-1;m.width=Math.max(Math.ceil(a._renderer.rect.width*t),1);m.height=Math.max(Math.ceil(a._renderer.rect.height*t),1);var F=a._renderer.rect.centroid,G=F.x*t,F=F.y*t;y.clearRect(0,0,m.width,m.height);z&&(g.isString(z)?y.fillStyle=z:(f[z._renderer.type].render.call(z,y,a),y.fillStyle=z._renderer.gradient));h&&(g.isString(h)?y.strokeStyle=h:(f[h._renderer.type].render.call(h,y,a),y.strokeStyle=h._renderer.gradient));x&&(y.lineWidth=x);n&&(y.miterLimit=n);p&&(y.lineJoin=p);k&&
-(y.lineCap=k);g.isNumber(l)&&(y.globalAlpha=l);var r;y.beginPath();for(a=0;a<j.length;a++)switch(b=j[a],x=c(b._x*t+G),l=c(b._y*t+F),b._command){case e.Commands.close:y.closePath();break;case e.Commands.curve:m=E?q(a-1,C):Math.max(a-1,0);E?q(a+1,C):Math.min(a+1,H);k=j[m];p=k.controls&&k.controls.right||k;n=b.controls&&b.controls.left||b;k._relative?(m=c((p.x+k._x)*t+G),p=c((p.y+k._y)*t+F)):(m=c(p.x*t+G),p=c(p.y*t+F));b._relative?(k=c((n.x+b._x)*t+G),n=c((n.y+b._y)*t+F)):(k=c(n.x*t+G),n=c(n.y*t+F));
-y.bezierCurveTo(m,p,k,n,x,l);a>=H&&E&&(l=r,k=b.controls&&b.controls.right||b,x=l.controls&&l.controls.left||l,b._relative?(m=c((k.x+b._x)*t+G),p=c((k.y+b._y)*t+F)):(m=c(k.x*t+G),p=c(k.y*t+F)),l._relative?(k=c((x.x+l._x)*t+G),n=c((x.y+l._y)*t+F)):(k=c(x.x*t+G),n=c(x.y*t+F)),x=c(l._x*t+G),l=c(l._y*t+F),y.bezierCurveTo(m,p,k,n,x,l));break;case e.Commands.line:y.lineTo(x,l);break;case e.Commands.move:r=b,y.moveTo(x,l)}E&&y.closePath();f.isHidden.test(z)||y.fill();f.isHidden.test(h)||y.stroke()},updateTexture:function(a,
-c){this.updateCanvas(c);c._renderer.texture&&a.deleteTexture(c._renderer.texture);a.bindBuffer(a.ARRAY_BUFFER,c._renderer.textureCoordsBuffer);c._renderer.texture=a.createTexture();a.bindTexture(a.TEXTURE_2D,c._renderer.texture);a.texParameteri(a.TEXTURE_2D,a.TEXTURE_WRAP_S,a.CLAMP_TO_EDGE);a.texParameteri(a.TEXTURE_2D,a.TEXTURE_WRAP_T,a.CLAMP_TO_EDGE);a.texParameteri(a.TEXTURE_2D,a.TEXTURE_MIN_FILTER,a.LINEAR);0>=this.canvas.width||0>=this.canvas.height||a.texImage2D(a.TEXTURE_2D,0,a.RGBA,a.RGBA,
-a.UNSIGNED_BYTE,this.canvas)},updateBuffer:function(a,c,f){g.isObject(c._renderer.buffer)&&a.deleteBuffer(c._renderer.buffer);c._renderer.buffer=a.createBuffer();a.bindBuffer(a.ARRAY_BUFFER,c._renderer.buffer);a.enableVertexAttribArray(f.position);a.bufferData(a.ARRAY_BUFFER,c._renderer.triangles,a.STATIC_DRAW);g.isObject(c._renderer.textureCoordsBuffer)&&a.deleteBuffer(c._renderer.textureCoordsBuffer);c._renderer.textureCoordsBuffer=a.createBuffer();a.bindBuffer(a.ARRAY_BUFFER,c._renderer.textureCoordsBuffer);
-a.enableVertexAttribArray(f.textureCoords);a.bufferData(a.ARRAY_BUFFER,this.uv,a.STATIC_DRAW)},program:{create:function(a,c){var f,m;f=a.createProgram();g.each(c,function(c){a.attachShader(f,c)});a.linkProgram(f);if(!a.getProgramParameter(f,a.LINK_STATUS))throw m=a.getProgramInfoLog(f),a.deleteProgram(f),new e.Utils.Error("unable to link program: "+m);return f}},shaders:{create:function(a,c,f){f=a.createShader(a[f]);a.shaderSource(f,c);a.compileShader(f);if(!a.getShaderParameter(f,a.COMPILE_STATUS))throw c=
-a.getShaderInfoLog(f),a.deleteShader(f),new e.Utils.Error("unable to compile shader "+f+": "+c);return f},types:{vertex:"VERTEX_SHADER",fragment:"FRAGMENT_SHADER"},vertex:"attribute vec2 a_position;\nattribute vec2 a_textureCoords;\n\nuniform mat3 u_matrix;\nuniform vec2 u_resolution;\n\nvarying vec2 v_textureCoords;\n\nvoid main() {\n   vec2 projected = (u_matrix * vec3(a_position, 1.0)).xy;\n   vec2 normal = projected / u_resolution;\n   vec2 clipspace = (normal * 2.0) - 1.0;\n\n   gl_Position = vec4(clipspace * vec2(1.0, -1.0), 0.0, 1.0);\n   v_textureCoords = a_textureCoords;\n}",
-fragment:"precision mediump float;\n\nuniform sampler2D u_image;\nvarying vec2 v_textureCoords;\n\nvoid main() {\n  gl_FragColor = texture2D(u_image, v_textureCoords);\n}"}};f.ctx=f.canvas.getContext("2d");var m=e[e.Types.webgl]=function(a){var c,m;this.domElement=a.domElement||document.createElement("canvas");this.scene=new e.Group;this.scene.parent=this;this._renderer={matrix:new e.Array(k),scale:1,opacity:1};this._flagMatrix=!0;a=g.defaults(a||{},{antialias:!1,alpha:!0,premultipliedAlpha:!0,stencil:!0,
-preserveDrawingBuffer:!0,overdraw:!1});this.overdraw=a.overdraw;a=this.ctx=this.domElement.getContext("webgl",a)||this.domElement.getContext("experimental-webgl",a);if(!this.ctx)throw new e.Utils.Error("unable to create a webgl context. Try using another renderer.");c=f.shaders.create(a,f.shaders.vertex,f.shaders.types.vertex);m=f.shaders.create(a,f.shaders.fragment,f.shaders.types.fragment);this.program=f.program.create(a,[c,m]);a.useProgram(this.program);this.program.position=a.getAttribLocation(this.program,
-"a_position");this.program.matrix=a.getUniformLocation(this.program,"u_matrix");this.program.textureCoords=a.getAttribLocation(this.program,"a_textureCoords");a.disable(a.DEPTH_TEST);a.enable(a.BLEND);a.blendEquationSeparate(a.FUNC_ADD,a.FUNC_ADD);a.blendFuncSeparate(a.SRC_ALPHA,a.ONE_MINUS_SRC_ALPHA,a.ONE,a.ONE_MINUS_SRC_ALPHA)};g.extend(m.prototype,p.Events,{setSize:function(c,f,e){this.width=c;this.height=f;this.ratio=g.isUndefined(e)?a(this.ctx):e;this.domElement.width=c*this.ratio;this.domElement.height=
-f*this.ratio;g.extend(this.domElement.style,{width:c+"px",height:f+"px"});c*=this.ratio;f*=this.ratio;this._renderer.matrix[0]=this._renderer.matrix[4]=this._renderer.scale=this.ratio;this._flagMatrix=!0;this.ctx.viewport(0,0,c,f);e=this.ctx.getUniformLocation(this.program,"u_resolution");this.ctx.uniform2f(e,c,f);return this},render:function(){var a=this.ctx;this.overdraw||a.clear(a.COLOR_BUFFER_BIT|a.DEPTH_BUFFER_BIT);f.group.render.call(this.scene,a,this.program);this._flagMatrix=!1;return this}})})(Two,
-"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Shape=function(){this._renderer={};this.id=e.Identifier+e.uniqueId();this.classList=[];this._matrix=new e.Matrix;this.translation=new e.Vector;this.translation.bind(e.Events.change,g.bind(n.FlagMatrix,this));this.rotation=0;this.scale=1};g.extend(n,p.Events,{FlagMatrix:function(){this._flagMatrix=!0},MakeObservable:function(e){Object.defineProperty(e,"rotation",{get:function(){return this._rotation},set:function(e){this._rotation=e;this._flagMatrix=!0}});Object.defineProperty(e,
-"scale",{get:function(){return this._scale},set:function(e){this._scale=e;this._flagScale=this._flagMatrix=!0}})}});g.extend(n.prototype,{_flagMatrix:!0,_rotation:0,_scale:1,addTo:function(e){e.add(this);return this},clone:function(){var e=new n;e.translation.copy(this.translation);e.rotation=this.rotation;e.scale=this.scale;g.each(n.Properties,function(g){e[g]=this[g]},this);return e._update()},_update:function(e){!this._matrix.manual&&this._flagMatrix&&this._matrix.identity().translate(this.translation.x,
-this.translation.y).scale(this.scale).rotate(this.rotation);e&&this.parent&&this.parent._update&&this.parent._update();return this},flagReset:function(){this._flagMatrix=this._flagScale=!1;return this}});n.MakeObservable(n.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){function p(a,c,d){var g,l,k,n,p,q,j,y,t=c.controls&&c.controls.right,h=a.controls&&a.controls.left;g=c.x;p=c.y;l=(t||c).x;q=(t||c).y;k=(h||a).x;j=(h||a).y;n=a.x;y=a.y;t&&c._relative&&(l+=c.x,q+=c.y);h&&a._relative&&(k+=a.x,j+=a.y);return e.Utils.getCurveLength(g,p,l,q,k,j,n,y,d)}function n(a,c,d){var g,l,k,n,p,q,j,y,t=c.controls&&c.controls.right,h=a.controls&&a.controls.left;g=c.x;p=c.y;l=(t||c).x;q=(t||c).y;k=(h||a).x;j=(h||a).y;n=a.x;y=a.y;t&&c._relative&&(l+=c.x,q+=c.y);h&&a._relative&&
-(k+=a.x,j+=a.y);return e.Utils.subdivide(g,p,l,q,k,j,n,y,d)}var q=Math.min,k=Math.max,l=Math.round,a=e.Utils.getComputedMatrix;g.each(e.Commands,function(){});var c=e.Path=function(a,c,d,g){e.Shape.call(this);this._renderer.type="path";this._closed=!!c;this._curved=!!d;this.beginning=0;this.ending=1;this.fill="#fff";this.stroke="#000";this.opacity=this.linewidth=1;this.visible=!0;this.cap="butt";this.join="miter";this.miter=4;this._vertices=[];this.vertices=a;this.automatic=!g};g.extend(c,{Properties:"fill stroke linewidth opacity visible cap join miter closed curved automatic beginning ending".split(" "),
-FlagVertices:function(){this._flagLength=this._flagVertices=!0},MakeObservable:function(a){e.Shape.MakeObservable(a);g.each(c.Properties.slice(0,8),function(c){var d="_"+c,e="_flag"+c.charAt(0).toUpperCase()+c.slice(1);Object.defineProperty(a,c,{get:function(){return this[d]},set:function(a){this[d]=a;this[e]=!0}})});Object.defineProperty(a,"length",{get:function(){this._flagLength&&this._updateLength();return this._length}});Object.defineProperty(a,"closed",{get:function(){return this._closed},set:function(a){this._closed=
-!!a;this._flagVertices=!0}});Object.defineProperty(a,"curved",{get:function(){return this._curved},set:function(a){this._curved=!!a;this._flagVertices=!0}});Object.defineProperty(a,"automatic",{get:function(){return this._automatic},set:function(a){if(a!==this._automatic){var c=(this._automatic=!!a)?"ignore":"listen";g.each(this.vertices,function(a){a[c]()})}}});Object.defineProperty(a,"beginning",{get:function(){return this._beginning},set:function(a){this._beginning=q(k(a,0),this._ending);this._flagVertices=
-!0}});Object.defineProperty(a,"ending",{get:function(){return this._ending},set:function(a){this._ending=q(k(a,this._beginning),1);this._flagVertices=!0}});Object.defineProperty(a,"vertices",{get:function(){return this._collection},set:function(a){var d=g.bind(c.FlagVertices,this),f=g.bind(function(a){for(var c=a.length;c--;)a[c].bind(e.Events.change,d);d()},this),l=g.bind(function(a){g.each(a,function(a){a.unbind(e.Events.change,d)},this);d()},this);this._collection&&this._collection.unbind();this._collection=
-new e.Utils.Collection((a||[]).slice(0));this._collection.bind(e.Events.insert,f);this._collection.bind(e.Events.remove,l);f(this._collection)}});Object.defineProperty(a,"clip",{get:function(){return this._clip},set:function(a){this._clip=a;this._flagClip=!0}})}});g.extend(c.prototype,e.Shape.prototype,{_flagVertices:!0,_flagLength:!0,_flagFill:!0,_flagStroke:!0,_flagLinewidth:!0,_flagOpacity:!0,_flagVisible:!0,_flagCap:!0,_flagJoin:!0,_flagMiter:!0,_flagClip:!1,_length:0,_fill:"#fff",_stroke:"#000",
-_linewidth:1,_opacity:1,_visible:!0,_cap:"round",_join:"round",_miter:4,_closed:!0,_curved:!1,_automatic:!0,_beginning:0,_ending:1,_clip:!1,clone:function(a){a=a||this.parent;var m=g.map(this.vertices,function(a){return a.clone()}),d=new c(m,this.closed,this.curved,!this.automatic);g.each(e.Path.Properties,function(a){d[a]=this[a]},this);d.translation.copy(this.translation);d.rotation=this.rotation;d.scale=this.scale;a.add(d);return d},toObject:function(){var a={vertices:g.map(this.vertices,function(a){return a.toObject()})};
-g.each(e.Shape.Properties,function(c){a[c]=this[c]},this);a.translation=this.translation.toObject;a.rotation=this.rotation;a.scale=this.scale;return a},noFill:function(){this.fill="transparent";return this},noStroke:function(){this.stroke="transparent";return this},corner:function(){var a=this.getBoundingClientRect(!0);a.centroid={x:a.left+a.width/2,y:a.top+a.height/2};g.each(this.vertices,function(c){c.addSelf(a.centroid)});return this},center:function(){var a=this.getBoundingClientRect(!0);a.centroid=
-{x:a.left+a.width/2,y:a.top+a.height/2};g.each(this.vertices,function(c){c.subSelf(a.centroid)});return this},remove:function(){if(!this.parent)return this;this.parent.remove(this);return this},getBoundingClientRect:function(c){var e,d,g,l,n,p=Infinity,w=-Infinity,x=Infinity,j=-Infinity;this._update(!0);c=c?this._matrix:a(this);e=this.linewidth/2;d=this._vertices.length;for(n=0;n<d;n++)l=this._vertices[n],g=l.x,l=l.y,l=c.multiply(g,l,1),x=q(l.y-e,x),p=q(l.x-e,p),w=k(l.x+e,w),j=k(l.y+e,j);return{top:x,
-left:p,right:w,bottom:j,width:w-p,height:j-x}},getPointAt:function(a,c){var d,l,k,n,p,q,x,j,y,t,h,z;x=this.length*Math.min(Math.max(a,0),1);j=this.vertices.length;y=j-1;q=d=null;t=0;l=this._lengths.length;for(k=0;t<l;t++){if(k+this._lengths[t]>x){d=this.vertices[this.closed?e.Utils.mod(t,j):t];q=this.vertices[Math.min(Math.max(t-1,0),y)];x-=k;a=x/this._lengths[t];break}k+=this._lengths[t]}if(g.isNull(d)||g.isNull(q))return null;z=q.controls&&q.controls.right;h=d.controls&&d.controls.left;l=q.x;x=
-q.y;k=(z||q).x;j=(z||q).y;n=(h||d).x;y=(h||d).y;p=d.x;t=d.y;z&&q._relative&&(k+=q.x,j+=q.y);h&&d._relative&&(n+=d.x,y+=d.y);d=e.Utils.getPointOnCubicBezier(a,l,k,n,p);q=e.Utils.getPointOnCubicBezier(a,x,j,y,t);return g.isObject(c)?(c.x=d,c.y=q,c):new e.Vector(d,q)},plot:function(){if(this.curved)return e.Utils.getCurveFromPoints(this._vertices,this.closed),this;for(var a=0;a<this._vertices.length;a++)this._vertices[a]._command=0===a?e.Commands.move:e.Commands.line;return this},subdivide:function(a){this._update();
-var c=this.vertices.length-1,d=this.vertices[c],l=this._closed||this.vertices[c]._command===e.Commands.close,k=[];g.each(this.vertices,function(p,q){if(!(0>=q)||l)if(p.command===e.Commands.move)k.push(new e.Anchor(d.x,d.y)),0<q&&(k[k.length-1].command=e.Commands.line);else{var w=n(p,d,a);k=k.concat(w);g.each(w,function(a,c){a.command=0>=c&&d.command===e.Commands.move?e.Commands.move:e.Commands.line});q>=c&&(this._closed&&this._automatic?(d=p,w=n(p,d,a),k=k.concat(w),g.each(w,function(a,c){a.command=
-0>=c&&d.command===e.Commands.move?e.Commands.move:e.Commands.line})):l&&k.push(new e.Anchor(p.x,p.y)),k[k.length-1].command=l?e.Commands.close:e.Commands.line)}d=p},this);this._curved=this._automatic=!1;this.vertices=k;return this},_updateLength:function(a){this._update();var c=this.vertices.length-1,d=this.vertices[c],l=this._closed||this.vertices[c]._command===e.Commands.close,k=0;g.isUndefined(this._lengths)&&(this._lengths=[]);g.each(this.vertices,function(g,n){0>=n&&!l||g.command===e.Commands.move?
-(d=g,this._lengths[n]=0):(this._lengths[n]=p(g,d,a),k+=this._lengths[n],n>=c&&l&&(d=g,this._lengths[n+1]=p(g,d,a),k+=this._lengths[n+1]),d=g)},this);this._length=k;return this},_update:function(){if(this._flagVertices){var a=this.vertices.length-1,c;c=l(this._beginning*a);a=l(this._ending*a);this._vertices.length=0;for(var d=c;d<a+1;d++)c=this.vertices[d],this._vertices.push(c);this._automatic&&this.plot()}e.Shape.prototype._update.apply(this,arguments);return this},flagReset:function(){this._flagVertices=
-this._flagFill=this._flagStroke=this._flagLinewidth=this._flagOpacity=this._flagVisible=this._flagCap=this._flagJoin=this._flagMiter=this._flagClip=!1;e.Shape.prototype.flagReset.call(this);return this}});c.MakeObservable(c.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.Path,n=e.Line=function(g,k,l,a){l=(l-g)/2;a=(a-k)/2;p.call(this,[new e.Anchor(-l,-a),new e.Anchor(l,a)]);this.translation.set(g+l,k+a)};g.extend(n.prototype,p.prototype);p.MakeObservable(n.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.Path,n=e.Rectangle=function(g,k,l,a){l/=2;a/=2;p.call(this,[new e.Anchor(-l,-a),new e.Anchor(l,-a),new e.Anchor(l,a),new e.Anchor(-l,a)],!0);this.translation.set(g,k)};g.extend(n.prototype,p.prototype);p.MakeObservable(n.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.Path,n=2*Math.PI,q=Math.cos,k=Math.sin,l=e.Ellipse=function(a,c,f,m){g.isNumber(m)||(m=f);var d=e.Resolution,l=g.map(g.range(d),function(a){var c=a/d*n;a=f*q(c);c=m*k(c);return new e.Anchor(a,c)},this);p.call(this,l,!0,!0);this.translation.set(a,c)};g.extend(l.prototype,p.prototype);p.MakeObservable(l.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):
-requestAnimationFrame);(function(e,g){var p=e.Path,n=2*Math.PI,q=Math.cos,k=Math.sin,l=e.Polygon=function(a,c,f,m){m=Math.max(m||0,3);var d=g.map(g.range(m),function(a){var c=n*((a+0.5)/m)+Math.PI/2;a=f*q(c);c=f*k(c);return new e.Anchor(a,c)});p.call(this,d,!0);this.translation.set(a,c)};g.extend(l.prototype,p.prototype);p.MakeObservable(l.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):
-requestAnimationFrame);(function(e,g){var p=e.Path,n=Math.PI,q=Math.PI/2,k=Math.cos,l=Math.sin,a=e.ArcSegment=function(a,f,g,d,u,v,s){u>v&&(v+=2*Math.PI);s=s||8;v-=u;var A=v/s,w=e.Commands.move,x=[];x.push(new e.Anchor(Math.sin(0)*d,Math.cos(0)*d,0,0,0,0,w));for(var j,y,t,h,z,E,w=e.Commands.curve,C=0;C<s+1;C++)j=C*A,y=l(j)*d,t=k(j)*d,h=l(j-q)*(A/n)*d,z=k(j-q)*(A/n)*d,E=l(j+q)*(A/n)*d,j=k(j+q)*(A/n)*d,0===C&&(h=z=0),C===s&&(E=j=0),x.push(new e.Anchor(y,t,h,z,E,j,w));for(C=0;C<s+1;C++)j=v-A*C,y=l(j)*g,t=k(j)*g,h=l(j-1.5*
-n)*(A/n)*g,z=k(j-1.5*n)*(A/n)*g,E=l(j+1.5*n)*(A/n)*g,j=k(j+1.5*n)*(A/n)*g,0===C&&(h=z=0),C===s&&(E=j=0),x.push(new e.Anchor(y,t,h,z,E,j,w));w=e.Commands.close;x.push(new e.Anchor(Math.sin(0)*d,Math.cos(0)*d,0,0,0,0,w));p.call(this,x,!0,!1,!0);this.rotation=u;this.translation.set(a,f)};g.extend(a.prototype,p.prototype);p.MakeObservable(a.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):
-requestAnimationFrame);(function(e,g){var p=e.Path,n=Math.PI,q=Math.cos,k=Math.sin,l=e.SineRing=function(a,c,f,g,d,l){var v=2*g+1,s=Math.PI/g;g=n*f/g/2;l=l||1;var A=[],w=n,x,j,y,t,h;A.push(new e.Anchor(k(w)*(f+d/2),q(w)*(f+d/2),0,0,0,0,e.Commands.move));for(var z=0;z<v;z++)w=s*z+n,0===z%2?(x=Math.sin(w)*(f+d/2),j=Math.cos(w)*(f+d/2)):(x=Math.sin(w)*(f-d/2),j=Math.cos(w)*(f-d/2)),y=Math.sin(w-Math.PI/2)*g*l,t=Math.cos(w-Math.PI/2)*g*l,h=Math.sin(w+Math.PI/2)*g*l,w=Math.cos(w+Math.PI/2)*g*l,0===z&&(y=t=0),z===v-1&&(h=w=0),
-A.push(new e.Anchor(x,j,y,t,h,w,e.Commands.curve));p.call(this,A,!0,!1,!0);this.translation.set(a,c)};g.extend(l.prototype,p.prototype);p.MakeObservable(l.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.Path,n=2*Math.PI,q=Math.cos,k=Math.sin,l=e.Star=function(a,c,f,m,d){g.isNumber(m)||(m=f/2);if(!g.isNumber(d)||0>=d)d=5;var l=2*d;d=g.map(g.range(l),function(a){var c=(a-0.5)/l*n,d=a%2?m:f;a=d*q(c);c=d*k(c);return new e.Anchor(a,c)});p.call(this,d,!0);this.translation.set(a,c)};g.extend(l.prototype,p.prototype);p.MakeObservable(l.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?
-require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){function p(k,l,a,c,f){var m=0,d=0,n=e.Resolution;new e.Anchor(l,a);var p=0>l?-c:c,q=0>a?-c:c;switch(f){case 1:m=-Math.PI/2;d=0;break;case 2:m=-Math.PI;d=-Math.PI/2;break;case 3:m=1.5*-Math.PI;d=-Math.PI;break;case 4:m=0,d=Math.PI/2}f=g.map(g.range(n),function(f){var g=m+(d-m)*((n-f-0)/(n-0));f=c*Math.cos(g)+l-p;g=c*Math.sin(g)+a-q;return new e.Anchor(f,g)}).reverse();return k.concat(f)}var n=e.Path,q=e.RoundedRectangle=function(k,l,a,c,f){var m=a/2,d=c/2;g.isNumber(f)||(f=Math.floor(Math.min(a,
-c)/12));a=[new e.Anchor(-m+f,-d),new e.Anchor(m-f,-d)];a=p(a,m,-d,f,1);a.push(new e.Anchor(m,d-f));a=p(a,m,d,f,4);a.push(new e.Anchor(-m+f,d));a=p(a,-m,d,f,3);a.push(new e.Anchor(-m,-d+f));a=p(a,-m,-d,f,2);a.pop();n.call(this,a,!0);this.translation.set(k,l)};g.extend(q.prototype,n.prototype);n.MakeObservable(q.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g,p){var n=e.Stop=function(e,l,a){this._renderer={};this.offset=g.isNumber(e)?e:0>=n.Index?0:1;this.opacity=g.isNumber(a)?a:1;this.color=g.isString(l)?l:0>=n.Index?"#fff":"#000";n.Index=(n.Index+1)%2};g.extend(n,{Index:0,Properties:["offset","opacity","color"],MakeObservable:function(k){g.each(n.Properties,function(g){var a="_"+g,c="_flag"+g.charAt(0).toUpperCase()+g.slice(1);Object.defineProperty(k,g,{get:function(){return this[a]},set:function(f){this[a]=f;this[c]=!0;this.trigger(e.Events.change)}})})}});
-g.extend(n.prototype,p.Events,{clone:function(){var e=new n;g.each(n.Properties,function(g){e[g]=this[g]},this);return e},toObject:function(){var e={};g.each(n.Properties,function(g){e[g]=this[g]},this);return e},flagReset:function(){this._flagOffset=this._flagColor=this._flagOpacity=!1;return this}});n.MakeObservable(n.prototype);var q=e.Gradient=function(g){e.Shape.call(this);this._renderer.type="gradient";this.spread="pad";this.stops=g};g.extend(q,{Stop:n,Properties:["spread"],MakeObservable:function(k){e.Shape.MakeObservable(k);
-g.each(q.Properties,e.Utils.defineProperty,k);Object.defineProperty(k,"stops",{get:function(){return this._stops},set:function(l){var a=g.bind(q.FlagStops,this),c=g.bind(function(c){for(var d=c.length;d--;)c[d].bind(e.Events.change,a);a()},this),f=g.bind(function(c){g.each(c,function(c){c.unbind(e.Events.change,a)},this);a()},this);this._stops&&this._stops.unbind();this._stops=new e.Utils.Collection((l||[]).slice(0));this._stops.bind(e.Events.insert,c);this._stops.bind(e.Events.remove,f);c(this._stops)}})},
-FlagStops:function(){this._flagStops=!0}});g.extend(q.prototype,e.Shape.prototype,{clone:function(k){k=k||this.parent;var l=g.map(this.stops,function(a){return a.clone()}),a=new q(l);g.each(e.Gradient.Properties,function(c){a[c]=this[c]},this);a.translation.copy(this.translation);a.rotation=this.rotation;a.scale=this.scale;k.add(a);return a},toObject:function(){var e={stops:g.map(this.stops,function(e){return e.toObject()})};g.each(q.Properties,function(g){e[g]=this[g]},this);return e},flagReset:function(){this._flagSpread=
-this._flagStops=!1;e.Shape.prototype.flagReset.call(this);return this}});q.MakeObservable(q.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.LinearGradient=function(n,q,k,l,a){e.Gradient.call(this,a);this._renderer.type="linear-gradient";a=g.bind(p.FlagEndPoints,this);this.left=(new e.Vector).bind(e.Events.change,a);this.right=(new e.Vector).bind(e.Events.change,a);g.isNumber(n)&&(this.left.x=n);g.isNumber(q)&&(this.left.y=q);g.isNumber(k)&&(this.right.x=k);g.isNumber(l)&&(this.right.y=l)};g.extend(p,{Stop:e.Gradient.Stop,MakeObservable:function(g){e.Gradient.MakeObservable(g)},FlagEndPoints:function(){this._flagEndPoints=
-!0}});g.extend(p.prototype,e.Gradient.prototype,{_flagEndPoints:!1,clone:function(n){n=n||this.parent;var q=g.map(this.stops,function(e){return e.clone()}),k=new p(this.left._x,this.left._y,this.right._x,this.right._y,q);g.each(e.Gradient.Properties,function(e){k[e]=this[e]},this);n.add(k);return k},toObject:function(){var g=e.Gradient.prototype.toObject.call(this);g.left=this.left.toObject();g.right=this.right.toObject();return g},flagReset:function(){this._flagEndPoints=!1;e.Gradient.prototype.flagReset.call(this);
-return this}});p.MakeObservable(p.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);(function(e,g){var p=e.RadialGradient=function(n,p,k,l,a,c){e.Gradient.call(this,l);this._renderer.type="radial-gradient";this.center=(new e.Vector).bind(e.Events.change,g.bind(function(){this._flagCenter=!0},this));this.radius=g.isNumber(k)?k:20;this.focal=(new e.Vector).bind(e.Events.change,g.bind(function(){this._flagFocal=!0},this));g.isNumber(n)&&(this.center.x=n);g.isNumber(p)&&(this.center.y=p);this.focal.copy(this.center);g.isNumber(a)&&(this.focal.x=a);g.isNumber(c)&&(this.focal.y=c)};g.extend(p,
-{Stop:e.Gradient.Stop,Properties:["radius"],MakeObservable:function(n){e.Gradient.MakeObservable(n);g.each(p.Properties,e.Utils.defineProperty,n)}});g.extend(p.prototype,e.Gradient.prototype,{_flagEndPoints:!1,clone:function(n){n=n||this.parent;var q=g.map(this.stops,function(e){return e.clone()}),k=new p(this.center._x,this.center._y,this._radius,q,this.focal._x,this.focal._y);g.each(e.Gradient.Properties.concat(p.Properties),function(e){k[e]=this[e]},this);n.add(k);return k},toObject:function(){var n=
-e.Gradient.prototype.toObject.call(this);g.each(p.Properties,function(e){n[e]=this[e]},this);n.center=this.center.toObject();n.focal=this.focal.toObject();return n},flagReset:function(){this._flagRadius=this._flagCenter=this._flagFocal=!1;e.Gradient.prototype.flagReset.call(this);return this}});p.MakeObservable(p.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):
-requestAnimationFrame);(function(e,g){function p(a,c){var e=a.parent,m;e&&e.children.ids[a.id]&&(m=g.indexOf(e.children,a),e.children.splice(m,1),m=g.indexOf(e.additions,a),0<=m?e.additions.splice(m,1):(e.subtractions.push(a),e._flagSubtractions=!0));c?(a.parent=c,this.additions.push(a),this._flagAdditions=!0):(m=g.indexOf(this.additions,a),0<=m?this.additions.splice(m,1):(this.subtractions.push(a),this._flagSubtractions=!0),delete a.parent)}var n=Math.min,q=Math.max,k=function(){e.Utils.Collection.apply(this,arguments);
-Object.defineProperty(this,"_events",{value:{},enumerable:!1});this.ids={};this.on(e.Events.insert,this.attach);this.on(e.Events.remove,this.detach);k.prototype.attach.apply(this,arguments)};k.prototype=new e.Utils.Collection;k.constructor=k;g.extend(k.prototype,{attach:function(a){for(var c=0;c<a.length;c++)this.ids[a[c].id]=a[c];return this},detach:function(a){for(var c=0;c<a.length;c++)delete this.ids[a[c].id];return this}});var l=e.Group=function(){e.Shape.call(this,!0);this._renderer.type="group";
-this.additions=[];this.subtractions=[];this._children=[];this.children=arguments};g.extend(l,{Children:k,InsertChildren:function(a){for(var c=0;c<a.length;c++)p.call(this,a[c],this)},RemoveChildren:function(a){for(var c=0;c<a.length;c++)p.call(this,a[c])},OrderChildren:function(){this._flagOrder=!0},MakeObservable:function(a){var c=e.Path.Properties.slice(0),f=g.indexOf(c,"opacity");0<=f&&(c.splice(f,1),Object.defineProperty(a,"opacity",{get:function(){return this._opacity},set:function(a){this._flagOpacity=
-this._opacity!=a;this._opacity=a}}));e.Shape.MakeObservable(a);l.MakeGetterSetters(a,c);Object.defineProperty(a,"children",{get:function(){return this._collection},set:function(a){var c=g.bind(l.InsertChildren,this),f=g.bind(l.RemoveChildren,this),n=g.bind(l.OrderChildren,this);this._collection&&this._collection.unbind();this._collection=new k(a);this._collection.bind(e.Events.insert,c);this._collection.bind(e.Events.remove,f);this._collection.bind(e.Events.order,n)}});Object.defineProperty(a,"mask",
-{get:function(){return this._mask},set:function(a){this._mask=a;this._flagMask=!0;a.clip||(a.clip=!0)}})},MakeGetterSetters:function(a,c){g.isArray(c)||(c=[c]);g.each(c,function(c){l.MakeGetterSetter(a,c)})},MakeGetterSetter:function(a,c){var e="_"+c;Object.defineProperty(a,c,{get:function(){return this[e]},set:function(a){this[e]=a;g.each(this.children,function(d){d[c]=a})}})}});g.extend(l.prototype,e.Shape.prototype,{_flagAdditions:!1,_flagSubtractions:!1,_flagOrder:!1,_flagOpacity:!0,_flagMask:!1,
-_fill:"#fff",_stroke:"#000",_linewidth:1,_opacity:1,_visible:!0,_cap:"round",_join:"round",_miter:4,_closed:!0,_curved:!1,_automatic:!0,_beginning:0,_ending:1,_mask:null,clone:function(a){a=a||this.parent;var c=new l;a.add(c);g.map(this.children,function(a){return a.clone(c)});c.translation.copy(this.translation);c.rotation=this.rotation;c.scale=this.scale;return c},toObject:function(){var a={children:{},translation:this.translation.toObject(),rotation:this.rotation,scale:this.scale};g.each(this.children,
-function(c,e){a.children[e]=c.toObject()},this);return a},corner:function(){var a=this.getBoundingClientRect(!0),c={x:a.left,y:a.top};this.children.forEach(function(a){a.translation.subSelf(c)});return this},center:function(){var a=this.getBoundingClientRect(!0);a.centroid={x:a.left+a.width/2,y:a.top+a.height/2};this.children.forEach(function(c){c.translation.subSelf(a.centroid)});return this},getById:function(a){var c=function(a,e){if(a.id===e)return a;if(a.children)for(var d=a.children.length;d--;){var g=
-c(a.children[d],e);if(g)return g}};return c(this,a)||null},getByClassName:function(a){var c=[],e=function(a,d){-1!=a.classList.indexOf(d)?c.push(a):a.children&&a.children.forEach(function(a){e(a,d)});return c};return e(this,a)},getByType:function(a){var c=[],f=function(a,d){for(var g in a.children)a.children[g]instanceof d?c.push(a.children[g]):a.children[g]instanceof e.Group&&f(a.children[g],d);return c};return f(this,a)},add:function(a){a=a instanceof Array?a.slice():g.toArray(arguments);for(var c=
-0;c<a.length;c++)a[c]&&a[c].id&&this.children.push(a[c]);return this},remove:function(a){var c=this.parent;if(0>=arguments.length&&c)return c.remove(this),this;a=a instanceof Array?a.slice():g.toArray(arguments);for(c=0;c<a.length;c++)a[c]&&this.children.ids[a[c].id]&&this.children.splice(g.indexOf(this.children,a[c]),1);return this},getBoundingClientRect:function(a){var c;this._update(!0);var e=Infinity,k=-Infinity,d=Infinity,l=-Infinity;this.children.forEach(function(p){/(linear-gradient|radial-gradient|gradient)/.test(p._renderer.type)||
-(c=p.getBoundingClientRect(a),g.isNumber(c.top)&&(g.isNumber(c.left)&&g.isNumber(c.right)&&g.isNumber(c.bottom))&&(d=n(c.top,d),e=n(c.left,e),k=q(c.right,k),l=q(c.bottom,l)))},this);return{top:d,left:e,right:k,bottom:l,width:k-e,height:l-d}},noFill:function(){this.children.forEach(function(a){a.noFill()});return this},noStroke:function(){this.children.forEach(function(a){a.noStroke()});return this},subdivide:function(){var a=arguments;this.children.forEach(function(c){c.subdivide.apply(c,a)});return this},
-flagReset:function(){this._flagAdditions&&(this.additions.length=0,this._flagAdditions=!1);this._flagSubtractions&&(this.subtractions.length=0,this._flagSubtractions=!1);this._flagOrder=this._flagMask=this._flagOpacity=!1;e.Shape.prototype.flagReset.call(this);return this}});l.MakeObservable(l.prototype)})(Two,"function"===typeof require?require("underscore"):_,"function"===typeof require?require("backbone"):Backbone,"function"===typeof require?require("requestAnimationFrame"):requestAnimationFrame);
+/**
+ * two.js
+ * a two-dimensional drawing api meant for modern browsers. It is renderer
+ * agnostic enabling the same api for rendering in multiple contexts: webgl,
+ * canvas2d, and svg.
+ *
+ * Copyright (c) 2012 - 2013 jonobr1 / http://jonobr1.com
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
+
+(function(previousTwo, _, Backbone, requestAnimationFrame) {
+
+  var root = this;
+
+  /**
+   * Constants
+   */
+
+  var sin = Math.sin,
+    cos = Math.cos,
+    atan2 = Math.atan2,
+    sqrt = Math.sqrt,
+    round = Math.round,
+    abs = Math.abs,
+    PI = Math.PI,
+    TWO_PI = PI * 2,
+    HALF_PI = PI / 2,
+    pow = Math.pow,
+    min = Math.min,
+    max = Math.max;
+
+  /**
+   * Localized variables
+   */
+
+  var count = 0;
+
+  /**
+   * Cross browser dom events.
+   */
+  var dom = {
+
+    temp: document.createElement('div'),
+
+    hasEventListeners: _.isFunction(root.addEventListener),
+
+    bind: function(elem, event, func, bool) {
+      if (this.hasEventListeners) {
+        elem.addEventListener(event, func, !!bool);
+      } else {
+        elem.attachEvent('on' + event, func);
+      }
+      return this;
+    },
+
+    unbind: function(elem, event, func, bool) {
+      if (this.hasEventListeners) {
+        elem.removeEventListeners(event, func, !!bool);
+      } else {
+        elem.detachEvent('on' + event, func);
+      }
+      return this;
+    }
+
+  };
+
+  /**
+   * @class
+   */
+  var Two = root.Two = function(options) {
+
+    // Determine what Renderer to use and setup a scene.
+
+    var params = _.defaults(options || {}, {
+      fullscreen: false,
+      width: 640,
+      height: 480,
+      type: Two.Types.svg,
+      autostart: false
+    });
+
+    _.each(params, function(v, k) {
+      if (k === 'fullscreen' || k === 'width' || k === 'height' || k === 'autostart') {
+        return;
+      }
+      this[k] = v;
+    }, this);
+
+    // Specified domElement overrides type declaration.
+    if (_.isElement(params.domElement)) {
+      this.type = Two.Types[params.domElement.tagName.toLowerCase()];
+    }
+
+    this.renderer = new Two[this.type](this);
+    Two.Utils.setPlaying.call(this, params.autostart);
+    this.frameCount = 0;
+
+    if (params.fullscreen) {
+
+      var fitted = _.bind(fitToWindow, this);
+      _.extend(document.body.style, {
+        overflow: 'hidden',
+        margin: 0,
+        padding: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        position: 'fixed'
+      });
+      _.extend(this.renderer.domElement.style, {
+        display: 'block',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        position: 'fixed'
+      });
+      dom.bind(root, 'resize', fitted);
+      fitted();
+
+
+    } else if (!_.isElement(params.domElement)) {
+
+      this.renderer.setSize(params.width, params.height, this.ratio);
+      this.width = params.width;
+      this.height = params.height;
+
+    }
+
+    this.scene = this.renderer.scene;
+
+    Two.Instances.push(this);
+
+  };
+
+  _.extend(Two, {
+
+    /**
+     * Primitive
+     */
+
+    Array: root.Float32Array || Array,
+
+    Types: {
+      webgl: 'WebGLRenderer',
+      svg: 'SVGRenderer',
+      canvas: 'CanvasRenderer'
+    },
+
+    Version: 'v0.5.0',
+
+    Identifier: 'two_',
+
+    Properties: {
+      hierarchy: 'hierarchy',
+      demotion: 'demotion'
+    },
+
+    Events: {
+      play: 'play',
+      pause: 'pause',
+      update: 'update',
+      render: 'render',
+      resize: 'resize',
+      change: 'change',
+      remove: 'remove',
+      insert: 'insert',
+      order: 'order'
+    },
+
+    Commands: {
+      move: 'M',
+      line: 'L',
+      curve: 'C',
+      close: 'Z'
+    },
+
+    Resolution: 8,
+
+    Instances: [],
+
+    noConflict: function() {
+      root.Two = previousTwo;
+      return this;
+    },
+
+    uniqueId: function() {
+      var id = count;
+      count++;
+      return id;
+    },
+
+    Utils: {
+
+      defineProperty: function(property) {
+
+        var object = this;
+        var secret = '_' + property;
+        var flag = '_flag' + property.charAt(0).toUpperCase() + property.slice(1);
+
+        Object.defineProperty(object, property, {
+          get: function() {
+            return this[secret];
+          },
+          set: function(v) {
+            this[secret] = v;
+            this[flag] = true;
+          }
+        });
+
+      },
+
+      /**
+       * Release an arbitrary class' events from the two.js corpus and recurse
+       * through its children and or vertices.
+       */
+      release: function(obj) {
+
+        if (!_.isObject(obj)) {
+          return;
+        }
+
+        if (_.isFunction(obj.unbind)) {
+          obj.unbind();
+        }
+
+        if (obj.vertices) {
+          if (_.isFunction(obj.vertices.unbind)) {
+            obj.vertices.unbind();
+          }
+          _.each(obj.vertices, function(v) {
+            if (_.isFunction(v.unbind)) {
+              v.unbind();
+            }
+          });
+        }
+
+        if (obj.children) {
+          _.each(obj.children, function(obj) {
+            Two.Utils.release(obj);
+          });
+        }
+
+      },
+
+      xhr: function(path, callback) {
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', path);
+
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            callback(xhr.responseText);
+          }
+        };
+
+        xhr.send();
+        return xhr;
+
+      },
+
+      Curve: {
+
+        CollinearityEpsilon: pow(10, -30),
+
+        RecursionLimit: 16,
+
+        CuspLimit: 0,
+
+        Tolerance: {
+          distance: 0.25,
+          angle: 0,
+          epsilon: 0.01
+        },
+
+        // Lookup tables for abscissas and weights with values for n = 2 .. 16.
+        // As values are symmetric, only store half of them and adapt algorithm
+        // to factor in symmetry.
+        abscissas: [
+          [  0.5773502691896257645091488],
+          [0,0.7745966692414833770358531],
+          [  0.3399810435848562648026658,0.8611363115940525752239465],
+          [0,0.5384693101056830910363144,0.9061798459386639927976269],
+          [  0.2386191860831969086305017,0.6612093864662645136613996,0.9324695142031520278123016],
+          [0,0.4058451513773971669066064,0.7415311855993944398638648,0.9491079123427585245261897],
+          [  0.1834346424956498049394761,0.5255324099163289858177390,0.7966664774136267395915539,0.9602898564975362316835609],
+          [0,0.3242534234038089290385380,0.6133714327005903973087020,0.8360311073266357942994298,0.9681602395076260898355762],
+          [  0.1488743389816312108848260,0.4333953941292471907992659,0.6794095682990244062343274,0.8650633666889845107320967,0.9739065285171717200779640],
+          [0,0.2695431559523449723315320,0.5190961292068118159257257,0.7301520055740493240934163,0.8870625997680952990751578,0.9782286581460569928039380],
+          [  0.1252334085114689154724414,0.3678314989981801937526915,0.5873179542866174472967024,0.7699026741943046870368938,0.9041172563704748566784659,0.9815606342467192506905491],
+          [0,0.2304583159551347940655281,0.4484927510364468528779129,0.6423493394403402206439846,0.8015780907333099127942065,0.9175983992229779652065478,0.9841830547185881494728294],
+          [  0.1080549487073436620662447,0.3191123689278897604356718,0.5152486363581540919652907,0.6872929048116854701480198,0.8272013150697649931897947,0.9284348836635735173363911,0.9862838086968123388415973],
+          [0,0.2011940939974345223006283,0.3941513470775633698972074,0.5709721726085388475372267,0.7244177313601700474161861,0.8482065834104272162006483,0.9372733924007059043077589,0.9879925180204854284895657],
+          [  0.0950125098376374401853193,0.2816035507792589132304605,0.4580167776572273863424194,0.6178762444026437484466718,0.7554044083550030338951012,0.8656312023878317438804679,0.9445750230732325760779884,0.9894009349916499325961542]
+        ],
+
+        weights: [
+          [1],
+          [0.8888888888888888888888889,0.5555555555555555555555556],
+          [0.6521451548625461426269361,0.3478548451374538573730639],
+          [0.5688888888888888888888889,0.4786286704993664680412915,0.2369268850561890875142640],
+          [0.4679139345726910473898703,0.3607615730481386075698335,0.1713244923791703450402961],
+          [0.4179591836734693877551020,0.3818300505051189449503698,0.2797053914892766679014678,0.1294849661688696932706114],
+          [0.3626837833783619829651504,0.3137066458778872873379622,0.2223810344533744705443560,0.1012285362903762591525314],
+          [0.3302393550012597631645251,0.3123470770400028400686304,0.2606106964029354623187429,0.1806481606948574040584720,0.0812743883615744119718922],
+          [0.2955242247147528701738930,0.2692667193099963550912269,0.2190863625159820439955349,0.1494513491505805931457763,0.0666713443086881375935688],
+          [0.2729250867779006307144835,0.2628045445102466621806889,0.2331937645919904799185237,0.1862902109277342514260976,0.1255803694649046246346943,0.0556685671161736664827537],
+          [0.2491470458134027850005624,0.2334925365383548087608499,0.2031674267230659217490645,0.1600783285433462263346525,0.1069393259953184309602547,0.0471753363865118271946160],
+          [0.2325515532308739101945895,0.2262831802628972384120902,0.2078160475368885023125232,0.1781459807619457382800467,0.1388735102197872384636018,0.0921214998377284479144218,0.0404840047653158795200216],
+          [0.2152638534631577901958764,0.2051984637212956039659241,0.1855383974779378137417166,0.1572031671581935345696019,0.1215185706879031846894148,0.0801580871597602098056333,0.0351194603317518630318329],
+          [0.2025782419255612728806202,0.1984314853271115764561183,0.1861610000155622110268006,0.1662692058169939335532009,0.1395706779261543144478048,0.1071592204671719350118695,0.0703660474881081247092674,0.0307532419961172683546284],
+          [0.1894506104550684962853967,0.1826034150449235888667637,0.1691565193950025381893121,0.1495959888165767320815017,0.1246289712555338720524763,0.0951585116824927848099251,0.0622535239386478928628438,0.0271524594117540948517806]
+        ]
+
+      },
+
+      /**
+       * Account for high dpi rendering.
+       * http://www.html5rocks.com/en/tutorials/canvas/hidpi/
+       */
+
+      devicePixelRatio: root.devicePixelRatio || 1,
+
+      getBackingStoreRatio: function(ctx) {
+        return ctx.webkitBackingStorePixelRatio ||
+          ctx.mozBackingStorePixelRatio ||
+          ctx.msBackingStorePixelRatio ||
+          ctx.oBackingStorePixelRatio ||
+          ctx.backingStorePixelRatio || 1;
+      },
+
+      getRatio: function(ctx) {
+        return Two.Utils.devicePixelRatio / getBackingStoreRatio(ctx);
+      },
+
+      /**
+       * Properly defer play calling until after all objects
+       * have been updated with their newest styles.
+       */
+      setPlaying: function(b) {
+
+        this.playing = !!b;
+        return this;
+
+      },
+
+      /**
+       * Return the computed matrix of a nested object.
+       * TODO: Optimize traversal.
+       */
+      getComputedMatrix: function(object, matrix) {
+
+        matrix = (matrix && matrix.identity()) || new Two.Matrix();
+        var parent = object, matrices = [];
+
+        while (parent && parent._matrix) {
+          matrices.push(parent._matrix);
+          parent = parent.parent;
+        }
+
+        matrices.reverse();
+
+        _.each(matrices, function(m) {
+
+          var e = m.elements;
+          matrix.multiply(
+            e[0], e[1], e[2], e[3], e[4], e[5], e[6], e[7], e[8], e[9]);
+
+        });
+
+        return matrix;
+
+      },
+
+      deltaTransformPoint: function(matrix, x, y) {
+
+        var dx = x * matrix.a + y * matrix.c + 0;
+        var dy = x * matrix.b + y * matrix.d + 0;
+
+        return new Two.Vector(dx, dy);
+
+      },
+
+      /**
+       * https://gist.github.com/2052247
+       */
+      decomposeMatrix: function(matrix) {
+
+        // calculate delta transform point
+        var px = Two.Utils.deltaTransformPoint(matrix, 0, 1);
+        var py = Two.Utils.deltaTransformPoint(matrix, 1, 0);
+
+        // calculate skew
+        var skewX = ((180 / Math.PI) * Math.atan2(px.y, px.x) - 90);
+        var skewY = ((180 / Math.PI) * Math.atan2(py.y, py.x));
+
+        return {
+            translateX: matrix.e,
+            translateY: matrix.f,
+            scaleX: Math.sqrt(matrix.a * matrix.a + matrix.b * matrix.b),
+            scaleY: Math.sqrt(matrix.c * matrix.c + matrix.d * matrix.d),
+            skewX: skewX,
+            skewY: skewY,
+            rotation: skewX // rotation is the same as skew x
+        };
+
+      },
+
+      /**
+       * Walk through item properties and pick the ones of interest.
+       * Will try to resolve styles applied via CSS
+       *
+       * TODO: Reverse calculate `Two.Gradient`s for fill / stroke
+       * of any given path.
+       */
+      applySvgAttributes: function(node, elem) {
+
+        var attributes = {}, styles = {}, i, key, value, attr;
+
+        // Not available in non browser environments
+        if (getComputedStyle) {
+          // Convert CSSStyleDeclaration to a normal object
+          var computedStyles = getComputedStyle(node);
+          i = computedStyles.length;
+
+          while (i--) {
+            key = computedStyles[i];
+            value = computedStyles[key];
+            // Gecko returns undefined for unset properties
+            // Webkit returns the default value
+            if (value !== undefined) {
+              styles[key] = value;
+            }
+          }
+        }
+
+        // Convert NodeMap to a normal object
+        i = node.attributes.length;
+        while (i--) {
+          attr = node.attributes[i];
+          attributes[attr.nodeName] = attr.value;
+        }
+
+        // Getting the correct opacity is a bit tricky, since SVG path elements don't
+        // support opacity as an attribute, but you can apply it via CSS.
+        // So we take the opacity and set (stroke/fill)-opacity to the same value.
+        if (!_.isUndefined(styles.opacity)) {
+          styles['stroke-opacity'] = styles.opacity;
+          styles['fill-opacity'] = styles.opacity;
+        }
+
+        // Merge attributes and applied styles (attributes take precedence)
+        _.extend(styles, attributes);
+
+        // Similarly visibility is influenced by the value of both display and visibility.
+        // Calculate a unified value here which defaults to `true`.
+        styles.visible = !(_.isUndefined(styles.display) && styles.display === 'none')
+          || (_.isUndefined(styles.visibility) && styles.visibility === 'hidden');
+
+        // Now iterate the whole thing
+        for (key in styles) {
+          value = styles[key];
+
+          switch (key) {
+            case 'transform':
+              // TODO: Check this out https://github.com/paperjs/paper.js/blob/master/src/svg/SVGImport.js#L313
+              if (value === 'none') break;
+              var m = node.getCTM();
+
+              // Might happen when transform string is empty or not valid.
+              if (m === null) break;
+
+              // // Option 1: edit the underlying matrix and don't force an auto calc.
+              // var m = node.getCTM();
+              // elem._matrix.manual = true;
+              // elem._matrix.set(m.a, m.b, m.c, m.d, m.e, m.f);
+
+              // Option 2: Decompose and infer Two.js related properties.
+              var transforms = Two.Utils.decomposeMatrix(node.getCTM());
+
+              elem.translation.set(transforms.translateX, transforms.translateY);
+              elem.rotation = transforms.rotation;
+              // Warning: Two.js elements only support uniform scalars...
+              elem.scale = transforms.scaleX;
+
+              // Override based on attributes.
+              if (styles.x) {
+                elem.translation.x = styles.x;
+              }
+
+              if (styles.y) {
+                elem.translation.y = styles.y;
+              }
+
+              break;
+            case 'visible':
+              elem.visible = value;
+              break;
+            case 'stroke-linecap':
+              elem.cap = value;
+              break;
+            case 'stroke-linejoin':
+              elem.join = value;
+              break;
+            case 'stroke-miterlimit':
+              elem.miter = value;
+              break;
+            case 'stroke-width':
+              elem.linewidth = parseFloat(value);
+              break;
+            case 'stroke-opacity':
+            case 'fill-opacity':
+            case 'opacity':
+              elem.opacity = parseFloat(value);
+              break;
+            case 'fill':
+            case 'stroke':
+              if (/url\(\#.*\)/i.test(value)) {
+                elem[key] = this.getById(
+                  value.replace(/url\(\#(.*)\)/i, '$1'));
+              } else {
+                elem[key] = (value === 'none') ? 'transparent' : value;
+              }
+              break;
+            case 'id':
+              elem.id = value;
+              break;
+            case 'class':
+              elem.classList = value.split(' ');
+              break;
+          }
+        }
+
+        return elem;
+
+      },
+
+      /**
+       * Read any number of SVG node types and create Two equivalents of them.
+       */
+      read: {
+
+        svg: function() {
+          return Two.Utils.read.g.apply(this, arguments);
+        },
+
+        g: function(node) {
+
+          var group = new Two.Group();
+
+          // Switched up order to inherit more specific styles
+          Two.Utils.applySvgAttributes.call(this, node, group);
+
+          for (var i = 0, l = node.childNodes.length; i < l; i++) {
+            var n = node.childNodes[i];
+            var tag = n.nodeName;
+            if (!tag) return;
+
+            var tagName = tag.replace(/svg\:/ig, '').toLowerCase();
+
+            if (tagName in Two.Utils.read) {
+              var o = Two.Utils.read[tagName].call(group, n);
+              group.add(o);
+            }
+          }
+
+          return group;
+
+        },
+
+        polygon: function(node, open) {
+
+          var points = node.getAttribute('points');
+
+          var verts = [];
+          points.replace(/(-?[\d\.?]+),(-?[\d\.?]+)/g, function(match, p1, p2) {
+            verts.push(new Two.Anchor(parseFloat(p1), parseFloat(p2)));
+          });
+
+          var poly = new Two.Path(verts, !open).noStroke();
+          poly.fill = 'black';
+
+          return Two.Utils.applySvgAttributes.call(this, node, poly);
+
+        },
+
+        polyline: function(node) {
+          return Two.Utils.read.polygon.call(this, node, true);
+        },
+
+        path: function(node) {
+
+          var path = node.getAttribute('d');
+
+          // Create a Two.Path from the paths.
+
+          var coord = new Two.Anchor();
+          var control, coords;
+          var closed = false, relative = false;
+          var commands = path.match(/[a-df-z][^a-df-z]*/ig);
+          var last = commands.length - 1;
+
+          // Split up polybeziers
+
+          _.each(commands.slice(0), function(command, i) {
+
+            var type = command[0];
+            var lower = type.toLowerCase();
+            var items = command.slice(1).trim().split(/[\s,]+|(?=\s?[+\-])/);
+            var pre, post, result = [], bin;
+
+            if (i <= 0) {
+              commands = [];
+            }
+
+            switch (lower) {
+              case 'h':
+              case 'v':
+                if (items.length > 1) {
+                  bin = 1;
+                }
+                break;
+              case 'm':
+              case 'l':
+              case 't':
+                if (items.length > 2) {
+                  bin = 2;
+                }
+                break;
+              case 's':
+              case 'q':
+                if (items.length > 4) {
+                  bin = 4;
+                }
+                break;
+              case 'c':
+                if (items.length > 6) {
+                  bin = 6;
+                }
+                break;
+              case 'a':
+                // TODO: Handle Ellipses
+                break;
+            }
+
+            if (bin) {
+
+              for (var j = 0, l = items.length, times = 0; j < l; j+=bin) {
+
+                var ct = type;
+                if (times > 0) {
+
+                  switch (type) {
+                    case 'm':
+                      ct = 'l';
+                      break;
+                    case 'M':
+                      ct = 'L';
+                      break;
+                  }
+
+                }
+
+                result.push([ct].concat(items.slice(j, j + bin)).join(' '));
+                times++;
+
+              }
+
+              commands = Array.prototype.concat.apply(commands, result);
+
+            } else {
+
+              commands.push(command);
+
+            }
+
+          });
+
+          // Create the vertices for our Two.Path
+
+          var points = _.flatten(_.map(commands, function(command, i) {
+
+            var result, x, y;
+            var type = command[0];
+            var lower = type.toLowerCase();
+
+            coords = command.slice(1).trim();
+            coords = coords.replace(/(-?\d+(?:\.\d*)?)[eE]([+\-]?\d+)/g, function(match, n1, n2) {
+              return parseFloat(n1) * pow(10, n2);
+            });
+            coords = coords.split(/[\s,]+|(?=\s?[+\-])/);
+            relative = type === lower;
+
+            var x1, y1, x2, y2, x3, y3, x4, y4, reflection;
+
+            switch (lower) {
+
+              case 'z':
+                if (i >= last) {
+                  closed = true;
+                } else {
+                  x = coord.x;
+                  y = coord.y;
+                  result = new Two.Anchor(
+                    x, y,
+                    undefined, undefined,
+                    undefined, undefined,
+                    Two.Commands.close
+                  );
+                }
+                break;
+
+              case 'm':
+              case 'l':
+
+                x = parseFloat(coords[0]);
+                y = parseFloat(coords[1]);
+
+                result = new Two.Anchor(
+                  x, y,
+                  undefined, undefined,
+                  undefined, undefined,
+                  lower === 'm' ? Two.Commands.move : Two.Commands.line
+                );
+
+                if (relative) {
+                  result.addSelf(coord);
+                }
+
+                // result.controls.left.copy(result);
+                // result.controls.right.copy(result);
+
+                coord = result;
+                break;
+
+              case 'h':
+              case 'v':
+
+                var a = lower === 'h' ? 'x' : 'y';
+                var b = a === 'x' ? 'y' : 'x';
+
+                result = new Two.Anchor(
+                  undefined, undefined,
+                  undefined, undefined,
+                  undefined, undefined,
+                  Two.Commands.line
+                );
+                result[a] = parseFloat(coords[0]);
+                result[b] = coord[b];
+
+                if (relative) {
+                  result[a] += coord[a];
+                }
+
+                // result.controls.left.copy(result);
+                // result.controls.right.copy(result);
+
+                coord = result;
+                break;
+
+              case 'c':
+              case 's':
+
+                x1 = coord.x;
+                y1 = coord.y;
+
+                if (!control) {
+                  control = new Two.Vector();//.copy(coord);
+                }
+
+                if (lower === 'c') {
+
+                  x2 = parseFloat(coords[0]);
+                  y2 = parseFloat(coords[1]);
+                  x3 = parseFloat(coords[2]);
+                  y3 = parseFloat(coords[3]);
+                  x4 = parseFloat(coords[4]);
+                  y4 = parseFloat(coords[5]);
+
+                } else {
+
+                  // Calculate reflection control point for proper x2, y2
+                  // inclusion.
+
+                  reflection = getReflection(coord, control, relative);
+
+                  x2 = reflection.x;
+                  y2 = reflection.y;
+                  x3 = parseFloat(coords[0]);
+                  y3 = parseFloat(coords[1]);
+                  x4 = parseFloat(coords[2]);
+                  y4 = parseFloat(coords[3]);
+
+                }
+
+                if (relative) {
+                  x2 += x1;
+                  y2 += y1;
+                  x3 += x1;
+                  y3 += y1;
+                  x4 += x1;
+                  y4 += y1;
+                }
+
+                if (!_.isObject(coord.controls)) {
+                  Two.Anchor.AppendCurveProperties(coord);
+                }
+
+                coord.controls.right.set(x2 - coord.x, y2 - coord.y);
+                result = new Two.Anchor(
+                  x4, y4,
+                  x3 - x4, y3 - y4,
+                  undefined, undefined,
+                  Two.Commands.curve
+                );
+
+                coord = result;
+                control = result.controls.left;
+
+                break;
+
+              case 't':
+              case 'q':
+
+                x1 = coord.x;
+                y1 = coord.y;
+
+                if (!control) {
+                  control = new Two.Vector();//.copy(coord);
+                }
+
+                if (control.isZero()) {
+                  x2 = x1;
+                  y2 = y1;
+                } else {
+                  x2 = control.x;
+                  y1 = control.y;
+                }
+
+                if (lower === 'q') {
+
+                  x3 = parseFloat(coords[0]);
+                  y3 = parseFloat(coords[1]);
+                  x4 = parseFloat(coords[1]);
+                  y4 = parseFloat(coords[2]);
+
+                } else {
+
+                  reflection = getReflection(coord, control, relative);
+
+                  x3 = reflection.x;
+                  y3 = reflection.y;
+                  x4 = parseFloat(coords[0]);
+                  y4 = parseFloat(coords[1]);
+
+                }
+
+                if (relative) {
+                  x2 += x1;
+                  y2 += y1;
+                  x3 += x1;
+                  y3 += y1;
+                  x4 += x1;
+                  y4 += y1;
+                }
+
+                if (!_.isObject(coord.controls)) {
+                  Two.Anchor.AppendCurveProperties(coord);
+                }
+
+                coord.controls.right.set(x2 - coord.x, y2 - coord.y);
+                result = new Two.Anchor(
+                  x4, y4,
+                  x3 - x4, y3 - y4,
+                  undefined, undefined,
+                  Two.Commands.curve
+                );
+
+                coord = result;
+                control = result.controls.left;
+
+                break;
+
+              case 'a':
+
+                // throw new Two.Utils.Error('not yet able to interpret Elliptical Arcs.');
+                x1 = coord.x;
+                y1 = coord.y;
+
+                var rx = parseFloat(coords[0]);
+                var ry = parseFloat(coords[1]);
+                var xAxisRotation = parseFloat(coords[2]) * Math.PI / 180;
+                var largeArcFlag = parseFloat(coords[3]);
+                var sweepFlag = parseFloat(coords[4]);
+
+                x4 = parseFloat(coords[5]);
+                y4 = parseFloat(coords[6]);
+
+                if (relative) {
+                  x4 += x1;
+                  y4 += y1;
+                }
+
+                // http://www.w3.org/TR/SVG/implnote.html#ArcConversionEndpointToCenter
+
+                // Calculate midpoint mx my
+                var mx = (x4 - x1) / 2;
+                var my = (y4 - y1) / 2;
+
+                // Calculate x1' y1' F.6.5.1
+                var _x = mx * Math.cos(xAxisRotation) + my * Math.sin(xAxisRotation);
+                var _y = - mx * Math.sin(xAxisRotation) + my * Math.cos(xAxisRotation);
+
+                var rx2 = rx * rx;
+                var ry2 = ry * ry;
+                var _x2 = _x * _x;
+                var _y2 = _y * _y;
+
+                // adjust radii
+                var l = _x2 / rx2 + _y2 / ry2;
+                if (l > 1) {
+                  rx *= Math.sqrt(l);
+                  ry *= Math.sqrt(l);
+                }
+
+                var amp = Math.sqrt((rx2 * ry2 - rx2 * _y2 - ry2 * _x2) / (rx2 * _y2 + ry2 * _x2));
+
+                if (_.isNaN(amp)) {
+                  amp = 0;
+                } else if (largeArcFlag != sweepFlag && amp > 0) {
+                  amp *= -1;
+                }
+
+                // Calculate cx' cy' F.6.5.2
+                var _cx = amp * rx * _y / ry;
+                var _cy = - amp * ry * _x / rx;
+
+                // Calculate cx cy F.6.5.3
+                var cx = _cx * Math.cos(xAxisRotation) - _cy * Math.sin(xAxisRotation) + (x1 + x4) / 2;
+                var cy = _cx * Math.sin(xAxisRotation) + _cy * Math.cos(xAxisRotation) + (y1 + y4) / 2;
+
+                // vector magnitude
+                var m = function(v) { return Math.sqrt(Math.pow(v[0], 2) + Math.pow(v[1], 2)); }
+                // ratio between two vectors
+                var r = function(u, v) { return (u[0] * v[0] + u[1] * v[1]) / (m(u) * m(v)) }
+                // angle between two vectors
+                var a = function(u, v) { return (u[0] * v[1] < u[1] * v[0] ? - 1 : 1) * Math.acos(r(u,v)); }
+
+                // Calculate theta1 and delta theta F.6.5.4 + F.6.5.5
+                var t1 = a([1, 0], [(_x - _cx) / rx, (_y - _cy) / ry]);
+                var u = [(_x - _cx) / rx, (_y - _cy) / ry];
+                var v = [( - _x - _cx) / rx, ( - _y - _cy) / ry];
+                var dt = a(u, v);
+
+                if (r(u, v) <= -1) dt = Math.PI;
+                if (r(u, v) >= 1) dt = 0;
+
+                // F.6.5.6
+                if (largeArcFlag)  {
+                  dt = mod(dt, Math.PI * 2);
+                }
+
+                if (sweepFlag && dt > 0) {
+                  dt -= Math.PI * 2;
+                }
+
+                var length = Two.Resolution;
+
+                // Save a projection of our rotation and translation to apply
+                // to the set of points.
+                var projection = new Two.Matrix()
+                  .translate(cx, cy)
+                  .rotate(xAxisRotation);
+
+                // Create a resulting array of Two.Anchor's to export to the
+                // the path.
+                result = _.map(_.range(length), function(i) {
+                  var pct = 1 - (i / (length - 1));
+                  var theta = pct * dt + t1;
+                  var x = rx * Math.cos(theta);
+                  var y = ry * Math.sin(theta);
+                  var projected = projection.multiply(x, y, 1);
+                  return new Two.Anchor(projected.x, projected.y, false, false, false, false, Two.Commands.line);;
+                });
+
+                result.push(new Two.Anchor(x4, y4, false, false, false, false, Two.Commands.line));
+
+                coord = result[result.length - 1];
+                control = coord.controls.left;
+
+                break;
+
+            }
+
+            return result;
+
+          }));
+
+          if (points.length <= 1) {
+            return;
+          }
+
+          points = _.compact(points);
+
+          var poly = new Two.Path(points, closed, undefined, true).noStroke();
+          poly.fill = 'black';
+
+          return Two.Utils.applySvgAttributes.call(this, node, poly);
+
+        },
+
+        circle: function(node) {
+
+          var x = parseFloat(node.getAttribute('cx'));
+          var y = parseFloat(node.getAttribute('cy'));
+          var r = parseFloat(node.getAttribute('r'));
+
+          var amount = Two.Resolution;
+          var points = _.map(_.range(amount), function(i) {
+            var pct = i / amount;
+            var theta = pct * TWO_PI;
+            var x = r * cos(theta);
+            var y = r * sin(theta);
+            return new Two.Anchor(x, y);
+          });
+
+          var circle = new Two.Path(points, true, true).noStroke();
+          circle.translation.set(x, y);
+          circle.fill = 'black';
+
+          return Two.Utils.applySvgAttributes.call(this, node, circle);
+
+        },
+
+        ellipse: function(node) {
+
+          var x = parseFloat(node.getAttribute('cx'));
+          var y = parseFloat(node.getAttribute('cy'));
+          var width = parseFloat(node.getAttribute('rx'));
+          var height = parseFloat(node.getAttribute('ry'));
+
+          var amount = Two.Resolution;
+          var points = _.map(_.range(amount), function(i) {
+            var pct = i / amount;
+            var theta = pct * TWO_PI;
+            var x = width * cos(theta);
+            var y = height * sin(theta);
+            return new Two.Anchor(x, y);
+          });
+
+          var ellipse = new Two.Path(points, true, true).noStroke();
+          ellipse.translation.set(x, y);
+          ellipse.fill = 'black';
+
+          return Two.Utils.applySvgAttributes.call(this, node, ellipse);
+
+        },
+
+        rect: function(node) {
+
+          var x = parseFloat(node.getAttribute('x')) || 0;
+          var y = parseFloat(node.getAttribute('y')) || 0;
+          var width = parseFloat(node.getAttribute('width'));
+          var height = parseFloat(node.getAttribute('height'));
+
+          var w2 = width / 2;
+          var h2 = height / 2;
+
+          var points = [
+            new Two.Anchor(w2, h2),
+            new Two.Anchor(-w2, h2),
+            new Two.Anchor(-w2, -h2),
+            new Two.Anchor(w2, -h2)
+          ];
+
+          var rect = new Two.Path(points, true).noStroke();
+          rect.translation.set(x + w2, y + h2);
+          rect.fill = 'black';
+
+          return Two.Utils.applySvgAttributes.call(this, node, rect);
+
+        },
+
+        line: function(node) {
+
+          var x1 = parseFloat(node.getAttribute('x1'));
+          var y1 = parseFloat(node.getAttribute('y1'));
+          var x2 = parseFloat(node.getAttribute('x2'));
+          var y2 = parseFloat(node.getAttribute('y2'));
+
+          var width = x2 - x1;
+          var height = y2 - y1;
+
+          var w2 = width / 2;
+          var h2 = height / 2;
+
+          var points = [
+            new Two.Anchor(- w2, - h2),
+            new Two.Anchor(w2, h2)
+          ];
+
+          // Center line and translate to desired position.
+
+          var line = new Two.Path(points).noFill();
+          line.translation.set(x1 + w2, y1 + h2);
+
+          return Two.Utils.applySvgAttributes.call(this, node, line);
+
+        },
+
+        lineargradient: function(node) {
+
+          var x1 = parseFloat(node.getAttribute('x1'));
+          var y1 = parseFloat(node.getAttribute('y1'));
+          var x2 = parseFloat(node.getAttribute('x2'));
+          var y2 = parseFloat(node.getAttribute('y2'));
+
+          var ox = (x2 + x1) / 2;
+          var oy = (y2 + y1) / 2;
+
+          var stops = [];
+          for (var i = 0; i < node.children.length; i++) {
+
+            var child = node.children[i];
+
+            var offset = parseFloat(child.getAttribute('offset'));
+            var color = child.getAttribute('stop-color');
+            var opacity = child.getAttribute('stop-opacity');
+            var style = child.getAttribute('style');
+
+            if (_.isNull(color)) {
+              var matches = style.match(/stop\-color\:\s?([\#a-fA-F0-9]*)/);
+              color = matches && matches.length > 1 ? matches[1] : undefined;
+            }
+
+            if (_.isNull(opacity)) {
+              var matches = style.match(/stop\-opacity\:\s?([0-1\.\-]*)/);
+              opacity = matches && matches.length > 1 ? parseFloat(matches[1]) : 1;
+            }
+
+            stops.push(new Two.Gradient.Stop(offset, color, opacity));
+
+          }
+
+          var gradient = new Two.LinearGradient(x1 - ox, y1 - oy, x2 - ox,
+            y2 - oy, stops);
+
+          return Two.Utils.applySvgAttributes.call(this, node, gradient);
+
+        },
+
+        radialgradient: function(node) {
+
+          var cx = parseFloat(node.getAttribute('cx')) || 0;
+          var cy = parseFloat(node.getAttribute('cy')) || 0;
+          var r = parseFloat(node.getAttribute('r'));
+
+          var fx = parseFloat(node.getAttribute('fx'));
+          var fy = parseFloat(node.getAttribute('fy'));
+
+          if (_.isNaN(fx)) {
+            fx = cx;
+          }
+
+          if (_.isNaN(fy)) {
+            fy = cy;
+          }
+
+          var ox = Math.abs(cx + fx) / 2;
+          var oy = Math.abs(cy + fy) / 2;
+
+          var stops = [];
+          for (var i = 0; i < node.children.length; i++) {
+
+            var child = node.children[i];
+
+            var offset = parseFloat(child.getAttribute('offset'));
+            var color = child.getAttribute('stop-color');
+            var opacity = child.getAttribute('stop-opacity');
+            var style = child.getAttribute('style');
+
+            if (_.isNull(color)) {
+              var matches = style.match(/stop\-color\:\s?([\#a-fA-F0-9]*)/);
+              color = matches && matches.length > 1 ? matches[1] : undefined;
+            }
+
+            if (_.isNull(opacity)) {
+              var matches = style.match(/stop\-opacity\:\s?([0-1\.\-]*)/);
+              opacity = matches && matches.length > 1 ? parseFloat(matches[1]) : 1;
+            }
+
+            stops.push(new Two.Gradient.Stop(offset, color, opacity));
+
+          }
+
+          var gradient = new Two.RadialGradient(cx - ox, cy - oy, r,
+            stops, fx - ox, fy - oy);
+
+          return Two.Utils.applySvgAttributes.call(this, node, gradient);
+
+        }
+
+      },
+
+      /**
+       * Given 2 points (a, b) and corresponding control point for each
+       * return an array of points that represent points plotted along
+       * the curve. Number points determined by limit.
+       */
+      subdivide: function(x1, y1, x2, y2, x3, y3, x4, y4, limit) {
+
+        limit = limit || Two.Utils.Curve.RecursionLimit;
+        var amount = limit + 1;
+
+        // TODO: Issue 73
+        // Don't recurse if the end points are identical
+        if (x1 === x4 && y1 === y4) {
+          return [new Two.Anchor(x4, y4)];
+        }
+
+        return _.map(_.range(0, amount), function(i) {
+
+          var t = i / amount;
+          var x = getPointOnCubicBezier(t, x1, x2, x3, x4);
+          var y = getPointOnCubicBezier(t, y1, y2, y3, y4);
+
+          return new Two.Anchor(x, y);
+
+        });
+
+      },
+
+      getPointOnCubicBezier: function(t, a, b, c, d) {
+        var k = 1 - t;
+        return (k * k * k * a) + (3 * k * k * t * b) + (3 * k * t * t * c) +
+           (t * t * t * d);
+      },
+
+      /**
+       * Given 2 points (a, b) and corresponding control point for each
+       * return a float that represents the length of the curve using
+       * Gauss-Legendre algorithm. Limit iterations of calculation by `limit`.
+       */
+      getCurveLength: function(x1, y1, x2, y2, x3, y3, x4, y4, limit) {
+
+        // TODO: Better / fuzzier equality check
+        // Linear calculation
+        if (x1 === x2 && y1 === y2 && x3 === x4 && y3 === y4) {
+          var dx = x4 - x1;
+          var dy = y4 - y1;
+          return sqrt(dx * dx + dy * dy);
+        }
+
+        // Calculate the coefficients of a Bezier derivative.
+        var ax = 9 * (x2 - x3) + 3 * (x4 - x1),
+          bx = 6 * (x1 + x3) - 12 * x2,
+          cx = 3 * (x2 - x1),
+
+          ay = 9 * (y2 - y3) + 3 * (y4 - y1),
+          by = 6 * (y1 + y3) - 12 * y2,
+          cy = 3 * (y2 - y1);
+
+        var integrand = function(t) {
+          // Calculate quadratic equations of derivatives for x and y
+          var dx = (ax * t + bx) * t + cx,
+            dy = (ay * t + by) * t + cy;
+          return sqrt(dx * dx + dy * dy);
+        };
+
+        return integrate(
+          integrand, 0, 1, limit || Two.Utils.Curve.RecursionLimit
+        );
+
+      },
+
+      /**
+       * Integration for `getCurveLength` calculations. Referenced from
+       * Paper.js: https://github.com/paperjs/paper.js/blob/master/src/util/Numerical.js#L101
+       */
+      integrate: function(f, a, b, n) {
+        var x = Two.Utils.Curve.abscissas[n - 2],
+          w = Two.Utils.Curve.weights[n - 2],
+          A = 0.5 * (b - a),
+          B = A + a,
+          i = 0,
+          m = (n + 1) >> 1,
+          sum = n & 1 ? w[i++] * f(B) : 0; // Handle odd n
+        while (i < m) {
+          var Ax = A * x[i];
+          sum += w[i++] * (f(B + Ax) + f(B - Ax));
+        }
+        return A * sum;
+      },
+
+      /**
+       * Creates a set of points that have u, v values for anchor positions
+       */
+      getCurveFromPoints: function(points, closed) {
+
+        var l = points.length, last = l - 1;
+
+        for (var i = 0; i < l; i++) {
+
+          var point = points[i];
+
+          if (!_.isObject(point.controls)) {
+            Two.Anchor.AppendCurveProperties(point);
+          }
+
+          var prev = closed ? mod(i - 1, l) : max(i - 1, 0);
+          var next = closed ? mod(i + 1, l) : min(i + 1, last);
+
+          var a = points[prev];
+          var b = point;
+          var c = points[next];
+          getControlPoints(a, b, c);
+
+          b._command = i === 0 ? Two.Commands.move : Two.Commands.curve;
+
+          b.controls.left.x = _.isNumber(b.controls.left.x) ? b.controls.left.x : b.x;
+          b.controls.left.y = _.isNumber(b.controls.left.y) ? b.controls.left.y : b.y;
+
+          b.controls.right.x = _.isNumber(b.controls.right.x) ? b.controls.right.x : b.x;
+          b.controls.right.y = _.isNumber(b.controls.right.y) ? b.controls.right.y : b.y;
+
+        }
+
+      },
+
+      /**
+       * Given three coordinates return the control points for the middle, b,
+       * vertex.
+       */
+      getControlPoints: function(a, b, c) {
+
+        var a1 = angleBetween(a, b);
+        var a2 = angleBetween(c, b);
+
+        var d1 = distanceBetween(a, b);
+        var d2 = distanceBetween(c, b);
+
+        var mid = (a1 + a2) / 2;
+
+        // So we know which angle corresponds to which side.
+
+        b.u = _.isObject(b.controls.left) ? b.controls.left : new Two.Vector(0, 0);
+        b.v = _.isObject(b.controls.right) ? b.controls.right : new Two.Vector(0, 0);
+
+        // TODO: Issue 73
+        if (d1 < 0.0001 || d2 < 0.0001) {
+          if (!b._relative) {
+            b.controls.left.copy(b);
+            b.controls.right.copy(b);
+          }
+          return b;
+        }
+
+        d1 *= 0.33; // Why 0.33?
+        d2 *= 0.33;
+
+        if (a2 < a1) {
+          mid += HALF_PI;
+        } else {
+          mid -= HALF_PI;
+        }
+
+        b.controls.left.x = cos(mid) * d1;
+        b.controls.left.y = sin(mid) * d1;
+
+        mid -= PI;
+
+        b.controls.right.x = cos(mid) * d2;
+        b.controls.right.y = sin(mid) * d2;
+
+        if (!b._relative) {
+          b.controls.left.x += b.x;
+          b.controls.left.y += b.y;
+          b.controls.right.x += b.x;
+          b.controls.right.y += b.y;
+        }
+
+        return b;
+
+      },
+
+      /**
+       * Get the reflection of a point "b" about point "a". Where "a" is in
+       * absolute space and "b" is relative to "a".
+       *
+       * http://www.w3.org/TR/SVG11/implnote.html#PathElementImplementationNotes
+       */
+      getReflection: function(a, b, relative) {
+
+        return new Two.Vector(
+          2 * a.x - (b.x + a.x) - (relative ? a.x : 0),
+          2 * a.y - (b.y + a.y) - (relative ? a.y : 0)
+        );
+
+      },
+
+      getAnchorsFromArcData: function(center, xAxisRotation, rx, ry, ts, td, ccw) {
+
+        var matrix = new Two.Matrix()
+          .translate(center.x, center.y)
+          .rotate(xAxisRotation);
+
+        var l = Two.Resolution;
+
+        // console.log(arguments);
+
+        return _.map(_.range(l), function(i) {
+
+          var pct = (i + 1) / l;
+          if (!!ccw) {
+            pct = 1 - pct;
+          }
+
+          var theta = pct * td + ts;
+          var x = rx * Math.cos(theta);
+          var y = ry * Math.sin(theta);
+
+          // x += center.x;
+          // y += center.y;
+
+          var anchor = new Two.Anchor(x, y);
+          Two.Anchor.AppendCurveProperties(anchor);
+          anchor.command = Two.Commands.line;
+
+          // TODO: Calculate control points here...
+
+          return anchor;
+
+        });
+
+      },
+
+      ratioBetween: function(A, B) {
+
+        return (A.x * B.x + A.y * B.y) / (A.length() * B.length());
+
+      },
+
+      angleBetween: function(A, B) {
+
+        var dx, dy;
+
+        if (arguments.length >= 4) {
+
+          dx = arguments[0] - arguments[2];
+          dy = arguments[1] - arguments[3];
+
+          return atan2(dy, dx);
+
+        }
+
+        dx = A.x - B.x;
+        dy = A.y - B.y;
+
+        return atan2(dy, dx);
+
+      },
+
+      distanceBetweenSquared: function(p1, p2) {
+
+        var dx = p1.x - p2.x;
+        var dy = p1.y - p2.y;
+
+        return dx * dx + dy * dy;
+
+      },
+
+      distanceBetween: function(p1, p2) {
+
+        return sqrt(distanceBetweenSquared(p1, p2));
+
+      },
+
+      // A pretty fast toFixed(3) alternative
+      // See http://jsperf.com/parsefloat-tofixed-vs-math-round/18
+      toFixed: function(v) {
+        return Math.floor(v * 1000) / 1000;
+      },
+
+      mod: function(v, l) {
+
+        while (v < 0) {
+          v += l;
+        }
+
+        return v % l;
+
+      },
+
+      /**
+       * Array like collection that triggers inserted and removed events
+       * removed : pop / shift / splice
+       * inserted : push / unshift / splice (with > 2 arguments)
+       */
+      Collection: function() {
+
+        Array.call(this);
+
+        if (arguments.length > 1) {
+          Array.prototype.push.apply(this, arguments);
+        } else if (arguments[0] && Array.isArray(arguments[0])) {
+          Array.prototype.push.apply(this, arguments[0]);
+        }
+
+      },
+
+      // Custom Error Throwing for Two.js
+
+      Error: function(message) {
+        this.name = 'two.js';
+        this.message = message;
+      }
+
+    }
+
+  });
+
+  Two.Utils.Error.prototype = new Error();
+  Two.Utils.Error.prototype.constructor = Two.Utils.Error;
+
+  Two.Utils.Collection.prototype = new Array();
+  Two.Utils.Collection.constructor = Two.Utils.Collection;
+
+  _.extend(Two.Utils.Collection.prototype, Backbone.Events, {
+
+    pop: function() {
+      var popped = Array.prototype.pop.apply(this, arguments);
+      this.trigger(Two.Events.remove, [popped]);
+      return popped;
+    },
+
+    shift: function() {
+      var shifted = Array.prototype.shift.apply(this, arguments);
+      this.trigger(Two.Events.remove, [shifted]);
+      return shifted;
+    },
+
+    push: function() {
+      var pushed = Array.prototype.push.apply(this, arguments);
+      this.trigger(Two.Events.insert, arguments);
+      return pushed;
+    },
+
+    unshift: function() {
+      var unshifted = Array.prototype.unshift.apply(this, arguments);
+      this.trigger(Two.Events.insert, arguments);
+      return unshifted;
+    },
+
+    splice: function() {
+      var spliced = Array.prototype.splice.apply(this, arguments);
+      var inserted;
+
+      this.trigger(Two.Events.remove, spliced);
+
+      if (arguments.length > 2) {
+        inserted = this.slice(arguments[0], arguments.length - 2);
+        this.trigger(Two.Events.insert, inserted);
+        this.trigger(Two.Events.order);
+      }
+      return spliced;
+    },
+
+    sort: function() {
+      Array.prototype.sort.apply(this, arguments);
+      this.trigger(Two.Events.order);
+      return this;
+    },
+
+    reverse: function() {
+      Array.prototype.reverse.apply(this, arguments);
+      this.trigger(Two.Events.order);
+      return this;
+    }
+
+  });
+
+  // Localize utils
+
+  var distanceBetween = Two.Utils.distanceBetween,
+    getAnchorsFromArcData = Two.Utils.getAnchorsFromArcData,
+    distanceBetweenSquared = Two.Utils.distanceBetweenSquared,
+    ratioBetween = Two.Utils.ratioBetween,
+    angleBetween = Two.Utils.angleBetween,
+    getControlPoints = Two.Utils.getControlPoints,
+    getCurveFromPoints = Two.Utils.getCurveFromPoints,
+    solveSegmentIntersection = Two.Utils.solveSegmentIntersection,
+    decoupleShapes = Two.Utils.decoupleShapes,
+    mod = Two.Utils.mod,
+    getBackingStoreRatio = Two.Utils.getBackingStoreRatio,
+    getPointOnCubicBezier = Two.Utils.getPointOnCubicBezier,
+    getCurveLength = Two.Utils.getCurveLength,
+    integrate = Two.Utils.integrate,
+    getReflection = Two.Utils.getReflection;
+
+  _.extend(Two.prototype, Backbone.Events, {
+
+    appendTo: function(elem) {
+
+      elem.appendChild(this.renderer.domElement);
+      return this;
+
+    },
+
+    play: function() {
+
+      Two.Utils.setPlaying.call(this, true);
+      return this.trigger(Two.Events.play);
+
+    },
+
+    pause: function() {
+
+      this.playing = false;
+      return this.trigger(Two.Events.pause);
+
+    },
+
+    /**
+     * Update positions and calculations in one pass before rendering.
+     */
+    update: function() {
+
+      var animated = !!this._lastFrame;
+      var now = getNow();
+
+      this.frameCount++;
+
+      if (animated) {
+        this.timeDelta = parseFloat((now - this._lastFrame).toFixed(3));
+      }
+      this._lastFrame = now;
+
+      var width = this.width;
+      var height = this.height;
+      var renderer = this.renderer;
+
+      // Update width / height for the renderer
+      if (width !== renderer.width || height !== renderer.height) {
+        renderer.setSize(width, height, this.ratio);
+      }
+
+      this.trigger(Two.Events.update, this.frameCount, this.timeDelta);
+
+      return this.render();
+
+    },
+
+    /**
+     * Render all drawable - visible objects of the scene.
+     */
+    render: function() {
+
+      this.renderer.render();
+      return this.trigger(Two.Events.render, this.frameCount);
+
+    },
+
+    /**
+     * Convenience Methods
+     */
+
+    add: function(o) {
+
+      var objects = o;
+      if (!(objects instanceof Array)) {
+        objects = _.toArray(arguments);
+      }
+
+      this.scene.add(objects);
+      return this;
+
+    },
+
+    remove: function(o) {
+
+      var objects = o;
+      if (!(objects instanceof Array)) {
+        objects = _.toArray(arguments);
+      }
+
+      this.scene.remove(objects);
+
+      return this;
+
+    },
+
+    clear: function() {
+
+      this.scene.remove(_.toArray(this.scene.children));
+      return this;
+
+    },
+
+    makeLine: function(x1, y1, x2, y2) {
+
+      var line = new Two.Line(x1, y1, x2, y2);
+      this.scene.add(line);
+
+      return line;
+
+    },
+
+    makeRectangle: function(x, y, width, height) {
+
+      var rect = new Two.Rectangle(x, y, width, height);
+      this.scene.add(rect);
+
+      return rect;
+
+    },
+
+    makeRoundedRectangle: function(x, y, width, height, sides) {
+
+      var rect = new Two.RoundedRectangle(x, y, width, height, sides);
+      this.scene.add(rect);
+
+      return rect;
+
+    },
+
+    makeCircle: function(ox, oy, r) {
+
+      return this.makeEllipse(ox, oy, r, r);
+
+    },
+
+    makeEllipse: function(ox, oy, rx, ry) {
+
+      var ellipse = new Two.Ellipse(ox, oy, rx, ry);
+      this.scene.add(ellipse);
+
+      return ellipse;
+
+    },
+
+    makeStar: function(ox, oy, or, ir, sides) {
+
+      var star = new Two.Star(ox, oy, or, ir, sides);
+      this.scene.add(star);
+
+      return star;
+
+    },
+
+    makeCurve: function(p) {
+
+      var l = arguments.length, points = p;
+      if (!_.isArray(p)) {
+        points = [];
+        for (var i = 0; i < l; i+=2) {
+          var x = arguments[i];
+          if (!_.isNumber(x)) {
+            break;
+          }
+          var y = arguments[i + 1];
+          points.push(new Two.Anchor(x, y));
+        }
+      }
+
+      var last = arguments[l - 1];
+      var curve = new Two.Path(points, !(_.isBoolean(last) ? last : undefined), true);
+      var rect = curve.getBoundingClientRect();
+      curve.center().translation
+        .set(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+      this.scene.add(curve);
+
+      return curve;
+
+    },
+
+    makePolygon: function(ox, oy, r, sides) {
+
+      var poly = new Two.Polygon(ox, oy, r, sides);
+      this.scene.add(poly);
+
+      return poly;
+
+    },
+
+    /*
+    * Make an Arc Segment
+    */
+
+    makeArcSegment: function(ox, oy, ir, or, sa, ea, res) {
+      var arcSegment = new Two.ArcSegment(ox, oy, ir, or, sa, ea, res);
+      this.scene.add(arcSegment);
+      return arcSegment;
+    },
+
+    /**
+     * Convenience method to make and draw a Two.Path.
+     */
+    makePath: function(p) {
+
+      var l = arguments.length, points = p;
+      if (!_.isArray(p)) {
+        points = [];
+        for (var i = 0; i < l; i+=2) {
+          var x = arguments[i];
+          if (!_.isNumber(x)) {
+            break;
+          }
+          var y = arguments[i + 1];
+          points.push(new Two.Anchor(x, y));
+        }
+      }
+
+      var last = arguments[l - 1];
+      var path = new Two.Path(points, !(_.isBoolean(last) ? last : undefined));
+      var rect = path.getBoundingClientRect();
+      path.center().translation
+        .set(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+      this.scene.add(path);
+
+      return path;
+
+    },
+
+    /**
+     * Convenience method to make and add a Two.LinearGradient.
+     */
+    makeLinearGradient: function(x1, y1, x2, y2 /* stops */) {
+
+      var stops = Array.prototype.slice.call(arguments, 4);
+      var gradient = new Two.LinearGradient(x1, y1, x2, y2, stops);
+
+      this.add(gradient);
+
+      return gradient;
+
+    },
+
+    /**
+     * Convenience method to make and add a Two.RadialGradient.
+     */
+    makeRadialGradient: function(x1, y1, r /* stops */) {
+
+      var stops = Array.prototype.slice.call(arguments, 3);
+      var gradient = new Two.RadialGradient(x1, y1, r, stops);
+
+      this.add(gradient);
+
+      return gradient;
+
+    },
+
+    makeGroup: function(o) {
+
+      var objects = o;
+      if (!(objects instanceof Array)) {
+        objects = _.toArray(arguments);
+      }
+
+      var group = new Two.Group();
+      this.scene.add(group);
+      group.add(objects);
+
+      return group;
+
+    },
+
+    /**
+     * Interpret an SVG Node and add it to this instance's scene. The
+     * distinction should be made that this doesn't `import` svg's, it solely
+     * interprets them into something compatible for Two.js — this is slightly
+     * different than a direct transcription.
+     *
+     * @param {Object} svgNode - The node to be parsed
+     * @param {Boolean} shallow - Don't create a top-most group but
+     *                                    append all contents directly
+     */
+    interpret: function(svgNode, shallow) {
+
+      var tag = svgNode.tagName.toLowerCase();
+
+      if (!(tag in Two.Utils.read)) {
+        return null;
+      }
+
+      var node = Two.Utils.read[tag].call(this, svgNode);
+
+      if (shallow && node instanceof Two.Group) {
+        this.add(node.children);
+      } else {
+        this.add(node);
+      }
+
+      return node;
+
+    },
+
+    /**
+     * Load an SVG file / text and interpret.
+     */
+    load: function(text, callback) {
+
+      var nodes = [], elem, i;
+
+      if (/.*\.svg/ig.test(text)) {
+
+        Two.Utils.xhr(text, _.bind(function(data) {
+
+          dom.temp.innerHTML = data;
+          for (i = 0; i < dom.temp.children.length; i++) {
+            elem = dom.temp.children[i];
+            nodes.push(this.interpret(elem));
+          }
+
+          callback(nodes.length <= 1 ? nodes[0] : nodes,
+            dom.temp.children.length <= 1 ? dom.temp.children[0] : dom.temp.children);
+
+        }, this));
+
+        return this;
+
+      }
+
+      dom.temp.innerHTML = text;
+      for (i = 0; i < dom.temp.children.length; i++) {
+        elem = dom.temp.children[i];
+        nodes.push(this.interpret(elem));
+      }
+
+      callback(nodes.length <= 1 ? nodes[0] : nodes,
+        dom.temp.children.length <= 1 ? dom.temp.children[0] : dom.temp.children);
+
+      return this;
+
+    }
+
+  });
+
+  function fitToWindow() {
+
+    var wr = document.body.getBoundingClientRect();
+
+    var width = this.width = wr.width;
+    var height = this.height = wr.height;
+
+    this.renderer.setSize(width, height, this.ratio);
+    this.trigger(Two.Events.resize, width, height);
+
+  }
+
+  function getNow() {
+    return ((root.performance && root.performance.now)
+      ? root.performance : Date).now();
+  }
+
+  // Request Animation Frame
+
+  (function() {
+
+    requestAnimationFrame(arguments.callee);
+
+    Two.Instances.forEach(function(t) {
+
+      if (t.playing) {
+        t.update();
+      }
+
+    });
+
+  })();
+
+  //exports to multiple environments
+  if (typeof define === 'function' && define.amd)
+  //AMD
+  define(function(){ return Two; });
+  else if (typeof module != "undefined" && module.exports)
+  //Node
+  module.exports = Two;
+
+})(
+  this.Two || {},
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Vector = Two.Vector = function(x, y) {
+
+    this.x = x || 0;
+    this.y = y || 0;
+
+  };
+
+  _.extend(Vector, {
+
+    zero: new Two.Vector()
+
+  });
+
+  _.extend(Vector.prototype, Backbone.Events, {
+
+    set: function(x, y) {
+      this.x = x;
+      this.y = y;
+      return this;
+    },
+
+    copy: function(v) {
+      this.x = v.x;
+      this.y = v.y;
+      return this;
+    },
+
+    clear: function() {
+      this.x = 0;
+      this.y = 0;
+      return this;
+    },
+
+    clone: function() {
+      return new Vector(this.x, this.y);
+    },
+
+    add: function(v1, v2) {
+      this.x = v1.x + v2.x;
+      this.y = v1.y + v2.y;
+      return this;
+    },
+
+    addSelf: function(v) {
+      this.x += v.x;
+      this.y += v.y;
+      return this;
+    },
+
+    sub: function(v1, v2) {
+      this.x = v1.x - v2.x;
+      this.y = v1.y - v2.y;
+      return this;
+    },
+
+    subSelf: function(v) {
+      this.x -= v.x;
+      this.y -= v.y;
+      return this;
+    },
+
+    multiplySelf: function(v) {
+      this.x *= v.x;
+      this.y *= v.y;
+      return this;
+    },
+
+    multiplyScalar: function(s) {
+      this.x *= s;
+      this.y *= s;
+      return this;
+    },
+
+    divideScalar: function(s) {
+      if (s) {
+        this.x /= s;
+        this.y /= s;
+      } else {
+        this.set(0, 0);
+      }
+      return this;
+    },
+
+    negate: function() {
+      return this.multiplyScalar(-1);
+    },
+
+    dot: function(v) {
+      return this.x * v.x + this.y * v.y;
+    },
+
+    lengthSquared: function() {
+      return this.x * this.x + this.y * this.y;
+    },
+
+    length: function() {
+      return Math.sqrt(this.lengthSquared());
+    },
+
+    normalize: function() {
+      return this.divideScalar(this.length());
+    },
+
+    distanceTo: function(v) {
+      return Math.sqrt(this.distanceToSquared(v));
+    },
+
+    distanceToSquared: function(v) {
+      var dx = this.x - v.x,
+          dy = this.y - v.y;
+      return dx * dx + dy * dy;
+    },
+
+    setLength: function(l) {
+      return this.normalize().multiplyScalar(l);
+    },
+
+    equals: function(v, eps) {
+      eps = (typeof eps === 'undefined') ?  0.0001 : eps;
+      return (this.distanceTo(v) < eps);
+    },
+
+    lerp: function(v, t) {
+      var x = (v.x - this.x) * t + this.x;
+      var y = (v.y - this.y) * t + this.y;
+      return this.set(x, y);
+    },
+
+    isZero: function(eps) {
+      eps = (typeof eps === 'undefined') ?  0.0001 : eps;
+      return (this.length() <  eps);
+    },
+
+    toString: function() {
+      return this.x + ',' + this.y;
+    },
+
+    toObject: function() {
+      return { x: this.x, y: this.y };
+    }
+
+  });
+
+  var BoundProto = {
+
+    set: function(x, y) {
+      this._x = x;
+      this._y = y;
+      return this.trigger(Two.Events.change);
+    },
+
+    copy: function(v) {
+      this._x = v.x;
+      this._y = v.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    clear: function() {
+      this._x = 0;
+      this._y = 0;
+      return this.trigger(Two.Events.change);
+    },
+
+    clone: function() {
+      return new Vector(this._x, this._y);
+    },
+
+    add: function(v1, v2) {
+      this._x = v1.x + v2.x;
+      this._y = v1.y + v2.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    addSelf: function(v) {
+      this._x += v.x;
+      this._y += v.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    sub: function(v1, v2) {
+      this._x = v1.x - v2.x;
+      this._y = v1.y - v2.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    subSelf: function(v) {
+      this._x -= v.x;
+      this._y -= v.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    multiplySelf: function(v) {
+      this._x *= v.x;
+      this._y *= v.y;
+      return this.trigger(Two.Events.change);
+    },
+
+    multiplyScalar: function(s) {
+      this._x *= s;
+      this._y *= s;
+      return this.trigger(Two.Events.change);
+    },
+
+    divideScalar: function(s) {
+      if (s) {
+        this._x /= s;
+        this._y /= s;
+        return this.trigger(Two.Events.change);
+      }
+      return this.clear();
+    },
+
+    negate: function() {
+      return this.multiplyScalar(-1);
+    },
+
+    dot: function(v) {
+      return this._x * v.x + this._y * v.y;
+    },
+
+    lengthSquared: function() {
+      return this._x * this._x + this._y * this._y;
+    },
+
+    length: function() {
+      return Math.sqrt(this.lengthSquared());
+    },
+
+    normalize: function() {
+      return this.divideScalar(this.length());
+    },
+
+    distanceTo: function(v) {
+      return Math.sqrt(this.distanceToSquared(v));
+    },
+
+    distanceToSquared: function(v) {
+      var dx = this._x - v.x,
+          dy = this._y - v.y;
+      return dx * dx + dy * dy;
+    },
+
+    setLength: function(l) {
+      return this.normalize().multiplyScalar(l);
+    },
+
+    equals: function(v, eps) {
+      eps = (typeof eps === 'undefined') ?  0.0001 : eps;
+      return (this.distanceTo(v) < eps);
+    },
+
+    lerp: function(v, t) {
+      var x = (v.x - this._x) * t + this._x;
+      var y = (v.y - this._y) * t + this._y;
+      return this.set(x, y);
+    },
+
+    isZero: function(eps) {
+      eps = (typeof eps === 'undefined') ?  0.0001 : eps;
+      return (this.length() < eps);
+    },
+
+    toString: function() {
+      return this._x + ',' + this._y;
+    },
+
+    toObject: function() {
+      return { x: this._x, y: this._y };
+    }
+
+  };
+
+  var xgs = {
+    get: function() {
+      return this._x;
+    },
+    set: function(v) {
+      this._x = v;
+      this.trigger(Two.Events.change, 'x');
+    }
+  };
+
+  var ygs = {
+    get: function() {
+      return this._y;
+    },
+    set: function(v) {
+      this._y = v;
+      this.trigger(Two.Events.change, 'y');
+    }
+  };
+
+  /**
+   * Override Backbone bind / on in order to add properly broadcasting.
+   * This allows Two.Vector to not broadcast events unless event listeners
+   * are explicity bound to it.
+   */
+
+  Two.Vector.prototype.bind = Two.Vector.prototype.on = function() {
+
+    if (!this._bound) {
+      this._x = this.x;
+      this._y = this.y;
+      Object.defineProperty(this, 'x', xgs);
+      Object.defineProperty(this, 'y', ygs);
+      _.extend(this, BoundProto);
+      this._bound = true; // Reserved for event initialization check
+    }
+
+    Backbone.Events.bind.apply(this, arguments);
+
+    return this;
+
+  };
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  typeof window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  // Localized variables
+  var commands = Two.Commands;
+
+  /**
+   * An object that holds 3 `Two.Vector`s, the anchor point and its
+   * corresponding handles: `left` and `right`.
+   */
+  var Anchor = Two.Anchor = function(x, y, ux, uy, vx, vy, command) {
+
+    Two.Vector.call(this, x, y);
+
+    this._broadcast = _.bind(function() {
+      this.trigger(Two.Events.change);
+    }, this);
+
+    this._command = command || commands.move;
+    this._relative = true;
+
+    if (!command) {
+      return this;
+    }
+
+    Anchor.AppendCurveProperties(this);
+
+    if (_.isNumber(ux)) {
+      this.controls.left.x = ux;
+    }
+    if (_.isNumber(uy)) {
+      this.controls.left.y = uy;
+    }
+    if (_.isNumber(vx)) {
+      this.controls.right.x = vx;
+    }
+    if (_.isNumber(vy)) {
+      this.controls.right.y = vy;
+    }
+
+  };
+
+  _.extend(Anchor, {
+
+    AppendCurveProperties: function(anchor) {
+      anchor.controls = {
+        left: new Two.Vector(0, 0),
+        right: new Two.Vector(0, 0)
+      };
+    }
+
+  });
+
+  var AnchorProto = {
+
+    listen: function() {
+
+      if (!_.isObject(this.controls)) {
+        Anchor.AppendCurveProperties(this);
+      }
+
+      this.controls.left.bind(Two.Events.change, this._broadcast);
+      this.controls.right.bind(Two.Events.change, this._broadcast);
+
+      return this;
+
+    },
+
+    ignore: function() {
+
+      this.controls.left.unbind(Two.Events.change, this._broadcast);
+      this.controls.right.unbind(Two.Events.change, this._broadcast);
+
+      return this;
+
+    },
+
+    clone: function() {
+
+      var controls = this.controls;
+
+      var clone = new Two.Anchor(
+        this.x,
+        this.y,
+        controls && controls.left.x,
+        controls && controls.left.y,
+        controls && controls.right.x,
+        controls && controls.right.y,
+        this.command
+      );
+      clone.relative = this._relative;
+      return clone;
+
+    },
+
+    toObject: function() {
+      var o = {
+        x: this.x,
+        y: this.y
+      };
+      if (this._command) {
+        o.command = this._command;
+      }
+      if (this._relative) {
+        o.relative = this._relative;
+      }
+      if (this.controls) {
+        o.controls = {
+          left: this.controls.left.toObject(),
+          right: this.controls.right.toObject()
+        };
+      }
+      return o;
+    }
+
+  };
+
+  Object.defineProperty(Anchor.prototype, 'command', {
+
+    get: function() {
+      return this._command;
+    },
+
+    set: function(c) {
+      this._command = c;
+      if (this._command === commands.curve && !_.isObject(this.controls)) {
+        Anchor.AppendCurveProperties(this);
+      }
+      return this.trigger(Two.Events.change);
+    }
+
+  });
+
+  Object.defineProperty(Anchor.prototype, 'relative', {
+
+    get: function() {
+      return this._relative;
+    },
+
+    set: function(b) {
+      if (this._relative == b) {
+        return this;
+      }
+      this._relative = !!b;
+      return this.trigger(Two.Events.change);
+    }
+
+  });
+
+  _.extend(Anchor.prototype, Two.Vector.prototype, AnchorProto);
+
+  // Make it possible to bind and still have the Anchor specific
+  // inheritance from Two.Vector
+  Two.Anchor.prototype.bind = Two.Anchor.prototype.on = function() {
+    Two.Vector.prototype.bind.apply(this, arguments);
+    _.extend(this, AnchorProto);
+  };
+
+  Two.Anchor.prototype.unbind = Two.Anchor.prototype.off = function() {
+    Two.Vector.prototype.unbind.apply(this, arguments);
+    _.extend(this, AnchorProto);
+  };
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  /**
+   * Constants
+   */
+  var cos = Math.cos, sin = Math.sin, tan = Math.tan;
+
+  /**
+   * Two.Matrix contains an array of elements that represent
+   * the two dimensional 3 x 3 matrix as illustrated below:
+   *
+   * =====
+   * a b c
+   * d e f
+   * g h i  // this row is not really used in 2d transformations
+   * =====
+   *
+   * String order is for transform strings: a, d, b, e, c, f
+   *
+   * @class
+   */
+  var Matrix = Two.Matrix = function(a, b, c, d, e, f) {
+
+    this.elements = new Two.Array(9);
+
+    var elements = a;
+    if (!_.isArray(elements)) {
+      elements = _.toArray(arguments);
+    }
+
+    // initialize the elements with default values.
+
+    this.identity().set(elements);
+
+  };
+
+  _.extend(Matrix, {
+
+    Identity: [
+      1, 0, 0,
+      0, 1, 0,
+      0, 0, 1
+    ],
+
+    /**
+     * Multiply two matrix 3x3 arrays
+     */
+    Multiply: function(A, B, C) {
+
+      if (B.length <= 3) { // Multiply Vector
+
+        var x, y, z, e = A;
+
+        var a = B[0] || 0,
+            b = B[1] || 0,
+            c = B[2] || 0;
+
+        // Go down rows first
+        // a, d, g, b, e, h, c, f, i
+
+        x = e[0] * a + e[1] * b + e[2] * c;
+        y = e[3] * a + e[4] * b + e[5] * c;
+        z = e[6] * a + e[7] * b + e[8] * c;
+
+        return { x: x, y: y, z: z };
+
+      }
+
+      var A0 = A[0], A1 = A[1], A2 = A[2];
+      var A3 = A[3], A4 = A[4], A5 = A[5];
+      var A6 = A[6], A7 = A[7], A8 = A[8];
+
+      var B0 = B[0], B1 = B[1], B2 = B[2];
+      var B3 = B[3], B4 = B[4], B5 = B[5];
+      var B6 = B[6], B7 = B[7], B8 = B[8];
+
+      C = C || new Two.Array(9);
+
+      C[0] = A0 * B0 + A1 * B3 + A2 * B6;
+      C[1] = A0 * B1 + A1 * B4 + A2 * B7;
+      C[2] = A0 * B2 + A1 * B5 + A2 * B8;
+      C[3] = A3 * B0 + A4 * B3 + A5 * B6;
+      C[4] = A3 * B1 + A4 * B4 + A5 * B7;
+      C[5] = A3 * B2 + A4 * B5 + A5 * B8;
+      C[6] = A6 * B0 + A7 * B3 + A8 * B6;
+      C[7] = A6 * B1 + A7 * B4 + A8 * B7;
+      C[8] = A6 * B2 + A7 * B5 + A8 * B8;
+
+      return C;
+
+    }
+
+  });
+
+  _.extend(Matrix.prototype, Backbone.Events, {
+
+    /**
+     * Takes an array of elements or the arguments list itself to
+     * set and update the current matrix's elements. Only updates
+     * specified values.
+     */
+    set: function(a) {
+
+      var elements = a;
+      if (!_.isArray(elements)) {
+        elements = _.toArray(arguments);
+      }
+
+      _.extend(this.elements, elements);
+
+      return this.trigger(Two.Events.change);
+
+    },
+
+    /**
+     * Turn matrix to identity, like resetting.
+     */
+    identity: function() {
+
+      this.set(Matrix.Identity);
+
+      return this;
+
+    },
+
+    /**
+     * Multiply scalar or multiply by another matrix.
+     */
+    multiply: function(a, b, c, d, e, f, g, h, i) {
+
+      var elements = arguments, l = elements.length;
+
+      // Multiply scalar
+
+      if (l <= 1) {
+
+        _.each(this.elements, function(v, i) {
+          this.elements[i] = v * a;
+        }, this);
+
+        return this.trigger(Two.Events.change);
+
+      }
+
+      if (l <= 3) { // Multiply Vector
+
+        var x, y, z;
+        a = a || 0;
+        b = b || 0;
+        c = c || 0;
+        e = this.elements;
+
+        // Go down rows first
+        // a, d, g, b, e, h, c, f, i
+
+        x = e[0] * a + e[1] * b + e[2] * c;
+        y = e[3] * a + e[4] * b + e[5] * c;
+        z = e[6] * a + e[7] * b + e[8] * c;
+
+        return { x: x, y: y, z: z };
+
+      }
+
+      // Multiple matrix
+
+      var A = this.elements;
+      var B = elements;
+
+      var A0 = A[0], A1 = A[1], A2 = A[2];
+      var A3 = A[3], A4 = A[4], A5 = A[5];
+      var A6 = A[6], A7 = A[7], A8 = A[8];
+
+      var B0 = B[0], B1 = B[1], B2 = B[2];
+      var B3 = B[3], B4 = B[4], B5 = B[5];
+      var B6 = B[6], B7 = B[7], B8 = B[8];
+
+      this.elements[0] = A0 * B0 + A1 * B3 + A2 * B6;
+      this.elements[1] = A0 * B1 + A1 * B4 + A2 * B7;
+      this.elements[2] = A0 * B2 + A1 * B5 + A2 * B8;
+
+      this.elements[3] = A3 * B0 + A4 * B3 + A5 * B6;
+      this.elements[4] = A3 * B1 + A4 * B4 + A5 * B7;
+      this.elements[5] = A3 * B2 + A4 * B5 + A5 * B8;
+
+      this.elements[6] = A6 * B0 + A7 * B3 + A8 * B6;
+      this.elements[7] = A6 * B1 + A7 * B4 + A8 * B7;
+      this.elements[8] = A6 * B2 + A7 * B5 + A8 * B8;
+
+      return this.trigger(Two.Events.change);
+
+    },
+
+    inverse: function(out) {
+
+      var a = this.elements;
+      out = out || new Two.Matrix();
+
+      var a00 = a[0], a01 = a[1], a02 = a[2];
+      var a10 = a[3], a11 = a[4], a12 = a[5];
+      var a20 = a[6], a21 = a[7], a22 = a[8];
+
+      var b01 = a22 * a11 - a12 * a21;
+      var b11 = -a22 * a10 + a12 * a20;
+      var b21 = a21 * a10 - a11 * a20;
+
+      // Calculate the determinant
+      var det = a00 * b01 + a01 * b11 + a02 * b21;
+
+      if (!det) {
+        return null;
+      }
+
+      det = 1.0 / det;
+
+      out.elements[0] = b01 * det;
+      out.elements[1] = (-a22 * a01 + a02 * a21) * det;
+      out.elements[2] = (a12 * a01 - a02 * a11) * det;
+      out.elements[3] = b11 * det;
+      out.elements[4] = (a22 * a00 - a02 * a20) * det;
+      out.elements[5] = (-a12 * a00 + a02 * a10) * det;
+      out.elements[6] = b21 * det;
+      out.elements[7] = (-a21 * a00 + a01 * a20) * det;
+      out.elements[8] = (a11 * a00 - a01 * a10) * det;
+
+      return out;
+
+    },
+
+    /**
+     * Set a scalar onto the matrix.
+     */
+    scale: function(sx, sy) {
+
+      var l = arguments.length;
+      if (l <= 1) {
+        sy = sx;
+      }
+
+      return this.multiply(sx, 0, 0, 0, sy, 0, 0, 0, 1);
+
+    },
+
+    /**
+     * Rotate the matrix.
+     */
+    rotate: function(radians) {
+
+      var c = cos(radians);
+      var s = sin(radians);
+
+      return this.multiply(c, -s, 0, s, c, 0, 0, 0, 1);
+
+    },
+
+    /**
+     * Translate the matrix.
+     */
+    translate: function(x, y) {
+
+      return this.multiply(1, 0, x, 0, 1, y, 0, 0, 1);
+
+    },
+
+    /*
+     * Skew the matrix by an angle in the x axis direction.
+     */
+    skewX: function(radians) {
+
+      var a = tan(radians);
+
+      return this.multiply(1, a, 0, 0, 1, 0, 0, 0, 1);
+
+    },
+
+    /*
+     * Skew the matrix by an angle in the y axis direction.
+     */
+    skewY: function(radians) {
+
+      var a = tan(radians);
+
+      return this.multiply(1, 0, 0, a, 1, 0, 0, 0, 1);
+
+    },
+
+    /**
+     * Create a transform string to be used with rendering apis.
+     */
+    toString: function(fullMatrix) {
+      var temp = [];
+
+      this.toArray(fullMatrix, temp);
+
+      return temp.join(' ');
+
+    },
+
+    /**
+     * Create a transform array to be used with rendering apis.
+     */
+    toArray: function(fullMatrix, output) {
+
+     var elements = this.elements;
+     var hasOutput = !!output;
+
+     var a = parseFloat(elements[0].toFixed(3));
+     var b = parseFloat(elements[1].toFixed(3));
+     var c = parseFloat(elements[2].toFixed(3));
+     var d = parseFloat(elements[3].toFixed(3));
+     var e = parseFloat(elements[4].toFixed(3));
+     var f = parseFloat(elements[5].toFixed(3));
+
+      if (!!fullMatrix) {
+
+        var g = parseFloat(elements[6].toFixed(3));
+        var h = parseFloat(elements[7].toFixed(3));
+        var i = parseFloat(elements[8].toFixed(3));
+
+        if (hasOutput) {
+          output[0] = a;
+          output[1] = d;
+          output[2] = g;
+          output[3] = b;
+          output[4] = e;
+          output[5] = h;
+          output[6] = c;
+          output[7] = f;
+          output[8] = i;
+          return;
+        }
+
+        return [
+          a, d, g, b, e, h, c, f, i
+        ];
+      }
+
+      if (hasOutput) {
+        output[0] = a;
+        output[1] = d;
+        output[2] = b;
+        output[3] = e;
+        output[4] = c;
+        output[5] = f;
+        return;
+      }
+
+      return [
+        a, d, b, e, c, f  // Specific format see LN:19
+      ];
+
+    },
+
+    /**
+     * Clone the current matrix.
+     */
+    clone: function() {
+      var a, b, c, d, e, f, g, h, i;
+
+      a = this.elements[0];
+      b = this.elements[1];
+      c = this.elements[2];
+      d = this.elements[3];
+      e = this.elements[4];
+      f = this.elements[5];
+      g = this.elements[6];
+      h = this.elements[7];
+      i = this.elements[8];
+
+      return new Two.Matrix(a, b, c, d, e, f, g, h, i);
+
+    }
+
+  });
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  // Localize variables
+  var mod = Two.Utils.mod, toFixed = Two.Utils.toFixed;
+
+  var svg = {
+
+    version: 1.1,
+
+    ns: 'http://www.w3.org/2000/svg',
+    xlink: 'http://www.w3.org/1999/xlink',
+
+    /**
+     * Create an svg namespaced element.
+     */
+    createElement: function(name, attrs) {
+      var tag = name;
+      var elem = document.createElementNS(this.ns, tag);
+      if (tag === 'svg') {
+        attrs = _.defaults(attrs || {}, {
+          version: this.version
+        });
+      }
+      if (!_.isEmpty(attrs)) {
+        svg.setAttributes(elem, attrs);
+      }
+      return elem;
+    },
+
+    /**
+     * Add attributes from an svg element.
+     */
+    setAttributes: function(elem, attrs) {
+      var keys = Object.keys(attrs);
+      for (var i = 0; i < keys.length; i++) {
+        elem.setAttribute(keys[i], attrs[keys[i]]);
+      }
+      return this;
+    },
+
+    /**
+     * Remove attributes from an svg element.
+     */
+    removeAttributes: function(elem, attrs) {
+      for (var key in attrs) {
+        elem.removeAttribute(key);
+      }
+      return this;
+    },
+
+    /**
+     * Turn a set of vertices into a string for the d property of a path
+     * element. It is imperative that the string collation is as fast as
+     * possible, because this call will be happening multiple times a
+     * second.
+     */
+    toString: function(points, closed) {
+
+      var l = points.length,
+        last = l - 1,
+        d, // The elusive last Two.Commands.move point
+        ret = '';
+
+      for (var i = 0; i < l; i++) {
+        var b = points[i];
+        var command;
+        var prev = closed ? mod(i - 1, l) : Math.max(i - 1, 0);
+        var next = closed ? mod(i + 1, l) : Math.min(i + 1, last);
+
+        var a = points[prev];
+        var c = points[next];
+
+        var vx, vy, ux, uy, ar, bl, br, cl;
+
+        // Access x and y directly,
+        // bypassing the getter
+        var x = toFixed(b._x);
+        var y = toFixed(b._y);
+
+        switch (b._command) {
+
+          case Two.Commands.close:
+            command = Two.Commands.close;
+            break;
+
+          case Two.Commands.curve:
+
+            ar = (a.controls && a.controls.right) || a;
+            bl = (b.controls && b.controls.left) || b;
+
+            if (a._relative) {
+              vx = toFixed((ar.x + a.x));
+              vy = toFixed((ar.y + a.y));
+            } else {
+              vx = toFixed(ar.x);
+              vy = toFixed(ar.y);
+            }
+
+            if (b._relative) {
+              ux = toFixed((bl.x + b.x));
+              uy = toFixed((bl.y + b.y));
+            } else {
+              ux = toFixed(bl.x);
+              uy = toFixed(bl.y);
+            }
+
+            command = ((i === 0) ? Two.Commands.move : Two.Commands.curve) +
+              ' ' + vx + ' ' + vy + ' ' + ux + ' ' + uy + ' ' + x + ' ' + y;
+            break;
+
+          case Two.Commands.move:
+            d = b;
+            command = Two.Commands.move + ' ' + x + ' ' + y;
+            break;
+
+          default:
+            command = b._command + ' ' + x + ' ' + y;
+
+        }
+
+        // Add a final point and close it off
+
+        if (i >= last && closed) {
+
+          if (b._command === Two.Commands.curve) {
+
+            // Make sure we close to the most previous Two.Commands.move
+            c = d;
+
+            br = (b.controls && b.controls.right) || b;
+            cl = (c.controls && c.controls.left) || c;
+
+            if (b._relative) {
+              vx = toFixed((br.x + b.x));
+              vy = toFixed((br.y + b.y));
+            } else {
+              vx = toFixed(br.x);
+              vy = toFixed(br.y);
+            }
+
+            if (c._relative) {
+              ux = toFixed((cl.x + c.x));
+              uy = toFixed((cl.y + c.y));
+            } else {
+              ux = toFixed(cl.x);
+              uy = toFixed(cl.y);
+            }
+
+            x = toFixed(c.x);
+            y = toFixed(c.y);
+
+            command +=
+              ' C ' + vx + ' ' + vy + ' ' + ux + ' ' + uy + ' ' + x + ' ' + y;
+          }
+
+          command += ' Z';
+
+        }
+
+        ret += command + ' ';
+
+      }
+
+      return ret;
+
+    },
+
+    getClip: function(shape) {
+
+      var clip = shape._renderer.clip;
+
+      if (!clip) {
+
+        var root = shape;
+
+        while (root.parent) {
+          root = root.parent;
+        }
+
+        clip = shape._renderer.clip = svg.createElement('clipPath');
+        root.defs.appendChild(clip);
+
+      }
+
+      return clip;
+
+    },
+
+    group: {
+
+      // TODO: Can speed up.
+      // TODO: How does this effect a f
+      appendChild: function(object) {
+
+        var elem = object._renderer.elem;
+
+        if (!elem) {
+          return;
+        }
+
+        var tag = elem.nodeName;
+
+        if (!tag || /(radial|linear)gradient/i.test(tag) || object._clip) {
+          return;
+        }
+
+        this.elem.appendChild(elem);
+
+      },
+
+      removeChild: function(object) {
+
+        var elem = object._renderer.elem;
+
+        if (!elem || elem.parentElement != this.elem) {
+          return;
+        }
+
+        var tag = elem.nodeName;
+
+        if (!tag) {
+          return;
+        }
+
+        // Defer subtractions while clipping.
+        if (object._clip) {
+          return;
+        }
+
+        this.elem.removeChild(elem);
+
+      },
+
+      orderChild: function(object) {
+        this.elem.appendChild(object._renderer.elem);
+      },
+
+      renderChild: function(child) {
+        svg[child._renderer.type].render.call(child, this);
+      },
+
+      render: function(domElement) {
+
+        this._update();
+
+        // Shortcut for hidden objects.
+        // Doesn't reset the flags, so changes are stored and
+        // applied once the object is visible again
+        if (this._opacity === 0 && !this._flagOpacity) {
+          return this;
+        }
+
+        if (!this._renderer.elem) {
+          this._renderer.elem = svg.createElement('g', {
+            id: this.id
+          });
+          domElement.appendChild(this._renderer.elem);
+        }
+
+        // _Update styles for the <g>
+        var flagMatrix = this._matrix.manual || this._flagMatrix;
+        var context = {
+          domElement: domElement,
+          elem: this._renderer.elem
+        };
+
+        if (flagMatrix) {
+          this._renderer.elem.setAttribute('transform', 'matrix(' + this._matrix.toString() + ')');
+        }
+
+        for (var i = 0; i < this.children.length; i++) {
+          var child = this.children[i];
+          svg[child._renderer.type].render.call(child, domElement);
+        }
+
+        if (this._flagOpacity) {
+          this._renderer.elem.setAttribute('opacity', this._opacity);
+        }
+
+        if (this._flagAdditions) {
+          this.additions.forEach(svg.group.appendChild, context);
+        }
+
+        if (this._flagSubtractions) {
+          this.subtractions.forEach(svg.group.removeChild, context);
+        }
+
+        if (this._flagOrder) {
+          this.children.forEach(svg.group.orderChild, context);
+        }
+
+        /**
+         * Commented two-way functionality of clips / masks with groups and
+         * polygons. Uncomment when this bug is fixed:
+         * https://code.google.com/p/chromium/issues/detail?id=370951
+         */
+
+        // if (this._flagClip) {
+
+        //   clip = svg.getClip(this);
+        //   elem = this._renderer.elem;
+
+        //   if (this._clip) {
+        //     elem.removeAttribute('id');
+        //     clip.setAttribute('id', this.id);
+        //     clip.appendChild(elem);
+        //   } else {
+        //     clip.removeAttribute('id');
+        //     elem.setAttribute('id', this.id);
+        //     this.parent._renderer.elem.appendChild(elem); // TODO: should be insertBefore
+        //   }
+
+        // }
+
+        if (this._flagMask) {
+          if (this._mask) {
+            this._renderer.elem.setAttribute('clip-path', 'url(#' + this._mask.id + ')');
+          } else {
+            this._renderer.elem.removeAttribute('clip-path');
+          }
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    path: {
+
+      render: function(domElement) {
+
+        this._update();
+
+        // Shortcut for hidden objects.
+        // Doesn't reset the flags, so changes are stored and
+        // applied once the object is visible again
+        if (this._opacity === 0 && !this._flagOpacity) {
+          return this;
+        }
+
+        // Collect any attribute that needs to be changed here
+        var changed = {};
+
+        var flagMatrix = this._matrix.manual || this._flagMatrix;
+
+        if (flagMatrix) {
+          changed.transform = 'matrix(' + this._matrix.toString() + ')';
+        }
+
+        if (this._flagVertices) {
+          var vertices = svg.toString(this._vertices, this._closed);
+          changed.d = vertices;
+        }
+
+        if (this._flagFill) {
+
+          changed.fill = this._fill && this._fill.id
+            ? 'url(#' + this._fill.id + ')' : this._fill;
+        }
+
+        if (this._flagStroke) {
+          changed.stroke = this._stroke;
+        }
+
+        if (this._flagLinewidth) {
+          changed['stroke-width'] = this._linewidth;
+        }
+
+        if (this._flagOpacity) {
+          changed['stroke-opacity'] = this._opacity;
+          changed['fill-opacity'] = this._opacity;
+        }
+
+        if (this._flagVisible) {
+          changed.visibility = this._visible ? 'visible' : 'hidden';
+        }
+
+        if (this._flagCap) {
+          changed['stroke-linecap'] = this._cap;
+        }
+
+        if (this._flagJoin) {
+          changed['stroke-linejoin'] = this._join;
+        }
+
+        if (this._flagMiter) {
+          changed['stroke-miterlimit'] = this._miter;
+        }
+
+        // If there is no attached DOM element yet,
+        // create it with all necessary attributes.
+        if (!this._renderer.elem) {
+
+          changed.id = this.id;
+          this._renderer.elem = svg.createElement('path', changed);
+          domElement.appendChild(this._renderer.elem);
+
+        // Otherwise apply all pending attributes
+        } else {
+          svg.setAttributes(this._renderer.elem, changed);
+        }
+
+        if (this._flagClip) {
+
+          var clip = svg.getClip(this);
+          var elem = this._renderer.elem;
+
+          if (this._clip) {
+            elem.removeAttribute('id');
+            clip.setAttribute('id', this.id);
+            clip.appendChild(elem);
+          } else {
+            clip.removeAttribute('id');
+            elem.setAttribute('id', this.id);
+            this.parent._renderer.elem.appendChild(elem); // TODO: should be insertBefore
+          }
+
+        }
+
+        /**
+         * Commented two-way functionality of clips / masks with groups and
+         * polygons. Uncomment when this bug is fixed:
+         * https://code.google.com/p/chromium/issues/detail?id=370951
+         */
+
+        // if (this._flagMask) {
+        //   if (this._mask) {
+        //     elem.setAttribute('clip-path', 'url(#' + this._mask.id + ')');
+        //   } else {
+        //     elem.removeAttribute('clip-path');
+        //   }
+        // }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'linear-gradient': {
+
+      render: function(domElement) {
+
+        this._update();
+
+        var changed = {};
+
+        if (this._flagEndPoints) {
+          changed.x1 = this.left._x;
+          changed.y1 = this.left._y;
+          changed.x2 = this.right._x;
+          changed.y2 = this.right._y;
+        }
+
+        if (this._flagSpread) {
+          changed.spreadMethod = this._spread;
+        }
+
+        // If there is no attached DOM element yet,
+        // create it with all necessary attributes.
+        if (!this._renderer.elem) {
+
+          changed.id = this.id;
+          changed.gradientUnits = 'userSpaceOnUse';
+          this._renderer.elem = svg.createElement('linearGradient', changed);
+          domElement.defs.appendChild(this._renderer.elem);
+
+        // Otherwise apply all pending attributes
+        } else {
+
+          svg.setAttributes(this._renderer.elem, changed);
+
+        }
+
+        if (this._flagStops) {
+
+          this._renderer.elem.childNodes.length = 0;
+
+          for (var i = 0; i < this.stops.length; i++) {
+
+            var stop = this.stops[i];
+            var attrs = {};
+
+            if (stop._flagOffset) {
+              attrs.offset = 100 * stop._offset + '%';
+            }
+            if (stop._flagColor) {
+              attrs['stop-color'] = stop._color;
+            }
+            if (stop._flagOpacity) {
+              attrs['stop-opacity'] = stop._opacity;
+            }
+
+            if (!stop._renderer.elem) {
+              stop._renderer.elem = svg.createElement('stop', attrs);
+            } else {
+              svg.setAttributes(stop._renderer.elem, attrs);
+            }
+
+            this._renderer.elem.appendChild(stop._renderer.elem);
+
+            stop.flagReset();
+
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'radial-gradient': {
+
+      render: function(domElement) {
+
+        this._update();
+
+        var changed = {};
+
+        if (this._flagCenter) {
+          changed.cx = this.center._x;
+          changed.cy = this.center._y;
+        }
+        if (this._flagFocal) {
+          changed.fx = this.focal._x;
+          changed.fy = this.focal._y;
+        }
+
+        if (this._flagRadius) {
+          changed.r = this._radius;
+        }
+
+        if (this._flagSpread) {
+          changed.spreadMethod = this._spread;
+        }
+
+        // If there is no attached DOM element yet,
+        // create it with all necessary attributes.
+        if (!this._renderer.elem) {
+
+          changed.id = this.id;
+          changed.gradientUnits = 'userSpaceOnUse';
+          this._renderer.elem = svg.createElement('radialGradient', changed);
+          domElement.defs.appendChild(this._renderer.elem);
+
+        // Otherwise apply all pending attributes
+        } else {
+
+          svg.setAttributes(this._renderer.elem, changed);
+
+        }
+
+        if (this._flagStops) {
+
+          this._renderer.elem.childNodes.length = 0;
+
+          for (var i = 0; i < this.stops.length; i++) {
+
+            var stop = this.stops[i];
+            var attrs = {};
+
+            if (stop._flagOffset) {
+              attrs.offset = 100 * stop._offset + '%';
+            }
+            if (stop._flagColor) {
+              attrs['stop-color'] = stop._color;
+            }
+            if (stop._flagOpacity) {
+              attrs['stop-opacity'] = stop._opacity;
+            }
+
+            if (!stop._renderer.elem) {
+              stop._renderer.elem = svg.createElement('stop', attrs);
+            } else {
+              svg.setAttributes(stop._renderer.elem, attrs);
+            }
+
+            this._renderer.elem.appendChild(stop._renderer.elem);
+            stop.flagReset();
+
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    }
+
+  };
+
+  /**
+   * @class
+   */
+  var Renderer = Two[Two.Types.svg] = function(params) {
+
+    this.domElement = params.domElement || svg.createElement('svg');
+
+    this.scene = new Two.Group();
+    this.scene.parent = this;
+
+    this.defs = svg.createElement('defs');
+    this.domElement.appendChild(this.defs);
+    this.domElement.defs = this.defs;
+    this.domElement.style.overflow = 'hidden';
+
+  };
+
+  _.extend(Renderer, {
+
+    Utils: svg
+
+  });
+
+  _.extend(Renderer.prototype, Backbone.Events, {
+
+    setSize: function(width, height) {
+
+      this.width = width;
+      this.height = height;
+
+      svg.setAttributes(this.domElement, {
+        width: width,
+        height: height
+      });
+
+      return this;
+
+    },
+
+    render: function() {
+
+      svg.group.render.call(this.scene, this.domElement);
+
+      return this;
+
+    }
+
+  });
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  /**
+   * Constants
+   */
+  var mod = Two.Utils.mod, toFixed = Two.Utils.toFixed;
+  var getRatio = Two.Utils.getRatio;
+
+  // Returns true if this is a non-transforming matrix
+  var isDefaultMatrix = function (m) {
+    return (m[0] == 1 && m[3] == 0 && m[1] == 0 && m[4] == 1 && m[2] == 0 && m[5] == 0);
+  };
+
+  var canvas = {
+
+    isHidden: /(none|transparent)/i,
+
+    group: {
+
+      renderChild: function(child) {
+        canvas[child._renderer.type].render.call(child, this.ctx, true, this.clip);
+      },
+
+      render: function(ctx) {
+
+        // TODO: Add a check here to only invoke _update if need be.
+        this._update();
+
+        var matrix = this._matrix.elements;
+        var parent = this.parent;
+        this._renderer.opacity = this._opacity * (parent && parent._renderer ? parent._renderer.opacity : 1);
+
+        var defaultMatrix = isDefaultMatrix(matrix);
+
+        var mask = this._mask;
+        // var clip = this._clip;
+
+        if (!this._renderer.context) {
+          this._renderer.context = {};
+        }
+
+        this._renderer.context.ctx = ctx;
+        // this._renderer.context.clip = clip;
+
+        if (!defaultMatrix) {
+          ctx.save();
+          ctx.transform(matrix[0], matrix[3], matrix[1], matrix[4], matrix[2], matrix[5]);
+        }
+
+        if (mask) {
+          canvas[mask._renderer.type].render.call(mask, ctx, true);
+        }
+
+        for (var i = 0; i < this.children.length; i++) {
+          var child = this.children[i];
+          canvas[child._renderer.type].render.call(child, ctx);
+        }
+
+        if (!defaultMatrix) {
+          ctx.restore();
+        }
+
+       /**
+         * Commented two-way functionality of clips / masks with groups and
+         * polygons. Uncomment when this bug is fixed:
+         * https://code.google.com/p/chromium/issues/detail?id=370951
+         */
+
+        // if (clip) {
+        //   ctx.clip();
+        // }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    path: {
+
+      render: function(ctx, forced, parentClipped) {
+
+        var matrix, stroke, linewidth, fill, opacity, visible, cap, join, miter,
+            closed, commands, length, last, next, prev, a, b, c, d, ux, uy, vx, vy,
+            ar, bl, br, cl, x, y, mask, clip, defaultMatrix;
+
+        // TODO: Add a check here to only invoke _update if need be.
+        this._update();
+
+        matrix = this._matrix.elements;
+        stroke = this._stroke;
+        linewidth = this._linewidth;
+        fill = this._fill;
+        opacity = this._opacity * this.parent._renderer.opacity;
+        visible = this._visible;
+        cap = this._cap;
+        join = this._join;
+        miter = this._miter;
+        closed = this._closed;
+        commands = this._vertices; // Commands
+        length = commands.length;
+        last = length - 1;
+        defaultMatrix = isDefaultMatrix(matrix);
+
+        // mask = this._mask;
+        clip = this._clip;
+
+        if (!forced && (!visible || clip)) {
+          return this;
+        }
+
+        // Transform
+        if (!defaultMatrix) {
+          ctx.save();
+          ctx.transform(matrix[0], matrix[3], matrix[1], matrix[4], matrix[2], matrix[5]);
+        }
+
+       /**
+         * Commented two-way functionality of clips / masks with groups and
+         * polygons. Uncomment when this bug is fixed:
+         * https://code.google.com/p/chromium/issues/detail?id=370951
+         */
+
+        // if (mask) {
+        //   canvas[mask._renderer.type].render.call(mask, ctx, true);
+        // }
+
+        // Styles
+        if (fill) {
+          if (_.isString(fill)) {
+            ctx.fillStyle = fill;
+          } else {
+            canvas[fill._renderer.type].render.call(fill, ctx);
+            ctx.fillStyle = fill._renderer.gradient;
+          }
+        }
+        if (stroke) {
+          if (_.isString(stroke)) {
+            ctx.strokeStyle = stroke;
+          } else {
+            canvas[stroke._renderer.type].render.call(stroke, ctx);
+            ctx.strokeStyle = stroke._renderer.gradient;
+          }
+        }
+        if (linewidth) {
+          ctx.lineWidth = linewidth;
+        }
+        if (miter) {
+          ctx.miterLimit = miter;
+        }
+        if (join) {
+          ctx.lineJoin = join;
+        }
+        if (cap) {
+          ctx.lineCap = cap;
+        }
+        if (_.isNumber(opacity)) {
+          ctx.globalAlpha = opacity;
+        }
+
+        ctx.beginPath();
+
+        for (var i = 0; i < commands.length; i++) {
+
+          b = commands[i];
+
+          x = toFixed(b._x);
+          y = toFixed(b._y);
+
+          switch (b._command) {
+
+            case Two.Commands.close:
+              ctx.closePath();
+              break;
+
+            case Two.Commands.curve:
+
+              prev = closed ? mod(i - 1, length) : Math.max(i - 1, 0);
+              next = closed ? mod(i + 1, length) : Math.min(i + 1, last);
+
+              a = commands[prev];
+              c = commands[next];
+              ar = (a.controls && a.controls.right) || a;
+              bl = (b.controls && b.controls.left) || b;
+
+              if (a._relative) {
+                vx = (ar.x + toFixed(a._x));
+                vy = (ar.y + toFixed(a._y));
+              } else {
+                vx = toFixed(ar.x);
+                vy = toFixed(ar.y);
+              }
+
+              if (b._relative) {
+                ux = (bl.x + toFixed(b._x));
+                uy = (bl.y + toFixed(b._y));
+              } else {
+                ux = toFixed(bl.x);
+                uy = toFixed(bl.y);
+              }
+
+              ctx.bezierCurveTo(vx, vy, ux, uy, x, y);
+
+              if (i >= last && closed) {
+
+                c = d;
+
+                br = (b.controls && b.controls.right) || b;
+                cl = (c.controls && c.controls.left) || c;
+
+                if (b._relative) {
+                  vx = (br.x + toFixed(b._x));
+                  vy = (br.y + toFixed(b._y));
+                } else {
+                  vx = toFixed(br.x);
+                  vy = toFixed(br.y);
+                }
+
+                if (c._relative) {
+                  ux = (cl.x + toFixed(c._x));
+                  uy = (cl.y + toFixed(c._y));
+                } else {
+                  ux = toFixed(cl.x);
+                  uy = toFixed(cl.y);
+                }
+
+                x = toFixed(c._x);
+                y = toFixed(c._y);
+
+                ctx.bezierCurveTo(vx, vy, ux, uy, x, y);
+
+              }
+
+              break;
+
+            case Two.Commands.line:
+              ctx.lineTo(x, y);
+              break;
+
+            case Two.Commands.move:
+              d = b;
+              ctx.moveTo(x, y);
+              break;
+
+          }
+        }
+
+        // Loose ends
+
+        if (closed) {
+          ctx.closePath();
+        }
+
+        if (!clip && !parentClipped) {
+          if (!canvas.isHidden.test(fill)) ctx.fill();
+          if (!canvas.isHidden.test(stroke)) ctx.stroke();
+        }
+
+        if (!defaultMatrix) {
+          ctx.restore();
+        }
+
+        if (clip && !parentClipped) {
+          ctx.clip();
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'linear-gradient': {
+
+      render: function(ctx) {
+
+        this._update();
+
+        if (!this._renderer.gradient || this._flagEndPoints || this._flagStops) {
+
+          this._renderer.gradient = ctx.createLinearGradient(
+            this.left._x, this.left._y,
+            this.right._x, this.right._y
+          );
+
+          for (var i = 0; i < this.stops.length; i++) {
+            var stop = this.stops[i];
+            this._renderer.gradient.addColorStop(stop._offset, stop._color);
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'radial-gradient': {
+
+      render: function(ctx) {
+
+        this._update();
+
+        if (!this._renderer.gradient || this._flagCenter || this._flagFocal
+            || this._flagRadius || this._flagStops) {
+
+          this._renderer.gradient = ctx.createRadialGradient(
+            this.center._x, this.center._y, 0,
+            this.focal._x, this.focal._y, this._radius
+          );
+
+          for (var i = 0; i < this.stops.length; i++) {
+            var stop = this.stops[i];
+            this._renderer.gradient.addColorStop(stop._offset, stop._color);
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+    }
+
+  };
+
+  var Renderer = Two[Two.Types.canvas] = function(params) {
+    // Smoothing property. Defaults to true
+    // Set it to false when working with pixel art.
+    // false can lead to better performance, since it would use a cheaper interpolation algorithm.
+    // It might not make a big difference on GPU backed canvases.
+    var smoothing = (params.smoothing !== false);
+    this.domElement = params.domElement || document.createElement('canvas');
+    this.ctx = this.domElement.getContext('2d');
+    this.overdraw = params.overdraw || false;
+
+    this.ctx.imageSmoothingEnabled = smoothing;
+    this.ctx.mozImageSmoothingEnabled = smoothing;
+    this.ctx.oImageSmoothingEnabled = smoothing;
+    this.ctx.webkitImageSmoothingEnabled = smoothing;
+    this.ctx.imageSmoothingEnabled = smoothing;
+
+    // Everything drawn on the canvas needs to be added to the scene.
+    this.scene = new Two.Group();
+    this.scene.parent = this;
+  };
+
+
+  _.extend(Renderer, {
+
+    Utils: canvas
+
+  });
+
+  _.extend(Renderer.prototype, Backbone.Events, {
+
+    setSize: function(width, height, ratio) {
+
+      this.width = width;
+      this.height = height;
+
+      this.ratio = _.isUndefined(ratio) ? getRatio(this.ctx) : ratio;
+
+      this.domElement.width = width * this.ratio;
+      this.domElement.height = height * this.ratio;
+
+      _.extend(this.domElement.style, {
+        width: width + 'px',
+        height: height + 'px'
+      });
+
+      return this;
+
+    },
+
+    render: function() {
+
+      var isOne = this.ratio === 1;
+
+      if (!isOne) {
+        this.ctx.save();
+        this.ctx.scale(this.ratio, this.ratio);
+      }
+
+      if (!this.overdraw) {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+      }
+
+      canvas.group.render.call(this.scene, this.ctx);
+
+      if (!isOne) {
+        this.ctx.restore();
+      }
+
+      return this;
+
+    }
+
+  });
+
+  function resetTransform(ctx) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  /**
+   * Constants
+   */
+
+  var multiplyMatrix = Two.Matrix.Multiply,
+    mod = Two.Utils.mod,
+    identity = [1, 0, 0, 0, 1, 0, 0, 0, 1],
+    transformation = new Two.Array(9),
+    getRatio = Two.Utils.getRatio,
+    getComputedMatrix = Two.Utils.getComputedMatrix,
+    toFixed = Two.Utils.toFixed;
+
+  var webgl = {
+
+    isHidden: /(none|transparent)/i,
+
+    canvas: document.createElement('canvas'),
+
+    matrix: new Two.Matrix(),
+
+    uv: new Two.Array([
+      0, 0,
+      1, 0,
+      0, 1,
+      0, 1,
+      1, 0,
+      1, 1
+    ]),
+
+    group: {
+
+      removeChild: function(child, gl) {
+        if (child.children) {
+          for (var i = 0; i < child.children.length; i++) {
+            webgl.group.removeChild(child.children[i], gl);
+          }
+          return;
+        }
+        // Deallocate texture to free up gl memory.
+        gl.deleteTexture(child._renderer.texture);
+        delete child._renderer.texture;
+      },
+
+      renderChild: function(child) {
+        webgl[child._renderer.type].render.call(child, this.gl, this.program);
+      },
+
+      render: function(gl, program) {
+
+        this._update();
+
+        var parent = this.parent;
+        var flagParentMatrix = (parent._matrix && parent._matrix.manual) || parent._flagMatrix;
+        var flagMatrix = this._matrix.manual || this._flagMatrix;
+
+        if (flagParentMatrix || flagMatrix) {
+
+          if (!this._renderer.matrix) {
+            this._renderer.matrix = new Two.Array(9);
+          }
+
+          // Reduce amount of object / array creation / deletion
+          this._matrix.toArray(true, transformation);
+
+          multiplyMatrix(transformation, parent._renderer.matrix, this._renderer.matrix);
+          this._renderer.scale = this._scale * parent._renderer.scale;
+
+          if (flagParentMatrix) {
+            this._flagMatrix = true;
+          }
+
+        }
+
+        if (this._mask) {
+
+          gl.enable(gl.STENCIL_TEST);
+          gl.stencilFunc(gl.ALWAYS, 1, 1);
+
+          gl.colorMask(false, false, false, true);
+          gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
+
+          webgl[this._mask._renderer.type].render.call(this._mask, gl, program, this);
+
+          gl.colorMask(true, true, true, true);
+          gl.stencilFunc(gl.NOTEQUAL, 0, 1);
+          gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
+
+        }
+
+        this._flagOpacity = parent._flagOpacity || this._flagOpacity;
+
+        this._renderer.opacity = this._opacity
+          * (parent && parent._renderer ? parent._renderer.opacity : 1);
+
+        if (this._flagSubtractions) {
+          for (var i = 0; i < this.subtractions.length; i++) {
+            webgl.group.removeChild(this.subtractions[i], gl);
+          }
+        }
+
+        this.children.forEach(webgl.group.renderChild, {
+          gl: gl,
+          program: program
+        });
+
+        if (this._mask) {
+
+          gl.colorMask(false, false, false, false);
+          gl.stencilOp(gl.KEEP, gl.KEEP, gl.DECR);
+
+          webgl[this._mask._renderer.type].render.call(this._mask, gl, program, this);
+
+          gl.colorMask(true, true, true, true);
+          gl.stencilFunc(gl.NOTEQUAL, 0, 1);
+          gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
+
+          gl.disable(gl.STENCIL_TEST);
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    path: {
+
+      render: function(gl, program, forcedParent) {
+
+        if (!this._visible || !this._opacity) {
+          return this;
+        }
+
+        // Calculate what changed
+
+        var parent = this.parent;
+        var flagParentMatrix = parent._matrix.manual || parent._flagMatrix;
+        var flagMatrix = this._matrix.manual || this._flagMatrix;
+        var flagTexture = this._flagVertices || this._flagFill
+          || (this._fill instanceof Two.LinearGradient && (this._fill._flagSpread || this._fill._flagStops || this._fill._flagEndPoints))
+          || (this._fill instanceof Two.RadialGradient && (this._fill._flagSpread || this._fill._flagStops || this._fill._flagRadius || this._fill._flagCenter || this._fill._flagFocal))
+          || (this._stroke instanceof Two.LinearGradient && (this._stroke._flagSpread || this._stroke._flagStops || this._stroke._flagEndPoints))
+          || (this._stroke instanceof Two.RadialGradient && (this._stroke._flagSpread || this._stroke._flagStops || this._stroke._flagRadius || this._stroke._flagCenter || this._stroke._flagFocal))
+          || this._flagStroke || this._flagLinewidth || this._flagOpacity
+          || parent._flagOpacity || this._flagVisible || this._flagCap
+          || this._flagJoin || this._flagMiter || this._flagScale
+          || !this._renderer.texture;
+
+        this._update();
+
+        if (flagParentMatrix || flagMatrix) {
+
+          if (!this._renderer.matrix) {
+            this._renderer.matrix = new Two.Array(9);
+          }
+
+          // Reduce amount of object / array creation / deletion
+
+          this._matrix.toArray(true, transformation);
+
+          multiplyMatrix(transformation, parent._renderer.matrix, this._renderer.matrix);
+          this._renderer.scale = this._scale * parent._renderer.scale;
+
+        }
+
+        if (flagTexture) {
+
+          if (!this._renderer.rect) {
+            this._renderer.rect = {};
+          }
+
+          if (!this._renderer.triangles) {
+            this._renderer.triangles = new Two.Array(12);
+          }
+
+          this._renderer.opacity = this._opacity * parent._renderer.opacity;
+
+          webgl.getBoundingClientRect(this._vertices, this._linewidth, this._renderer.rect);
+          webgl.getTriangles(this._renderer.rect, this._renderer.triangles);
+
+          webgl.updateBuffer(gl, this, program);
+          webgl.updateTexture(gl, this);
+
+        }
+
+        // if (this._mask) {
+        //   webgl[this._mask._renderer.type].render.call(mask, gl, program, this);
+        // }
+
+        if (this._clip && !forcedParent) {
+          return;
+        }
+
+        // Draw Texture
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, this._renderer.textureCoordsBuffer);
+
+        gl.vertexAttribPointer(program.textureCoords, 2, gl.FLOAT, false, 0, 0);
+
+        gl.bindTexture(gl.TEXTURE_2D, this._renderer.texture);
+
+
+        // Draw Rect
+
+        gl.uniformMatrix3fv(program.matrix, false, this._renderer.matrix);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, this._renderer.buffer);
+
+        gl.vertexAttribPointer(program.position, 2, gl.FLOAT, false, 0, 0);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'linear-gradient': {
+
+      render: function(ctx, elem) {
+
+        if (!ctx.canvas.getContext('2d')) {
+          return;
+        }
+
+        this._update();
+
+        if (!this._renderer.gradient || this._flagEndPoints || this._flagStops) {
+
+          var ox = ctx.canvas.width / 2;
+          var oy = ctx.canvas.height / 2;
+          var scale = elem._renderer.scale;
+
+          this._renderer.gradient = ctx.createLinearGradient(
+            this.left._x * scale + ox, this.left._y * scale + oy,
+            this.right._x * scale + ox, this.right._y * scale + oy
+          );
+
+          for (var i = 0; i < this.stops.length; i++) {
+            var stop = this.stops[i];
+            this._renderer.gradient.addColorStop(stop._offset, stop._color);
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    'radial-gradient': {
+
+      render: function(ctx, elem) {
+
+        if (!ctx.canvas.getContext('2d')) {
+          return;
+        }
+
+        this._update();
+
+        if (!this._renderer.gradient || this._flagCenter || this._flagFocal
+            || this._flagRadius || this._flagStops) {
+
+          var ox = ctx.canvas.width / 2;
+          var oy = ctx.canvas.height / 2;
+
+          this._renderer.gradient = ctx.createRadialGradient(
+            this.center._x + ox, this.center._y + oy, 0,
+            this.focal._x + ox, this.focal._y + oy, this._radius * elem._renderer.scale
+          );
+
+          for (var i = 0; i < this.stops.length; i++) {
+            var stop = this.stops[i];
+            this._renderer.gradient.addColorStop(stop._offset, stop._color);
+          }
+
+        }
+
+        return this.flagReset();
+
+      }
+
+    },
+
+    /**
+     * Returns the rect of a set of verts. Typically takes vertices that are
+     * "centered" around 0 and returns them to be anchored upper-left.
+     */
+    getBoundingClientRect: function(vertices, border, rect) {
+
+      var left = Infinity, right = -Infinity,
+          top = Infinity, bottom = -Infinity,
+          width, height;
+
+      vertices.forEach(function(v) {
+
+        var x = v.x, y = v.y, controls = v.controls;
+        var a, b, c, d, cl, cr;
+
+        top = Math.min(y, top);
+        left = Math.min(x, left);
+        right = Math.max(x, right);
+        bottom = Math.max(y, bottom);
+
+        if (!v.controls) {
+          return;
+        }
+
+        cl = controls.left;
+        cr = controls.right;
+
+        if (!cl || !cr) {
+          return;
+        }
+
+        a = v._relative ? cl.x + x : cl.x;
+        b = v._relative ? cl.y + y : cl.y;
+        c = v._relative ? cr.x + x : cr.x;
+        d = v._relative ? cr.y + y : cr.y;
+
+        if (!a || !b || !c || !d) {
+          return;
+        }
+
+        top = Math.min(b, d, top);
+        left = Math.min(a, c, left);
+        right = Math.max(a, c, right);
+        bottom = Math.max(b, d, bottom);
+
+      });
+
+      // Expand borders
+
+      if (_.isNumber(border)) {
+        top -= border;
+        left -= border;
+        right += border;
+        bottom += border;
+      }
+
+      width = right - left;
+      height = bottom - top;
+
+      rect.top = top;
+      rect.left = left;
+      rect.right = right;
+      rect.bottom = bottom;
+      rect.width = width;
+      rect.height = height;
+
+      if (!rect.centroid) {
+        rect.centroid = {};
+      }
+
+      rect.centroid.x = - left;
+      rect.centroid.y = - top;
+
+    },
+
+    getTriangles: function(rect, triangles) {
+
+      var top = rect.top,
+          left = rect.left,
+          right = rect.right,
+          bottom = rect.bottom;
+
+      // First Triangle
+
+      triangles[0] = left;
+      triangles[1] = top;
+
+      triangles[2] = right;
+      triangles[3] = top;
+
+      triangles[4] = left;
+      triangles[5] = bottom;
+
+      // Second Triangle
+
+      triangles[6] = left;
+      triangles[7] = bottom;
+
+      triangles[8] = right;
+      triangles[9] = top;
+
+      triangles[10] = right;
+      triangles[11] = bottom;
+
+    },
+
+    updateCanvas: function(elem) {
+
+      var next, prev, a, c, ux, uy, vx, vy, ar, bl, br, cl, x, y;
+
+      var commands = elem._vertices;
+      var canvas = this.canvas;
+      var ctx = this.ctx;
+
+      // Styles
+      var scale = elem._renderer.scale;
+      var stroke = elem._stroke;
+      var linewidth = elem._linewidth * scale;
+      var fill = elem._fill;
+      var opacity = elem._renderer.opacity || elem._opacity;
+      var cap = elem._cap;
+      var join = elem._join;
+      var miter = elem._miter;
+      var closed = elem._closed;
+      var length = commands.length;
+      var last = length - 1;
+
+      canvas.width = Math.max(Math.ceil(elem._renderer.rect.width * scale), 1);
+      canvas.height = Math.max(Math.ceil(elem._renderer.rect.height * scale), 1);
+
+      var centroid = elem._renderer.rect.centroid;
+      var cx = centroid.x * scale;
+      var cy = centroid.y * scale;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (fill) {
+        if (_.isString(fill)) {
+          ctx.fillStyle = fill;
+        } else {
+          webgl[fill._renderer.type].render.call(fill, ctx, elem);
+          ctx.fillStyle = fill._renderer.gradient;
+        }
+      }
+      if (stroke) {
+        if (_.isString(stroke)) {
+          ctx.strokeStyle = stroke;
+        } else {
+          webgl[stroke._renderer.type].render.call(stroke, ctx, elem);
+          ctx.strokeStyle = stroke._renderer.gradient;
+        }
+      }
+      if (linewidth) {
+        ctx.lineWidth = linewidth;
+      }
+      if (miter) {
+        ctx.miterLimit = miter;
+      }
+      if (join) {
+        ctx.lineJoin = join;
+      }
+      if (cap) {
+        ctx.lineCap = cap;
+      }
+      if (_.isNumber(opacity)) {
+        ctx.globalAlpha = opacity;
+      }
+
+      var d;
+      ctx.beginPath();
+      // commands.forEach(function(b, i) {
+      for (var i = 0; i < commands.length; i++) {
+
+        b = commands[i];
+
+        x = toFixed(b._x * scale + cx);
+        y = toFixed(b._y * scale + cy);
+
+        switch (b._command) {
+
+          case Two.Commands.close:
+            ctx.closePath();
+            break;
+
+          case Two.Commands.curve:
+
+            prev = closed ? mod(i - 1, length) : Math.max(i - 1, 0);
+            next = closed ? mod(i + 1, length) : Math.min(i + 1, last);
+
+            a = commands[prev];
+            c = commands[next];
+            ar = (a.controls && a.controls.right) || a;
+            bl = (b.controls && b.controls.left) || b;
+
+            if (a._relative) {
+              vx = toFixed((ar.x + a._x) * scale + cx);
+              vy = toFixed((ar.y + a._y) * scale + cy);
+            } else {
+              vx = toFixed(ar.x * scale + cx);
+              vy = toFixed(ar.y * scale + cy);
+            }
+
+            if (b._relative) {
+              ux = toFixed((bl.x + b._x) * scale + cx);
+              uy = toFixed((bl.y + b._y) * scale + cy);
+            } else {
+              ux = toFixed(bl.x * scale + cx);
+              uy = toFixed(bl.y * scale + cy);
+            }
+
+            ctx.bezierCurveTo(vx, vy, ux, uy, x, y);
+
+            if (i >= last && closed) {
+
+              c = d;
+
+              br = (b.controls && b.controls.right) || b;
+              cl = (c.controls && c.controls.left) || c;
+
+              if (b._relative) {
+                vx = toFixed((br.x + b._x) * scale + cx);
+                vy = toFixed((br.y + b._y) * scale + cy);
+              } else {
+                vx = toFixed(br.x * scale + cx);
+                vy = toFixed(br.y * scale + cy);
+              }
+
+              if (c._relative) {
+                ux = toFixed((cl.x + c._x) * scale + cx);
+                uy = toFixed((cl.y + c._y) * scale + cy);
+              } else {
+                ux = toFixed(cl.x * scale + cx);
+                uy = toFixed(cl.y * scale + cy);
+              }
+
+              x = toFixed(c._x * scale + cx);
+              y = toFixed(c._y * scale + cy);
+
+              ctx.bezierCurveTo(vx, vy, ux, uy, x, y);
+
+            }
+
+            break;
+
+          case Two.Commands.line:
+            ctx.lineTo(x, y);
+            break;
+
+          case Two.Commands.move:
+            d = b;
+            ctx.moveTo(x, y);
+            break;
+
+        }
+
+      }
+
+      // Loose ends
+
+      if (closed) {
+        ctx.closePath();
+      }
+
+      if (!webgl.isHidden.test(fill)) ctx.fill();
+      if (!webgl.isHidden.test(stroke)) ctx.stroke();
+
+    },
+
+    updateTexture: function(gl, elem) {
+
+      this.updateCanvas(elem);
+
+      if (elem._renderer.texture) {
+        gl.deleteTexture(elem._renderer.texture);
+      }
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, elem._renderer.textureCoordsBuffer);
+
+      elem._renderer.texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, elem._renderer.texture);
+
+      // Set the parameters so we can render any size image.
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+
+      if (this.canvas.width <= 0 || this.canvas.height <= 0) {
+        return;
+      }
+
+      // Upload the image into the texture.
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.canvas);
+
+    },
+
+    updateBuffer: function(gl, elem, program) {
+
+      if (_.isObject(elem._renderer.buffer)) {
+        gl.deleteBuffer(elem._renderer.buffer);
+      }
+
+      elem._renderer.buffer = gl.createBuffer();
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, elem._renderer.buffer);
+      gl.enableVertexAttribArray(program.position);
+
+      gl.bufferData(gl.ARRAY_BUFFER, elem._renderer.triangles, gl.STATIC_DRAW);
+
+      if (_.isObject(elem._renderer.textureCoordsBuffer)) {
+        gl.deleteBuffer(elem._renderer.textureCoordsBuffer);
+      }
+
+      elem._renderer.textureCoordsBuffer = gl.createBuffer();
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, elem._renderer.textureCoordsBuffer);
+      gl.enableVertexAttribArray(program.textureCoords);
+
+      gl.bufferData(gl.ARRAY_BUFFER, this.uv, gl.STATIC_DRAW);
+
+    },
+
+    program: {
+
+      create: function(gl, shaders) {
+        var program, linked, error;
+        program = gl.createProgram();
+        _.each(shaders, function(s) {
+          gl.attachShader(program, s);
+        });
+
+        gl.linkProgram(program);
+        linked = gl.getProgramParameter(program, gl.LINK_STATUS);
+        if (!linked) {
+          error = gl.getProgramInfoLog(program);
+          gl.deleteProgram(program);
+          throw new Two.Utils.Error('unable to link program: ' + error);
+        }
+
+        return program;
+
+      }
+
+    },
+
+    shaders: {
+
+      create: function(gl, source, type) {
+        var shader, compiled, error;
+        shader = gl.createShader(gl[type]);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+
+        compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+        if (!compiled) {
+          error = gl.getShaderInfoLog(shader);
+          gl.deleteShader(shader);
+          throw new Two.Utils.Error('unable to compile shader ' + shader + ': ' + error);
+        }
+
+        return shader;
+
+      },
+
+      types: {
+        vertex: 'VERTEX_SHADER',
+        fragment: 'FRAGMENT_SHADER'
+      },
+
+      vertex: [
+        'attribute vec2 a_position;',
+        'attribute vec2 a_textureCoords;',
+        '',
+        'uniform mat3 u_matrix;',
+        'uniform vec2 u_resolution;',
+        '',
+        'varying vec2 v_textureCoords;',
+        '',
+        'void main() {',
+        '   vec2 projected = (u_matrix * vec3(a_position, 1.0)).xy;',
+        '   vec2 normal = projected / u_resolution;',
+        '   vec2 clipspace = (normal * 2.0) - 1.0;',
+        '',
+        '   gl_Position = vec4(clipspace * vec2(1.0, -1.0), 0.0, 1.0);',
+        '   v_textureCoords = a_textureCoords;',
+        '}'
+      ].join('\n'),
+
+      fragment: [
+        'precision mediump float;',
+        '',
+        'uniform sampler2D u_image;',
+        'varying vec2 v_textureCoords;',
+        '',
+        'void main() {',
+        '  gl_FragColor = texture2D(u_image, v_textureCoords);',
+        '}'
+      ].join('\n')
+
+    }
+
+  };
+
+  webgl.ctx = webgl.canvas.getContext('2d');
+
+  var Renderer = Two[Two.Types.webgl] = function(options) {
+
+    var params, gl, vs, fs;
+    this.domElement = options.domElement || document.createElement('canvas');
+
+    // Everything drawn on the canvas needs to come from the stage.
+    this.scene = new Two.Group();
+    this.scene.parent = this;
+
+    this._renderer = {
+      matrix: new Two.Array(identity),
+      scale: 1,
+      opacity: 1
+    };
+    this._flagMatrix = true;
+
+    // http://games.greggman.com/game/webgl-and-alpha/
+    // http://www.khronos.org/registry/webgl/specs/latest/#5.2
+    params = _.defaults(options || {}, {
+      antialias: false,
+      alpha: true,
+      premultipliedAlpha: true,
+      stencil: true,
+      preserveDrawingBuffer: true,
+      overdraw: false
+    });
+
+    this.overdraw = params.overdraw;
+
+    gl = this.ctx = this.domElement.getContext('webgl', params) ||
+      this.domElement.getContext('experimental-webgl', params);
+
+    if (!this.ctx) {
+      throw new Two.Utils.Error(
+        'unable to create a webgl context. Try using another renderer.');
+    }
+
+    // Compile Base Shaders to draw in pixel space.
+    vs = webgl.shaders.create(
+      gl, webgl.shaders.vertex, webgl.shaders.types.vertex);
+    fs = webgl.shaders.create(
+      gl, webgl.shaders.fragment, webgl.shaders.types.fragment);
+
+    this.program = webgl.program.create(gl, [vs, fs]);
+    gl.useProgram(this.program);
+
+    // Create and bind the drawing buffer
+
+    // look up where the vertex data needs to go.
+    this.program.position = gl.getAttribLocation(this.program, 'a_position');
+    this.program.matrix = gl.getUniformLocation(this.program, 'u_matrix');
+    this.program.textureCoords = gl.getAttribLocation(this.program, 'a_textureCoords');
+
+    // Copied from Three.js WebGLRenderer
+    gl.disable(gl.DEPTH_TEST);
+
+    // Setup some initial statements of the gl context
+    gl.enable(gl.BLEND);
+
+    // https://code.google.com/p/chromium/issues/detail?id=316393
+    // gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, gl.TRUE);
+
+    gl.blendEquationSeparate(gl.FUNC_ADD, gl.FUNC_ADD);
+    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA,
+      gl.ONE, gl.ONE_MINUS_SRC_ALPHA );
+
+  };
+
+  _.extend(Renderer.prototype, Backbone.Events, {
+
+    setSize: function(width, height, ratio) {
+
+      this.width = width;
+      this.height = height;
+
+      this.ratio = _.isUndefined(ratio) ? getRatio(this.ctx) : ratio;
+
+      this.domElement.width = width * this.ratio;
+      this.domElement.height = height * this.ratio;
+
+      _.extend(this.domElement.style, {
+        width: width + 'px',
+        height: height + 'px'
+      });
+
+      width *= this.ratio;
+      height *= this.ratio;
+
+      // Set for this.stage parent scaling to account for HDPI
+      this._renderer.matrix[0] = this._renderer.matrix[4] = this._renderer.scale = this.ratio;
+
+      this._flagMatrix = true;
+
+      this.ctx.viewport(0, 0, width, height);
+
+      var resolutionLocation = this.ctx.getUniformLocation(
+        this.program, 'u_resolution');
+      this.ctx.uniform2f(resolutionLocation, width, height);
+
+      return this;
+
+    },
+
+    render: function() {
+
+      var gl = this.ctx;
+
+      if (!this.overdraw) {
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      }
+
+      webgl.group.render.call(this.scene, gl, this.program);
+      this._flagMatrix = false;
+
+      return this;
+
+    }
+
+  });
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Shape = Two.Shape = function() {
+
+    // Private object for renderer specific variables.
+    this._renderer = {};
+
+    this.id = Two.Identifier + Two.uniqueId();
+    this.classList = [];
+
+    // Define matrix properties which all inherited
+    // objects of Shape have.
+
+    this._matrix = new Two.Matrix();
+
+    this.translation = new Two.Vector();
+    this.translation.bind(Two.Events.change, _.bind(Shape.FlagMatrix, this));
+    this.rotation = 0;
+    this.scale = 1;
+
+  };
+
+  _.extend(Shape, Backbone.Events, {
+
+    FlagMatrix: function() {
+      this._flagMatrix = true;
+    },
+
+    MakeObservable: function(object) {
+
+      Object.defineProperty(object, 'rotation', {
+        get: function() {
+          return this._rotation;
+        },
+        set: function(v) {
+          this._rotation = v;
+          this._flagMatrix = true;
+        }
+      });
+
+      Object.defineProperty(object, 'scale', {
+        get: function() {
+          return this._scale;
+        },
+        set: function(v) {
+          this._scale = v;
+          this._flagMatrix = true;
+          this._flagScale = true;
+        }
+      });
+
+    }
+
+  });
+
+  _.extend(Shape.prototype, {
+
+    // Flags
+
+    _flagMatrix: true,
+
+    // _flagMask: false,
+    // _flagClip: false,
+
+    // Underlying Properties
+
+    _rotation: 0,
+    _scale: 1,
+
+    // _mask: null,
+    // _clip: false,
+
+    addTo: function(group) {
+      group.add(this);
+      return this;
+    },
+
+    clone: function() {
+      var clone = new Shape();
+      clone.translation.copy(this.translation);
+      clone.rotation = this.rotation;
+      clone.scale = this.scale;
+      _.each(Shape.Properties, function(k) {
+        clone[k] = this[k];
+      }, this);
+      return clone._update();
+    },
+
+    /**
+     * To be called before render that calculates and collates all information
+     * to be as up-to-date as possible for the render. Called once a frame.
+     */
+    _update: function(deep) {
+
+      if (!this._matrix.manual && this._flagMatrix) {
+        this._matrix
+          .identity()
+          .translate(this.translation.x, this.translation.y)
+          .scale(this.scale)
+          .rotate(this.rotation);
+
+      }
+
+      if (deep) {
+        // Bubble up to parents mainly for `getBoundingClientRect` method.
+        if (this.parent && this.parent._update) {
+          this.parent._update();
+        }
+      }
+
+      return this;
+
+    },
+
+    flagReset: function() {
+
+      this._flagMatrix = this._flagScale = false;
+
+      return this;
+
+    }
+
+  });
+
+  Shape.MakeObservable(Shape.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  /**
+   * Constants
+   */
+
+  var min = Math.min, max = Math.max, round = Math.round,
+    getComputedMatrix = Two.Utils.getComputedMatrix;
+
+  var commands = {};
+
+  _.each(Two.Commands, function(v, k) {
+    commands[k] = new RegExp(v);
+  });
+
+  var Path = Two.Path = function(vertices, closed, curved, manual) {
+
+    Two.Shape.call(this);
+
+    this._renderer.type = 'path';
+
+    this._closed = !!closed;
+    this._curved = !!curved;
+
+    this.beginning = 0;
+    this.ending = 1;
+
+    // Style properties
+
+    this.fill = '#fff';
+    this.stroke = '#000';
+    this.linewidth = 1.0;
+    this.opacity = 1.0;
+    this.visible = true;
+
+    this.cap = 'butt';      // Default of Adobe Illustrator
+    this.join = 'miter';    // Default of Adobe Illustrator
+    this.miter = 4;         // Default of Adobe Illustrator
+
+    this._vertices = [];
+    this.vertices = vertices;
+
+    // Determines whether or not two.js should calculate curves, lines, and
+    // commands automatically for you or to let the developer manipulate them
+    // for themselves.
+    this.automatic = !manual;
+
+  };
+
+  _.extend(Path, {
+
+    Properties: [
+      'fill',
+      'stroke',
+      'linewidth',
+      'opacity',
+      'visible',
+      'cap',
+      'join',
+      'miter',
+
+      'closed',
+      'curved',
+      'automatic',
+      'beginning',
+      'ending'
+    ],
+
+    FlagVertices: function() {
+      this._flagVertices = true;
+      this._flagLength = true;
+    },
+
+    MakeObservable: function(object) {
+
+      Two.Shape.MakeObservable(object);
+
+      // Only the first 8 properties are flagged like this. The subsequent
+      // properties behave differently and need to be hand written.
+      _.each(Path.Properties.slice(0, 8), function(property) {
+
+        var secret = '_' + property;
+        var flag = '_flag' + property.charAt(0).toUpperCase() + property.slice(1);
+
+        Object.defineProperty(object, property, {
+          get: function() {
+            return this[secret];
+          },
+          set: function(v) {
+            this[secret] = v;
+            this[flag] = true;
+          }
+        });
+
+      });
+
+      Object.defineProperty(object, 'length', {
+        get: function() {
+          if (this._flagLength) {
+            this._updateLength();
+          }
+          return this._length;
+        }
+      });
+
+      Object.defineProperty(object, 'closed', {
+        get: function() {
+          return this._closed;
+        },
+        set: function(v) {
+          this._closed = !!v;
+          this._flagVertices = true;
+        }
+      });
+
+      Object.defineProperty(object, 'curved', {
+        get: function() {
+          return this._curved;
+        },
+        set: function(v) {
+          this._curved = !!v;
+          this._flagVertices = true;
+        }
+      });
+
+      Object.defineProperty(object, 'automatic', {
+        get: function() {
+          return this._automatic;
+        },
+        set: function(v) {
+          if (v === this._automatic) {
+            return;
+          }
+          this._automatic = !!v;
+          var method = this._automatic ? 'ignore' : 'listen';
+          _.each(this.vertices, function(v) {
+            v[method]();
+          });
+        }
+      });
+
+      Object.defineProperty(object, 'beginning', {
+        get: function() {
+          return this._beginning;
+        },
+        set: function(v) {
+          this._beginning = min(max(v, 0.0), this._ending);
+          this._flagVertices = true;
+        }
+      });
+
+      Object.defineProperty(object, 'ending', {
+        get: function() {
+          return this._ending;
+        },
+        set: function(v) {
+          this._ending = min(max(v, this._beginning), 1.0);
+          this._flagVertices = true;
+        }
+      });
+
+      Object.defineProperty(object, 'vertices', {
+
+        get: function() {
+          return this._collection;
+        },
+
+        set: function(vertices) {
+
+          var updateVertices = _.bind(Path.FlagVertices, this);
+
+          var bindVerts = _.bind(function(items) {
+
+            // This function is called a lot
+            // when importing a large SVG
+            var i = items.length;
+            while(i--) {
+              items[i].bind(Two.Events.change, updateVertices);
+            }
+
+            updateVertices();
+
+          }, this);
+
+          var unbindVerts = _.bind(function(items) {
+
+            _.each(items, function(v) {
+              v.unbind(Two.Events.change, updateVertices);
+            }, this);
+
+            updateVertices();
+
+          }, this);
+
+          // Remove previous listeners
+          if (this._collection) {
+            this._collection.unbind();
+          }
+
+          // Create new Collection with copy of vertices
+          this._collection = new Two.Utils.Collection((vertices || []).slice(0));
+
+          // Listen for Collection changes and bind / unbind
+          this._collection.bind(Two.Events.insert, bindVerts);
+          this._collection.bind(Two.Events.remove, unbindVerts);
+
+          // Bind Initial Vertices
+          bindVerts(this._collection);
+
+        }
+
+      });
+
+      Object.defineProperty(object, 'clip', {
+        get: function() {
+          return this._clip;
+        },
+        set: function(v) {
+          this._clip = v;
+          this._flagClip = true;
+        }
+      });
+
+    }
+
+  });
+
+  _.extend(Path.prototype, Two.Shape.prototype, {
+
+    // Flags
+    // http://en.wikipedia.org/wiki/Flag
+
+    _flagVertices: true,
+    _flagLength: true,
+
+    _flagFill: true,
+    _flagStroke: true,
+    _flagLinewidth: true,
+    _flagOpacity: true,
+    _flagVisible: true,
+
+    _flagCap: true,
+    _flagJoin: true,
+    _flagMiter: true,
+
+    _flagClip: false,
+
+    // Underlying Properties
+
+    _length: 0,
+
+    _fill: '#fff',
+    _stroke: '#000',
+    _linewidth: 1.0,
+    _opacity: 1.0,
+    _visible: true,
+
+    _cap: 'round',
+    _join: 'round',
+    _miter: 4,
+
+    _closed: true,
+    _curved: false,
+    _automatic: true,
+    _beginning: 0,
+    _ending: 1.0,
+
+    _clip: false,
+
+    clone: function(parent) {
+
+      parent = parent || this.parent;
+
+      var points = _.map(this.vertices, function(v) {
+        return v.clone();
+      });
+
+      var clone = new Path(points, this.closed, this.curved, !this.automatic);
+
+      _.each(Two.Path.Properties, function(k) {
+        clone[k] = this[k];
+      }, this);
+
+      clone.translation.copy(this.translation);
+      clone.rotation = this.rotation;
+      clone.scale = this.scale;
+
+      parent.add(clone);
+
+      return clone;
+
+    },
+
+    toObject: function() {
+
+      var result = {
+        vertices: _.map(this.vertices, function(v) {
+          return v.toObject();
+        })
+      };
+
+      _.each(Two.Shape.Properties, function(k) {
+        result[k] = this[k];
+      }, this);
+
+      result.translation = this.translation.toObject;
+      result.rotation = this.rotation;
+      result.scale = this.scale;
+
+      return result;
+
+    },
+
+    noFill: function() {
+      this.fill = 'transparent';
+      return this;
+    },
+
+    noStroke: function() {
+      this.stroke = 'transparent';
+      return this;
+    },
+
+    /**
+     * Orient the vertices of the shape to the upper lefthand
+     * corner of the path.
+     */
+    corner: function() {
+
+      var rect = this.getBoundingClientRect(true);
+
+      rect.centroid = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+
+      _.each(this.vertices, function(v) {
+        v.addSelf(rect.centroid);
+      });
+
+      return this;
+
+    },
+
+    /**
+     * Orient the vertices of the shape to the center of the
+     * path.
+     */
+    center: function() {
+
+      var rect = this.getBoundingClientRect(true);
+
+      rect.centroid = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+
+      _.each(this.vertices, function(v) {
+        v.subSelf(rect.centroid);
+      });
+
+      // this.translation.addSelf(rect.centroid);
+
+      return this;
+
+    },
+
+    /**
+     * Remove self from the scene / parent.
+     */
+    remove: function() {
+
+      if (!this.parent) {
+        return this;
+      }
+
+      this.parent.remove(this);
+
+      return this;
+
+    },
+
+    /**
+     * Return an object with top, left, right, bottom, width, and height
+     * parameters of the group.
+     */
+    getBoundingClientRect: function(shallow) {
+      var matrix, border, l, x, y, i, v;
+
+      var left = Infinity, right = -Infinity,
+          top = Infinity, bottom = -Infinity;
+
+      // TODO: Update this to not __always__ update. Just when it needs to.
+      this._update(true);
+
+      matrix = !!shallow ? this._matrix : getComputedMatrix(this);
+
+      border = this.linewidth / 2;
+      l = this._vertices.length;
+
+      for (i = 0; i < l; i++) {
+        v = this._vertices[i];
+
+        x = v.x;
+        y = v.y;
+
+        v = matrix.multiply(x, y, 1);
+        top = min(v.y - border, top);
+        left = min(v.x - border, left);
+        right = max(v.x + border, right);
+        bottom = max(v.y + border, bottom);
+      }
+
+      return {
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+        width: right - left,
+        height: bottom - top
+      };
+
+    },
+
+    /**
+     * Given a float `t` from 0 to 1, return a point or assign a passed `obj`'s
+     * coordinates to that percentage on this Two.Path's curve.
+     */
+    getPointAt: function(t, obj) {
+      var x, x1, x2, x3, x4, y, y1, y2, y3, y4, left, right;
+      var target = this.length * Math.min(Math.max(t, 0), 1);
+      var length = this.vertices.length;
+      var last = length - 1;
+
+      var a = null;
+      var b = null;
+
+      for (var i = 0, l = this._lengths.length, sum = 0; i < l; i++) {
+
+        if (sum + this._lengths[i] > target) {
+          a = this.vertices[this.closed ? Two.Utils.mod(i, length) : i];
+          b = this.vertices[Math.min(Math.max(i - 1, 0), last)];
+          target -= sum;
+          t = target / this._lengths[i];
+          break;
+        }
+
+        sum += this._lengths[i];
+
+      }
+
+      if (_.isNull(a) || _.isNull(b)) {
+        return null;
+      }
+
+      right = b.controls && b.controls.right;
+      left = a.controls && a.controls.left;
+
+      x1 = b.x;
+      y1 = b.y;
+      x2 = (right || b).x;
+      y2 = (right || b).y;
+      x3 = (left || a).x;
+      y3 = (left || a).y;
+      x4 = a.x;
+      y4 = a.y;
+
+      if (right && b._relative) {
+        x2 += b.x;
+        y2 += b.y;
+      }
+
+      if (left && a._relative) {
+        x3 += a.x;
+        y3 += a.y;
+      }
+
+      x = Two.Utils.getPointOnCubicBezier(t, x1, x2, x3, x4);
+      y = Two.Utils.getPointOnCubicBezier(t, y1, y2, y3, y4);
+
+      if (_.isObject(obj)) {
+        obj.x = x;
+        obj.y = y;
+        return obj;
+      }
+
+      return new Two.Vector(x, y);
+
+    },
+
+    /**
+     * Based on closed / curved and sorting of vertices plot where all points
+     * should be and where the respective handles should be too.
+     */
+    plot: function() {
+
+      if (this.curved) {
+        Two.Utils.getCurveFromPoints(this._vertices, this.closed);
+        return this;
+      }
+
+      for (var i = 0; i < this._vertices.length; i++) {
+        this._vertices[i]._command = i === 0 ? Two.Commands.move : Two.Commands.line;
+      }
+
+      return this;
+
+    },
+
+    subdivide: function(limit) {
+      //TODO: DRYness (function below)
+      this._update();
+
+      var last = this.vertices.length - 1;
+      var b = this.vertices[last];
+      var closed = this._closed || this.vertices[last]._command === Two.Commands.close;
+      var points = [];
+      _.each(this.vertices, function(a, i) {
+
+        if (i <= 0 && !closed) {
+          b = a;
+          return;
+        }
+
+        if (a.command === Two.Commands.move) {
+          points.push(new Two.Anchor(b.x, b.y));
+          if (i > 0) {
+            points[points.length - 1].command = Two.Commands.line;
+          }
+          b = a;
+          return;
+        }
+
+        var verts = getSubdivisions(a, b, limit);
+        points = points.concat(verts);
+
+        // Assign commands to all the verts
+        _.each(verts, function(v, i) {
+          if (i <= 0 && b.command === Two.Commands.move) {
+            v.command = Two.Commands.move;
+          } else {
+            v.command = Two.Commands.line;
+          }
+        });
+
+        if (i >= last) {
+
+          // TODO: Add check if the two vectors in question are the same values.
+          if (this._closed && this._automatic) {
+
+            b = a;
+
+            verts = getSubdivisions(a, b, limit);
+            points = points.concat(verts);
+
+            // Assign commands to all the verts
+            _.each(verts, function(v, i) {
+              if (i <= 0 && b.command === Two.Commands.move) {
+                v.command = Two.Commands.move;
+              } else {
+                v.command = Two.Commands.line;
+              }
+            });
+
+          } else if (closed) {
+            points.push(new Two.Anchor(a.x, a.y));
+          }
+
+          points[points.length - 1].command = closed ? Two.Commands.close : Two.Commands.line;
+
+        }
+
+        b = a;
+
+      }, this);
+
+      this._automatic = false;
+      this._curved = false;
+      this.vertices = points;
+
+      return this;
+
+    },
+
+    _updateLength: function(limit) {
+      //TODO: DRYness (function above)
+      this._update();
+
+      var last = this.vertices.length - 1;
+      var b = this.vertices[last];
+      var closed = this._closed || this.vertices[last]._command === Two.Commands.close;
+      var sum = 0;
+
+      if (_.isUndefined(this._lengths)) {
+        this._lengths = [];
+      }
+
+      _.each(this.vertices, function(a, i) {
+
+        if ((i <= 0 && !closed) || a.command === Two.Commands.move) {
+          b = a;
+          this._lengths[i] = 0;
+          return;
+        }
+
+        this._lengths[i] = getCurveLength(a, b, limit);
+        sum += this._lengths[i];
+
+        if (i >= last && closed) {
+
+          b = a;
+
+          this._lengths[i + 1] = getCurveLength(a, b, limit);
+          sum += this._lengths[i + 1];
+
+        }
+
+        b = a;
+
+      }, this);
+
+      this._length = sum;
+
+      return this;
+
+    },
+
+    _update: function() {
+
+      if (this._flagVertices) {
+
+        var l = this.vertices.length;
+        var last = l - 1, v;
+
+        var ia = round((this._beginning) * last);
+        var ib = round((this._ending) * last);
+
+        this._vertices.length = 0;
+
+        for (var i = ia; i < ib + 1; i++) {
+          v = this.vertices[i];
+          this._vertices.push(v);
+        }
+
+        if (this._automatic) {
+          this.plot();
+        }
+
+      }
+
+      Two.Shape.prototype._update.apply(this, arguments);
+
+      return this;
+
+    },
+
+    flagReset: function() {
+
+      this._flagVertices =  this._flagFill =  this._flagStroke =
+         this._flagLinewidth = this._flagOpacity = this._flagVisible =
+         this._flagCap = this._flagJoin = this._flagMiter =
+         this._flagClip = false;
+
+      Two.Shape.prototype.flagReset.call(this);
+
+      return this;
+
+    }
+
+  });
+
+  Path.MakeObservable(Path.prototype);
+
+  /**
+   * Utility functions
+   */
+
+  function getCurveLength(a, b, limit) {
+    // TODO: DRYness
+    var x1, x2, x3, x4, y1, y2, y3, y4;
+
+    var right = b.controls && b.controls.right;
+    var left = a.controls && a.controls.left;
+
+    x1 = b.x;
+    y1 = b.y;
+    x2 = (right || b).x;
+    y2 = (right || b).y;
+    x3 = (left || a).x;
+    y3 = (left || a).y;
+    x4 = a.x;
+    y4 = a.y;
+
+    if (right && b._relative) {
+      x2 += b.x;
+      y2 += b.y;
+    }
+
+    if (left && a._relative) {
+      x3 += a.x;
+      y3 += a.y;
+    }
+
+    return Two.Utils.getCurveLength(x1, y1, x2, y2, x3, y3, x4, y4, limit);
+
+  }
+
+  function getSubdivisions(a, b, limit) {
+    // TODO: DRYness
+    var x1, x2, x3, x4, y1, y2, y3, y4;
+
+    var right = b.controls && b.controls.right;
+    var left = a.controls && a.controls.left;
+
+    x1 = b.x;
+    y1 = b.y;
+    x2 = (right || b).x;
+    y2 = (right || b).y;
+    x3 = (left || a).x;
+    y3 = (left || a).y;
+    x4 = a.x;
+    y4 = a.y;
+
+    if (right && b._relative) {
+      x2 += b.x;
+      y2 += b.y;
+    }
+
+    if (left && a._relative) {
+      x3 += a.x;
+      y3 += a.y;
+    }
+
+    return Two.Utils.subdivide(x1, y1, x2, y2, x3, y3, x4, y4, limit);
+
+  }
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path;
+
+  var Line = Two.Line = function(x1, y1, x2, y2) {
+
+    var width = x2 - x1;
+    var height = y2 - y1;
+
+    var w2 = width / 2;
+    var h2 = height / 2;
+
+    Path.call(this, [
+        new Two.Anchor(- w2, - h2),
+        new Two.Anchor(w2, h2)
+    ]);
+
+    this.translation.set(x1 + w2, y1 + h2);
+
+  };
+
+  _.extend(Line.prototype, Path.prototype);
+
+  Path.MakeObservable(Line.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path;
+
+  var Rectangle = Two.Rectangle = function(x, y, width, height) {
+
+    var w2 = width / 2;
+    var h2 = height / 2;
+
+    Path.call(this, [
+      new Two.Anchor(-w2, -h2),
+      new Two.Anchor(w2, -h2),
+      new Two.Anchor(w2, h2),
+      new Two.Anchor(-w2, h2)
+    ], true);
+
+    this.translation.set(x, y);
+
+  };
+
+  _.extend(Rectangle.prototype, Path.prototype);
+
+  Path.MakeObservable(Rectangle.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path, TWO_PI = Math.PI * 2, cos = Math.cos, sin = Math.sin;
+
+  var Ellipse = Two.Ellipse = function(ox, oy, rx, ry) {
+
+    if (!_.isNumber(ry)) {
+      ry = rx;
+    }
+
+    var amount = Two.Resolution;
+
+    var points = _.map(_.range(amount), function(i) {
+      var pct = i / amount;
+      var theta = pct * TWO_PI;
+      var x = rx * cos(theta);
+      var y = ry * sin(theta);
+      return new Two.Anchor(x, y);
+    }, this);
+
+    Path.call(this, points, true, true);
+    this.translation.set(ox, oy);
+
+  };
+
+  _.extend(Ellipse.prototype, Path.prototype);
+
+  Path.MakeObservable(Ellipse.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path, TWO_PI = Math.PI * 2, cos = Math.cos, sin = Math.sin;
+
+  var Polygon = Two.Polygon = function(ox, oy, r, sides) {
+
+    sides = Math.max(sides || 0, 3);
+
+    var points = _.map(_.range(sides), function(i) {
+      var pct = (i + 0.5) / sides;
+      var theta = TWO_PI * pct + Math.PI / 2;
+      var x = r * cos(theta);
+      var y = r * sin(theta);
+      return new Two.Anchor(x, y);
+    });
+
+    Path.call(this, points, true);
+    this.translation.set(ox, oy);
+
+  };
+
+  _.extend(Polygon.prototype, Path.prototype);
+
+  Path.MakeObservable(Polygon.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path, PI = Math.PI, TWO_PI = Math.PI * 2, HALF_PI = Math.PI/2, cos = Math.cos, sin = Math.sin, abs = Math.abs;
+
+  /*
+  @class ArcSegment
+    ox : Origin X
+    oy : Origin Y
+    ir : Inner Radius
+    or : Outer Radius
+    sa : Starting Angle
+    ea : Ending Angle
+    res : Resolution
+  */
+  var ArcSegment = Two.ArcSegment = function(ox, oy, ir, or, sa, ea, res) {
+
+    if (sa > ea) {
+      ea += Math.PI*2;
+    }
+
+    res = res || 8;
+
+    var rot = sa;
+    var ta = ea - sa;
+    var angleStep = ta / res;
+    var command = Two.Commands.move;
+    var points = [];
+
+    points.push( new Two.Anchor(
+      Math.sin(0) * or,
+      Math.cos(0) * or,
+      0,0,0,0,
+      command
+    ));
+
+
+    var theta, x, y, lx, ly, rx, ry;
+    command = Two.Commands.curve;
+
+    //Do Outer Edge
+    for (var i = 0; i < res+1; i++) {
+
+      theta = i * angleStep;
+      x = sin(theta) * or;
+      y = cos(theta) * or;
+      lx = sin(theta - HALF_PI) * (angleStep / PI) * or;
+      ly = cos(theta - HALF_PI) * (angleStep / PI) * or;
+      rx = sin(theta + HALF_PI) * (angleStep / PI) * or;
+      ry = cos(theta + HALF_PI) * (angleStep / PI) * or;
+
+      if (i===0) {
+        lx = ly = 0;
+      }
+
+      if (i===res) {
+        rx = ry = 0;
+      }
+
+      points.push( new Two.Anchor(
+        x, y, lx, ly, rx, ry, command
+      ));
+    }
+
+    //Do Inner Edge
+    for (var j = 0; j < res+1; j++) {
+
+      theta = ta - (angleStep * j);
+      x = sin(theta) * ir;
+      y = cos(theta) * ir;
+      lx = sin(theta - (PI*1.5)) * (angleStep / PI) * ir;
+      ly = cos(theta - (PI*1.5)) * (angleStep / PI) * ir;
+      rx = sin(theta + (PI*1.5)) * (angleStep / PI) * ir;
+      ry = cos(theta + (PI*1.5)) * (angleStep / PI) * ir;
+
+      if (j===0) {
+        lx = ly = 0;
+      }
+
+      if (j===res) {
+        rx = ry = 0;
+      }
+
+      points.push( new Two.Anchor(
+        x, y, lx, ly, rx, ry, command
+      ));
+    }
+
+    command = Two.Commands.close
+    points.push( new Two.Anchor(
+      Math.sin(0) * or,
+      Math.cos(0) * or,
+      0,0,0,0,
+      command
+    ));
+
+
+    Path.call(this, points, true, false, true);
+    this.rotation = sa;
+    this.translation.set(ox, oy);
+  }
+
+  _.extend(ArcSegment.prototype, Path.prototype);
+
+  Path.MakeObservable(ArcSegment.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path, PI = Math.PI, TWO_PI = Math.PI * 2, cos = Math.cos, sin = Math.sin, abs = Math.abs;
+
+  var SineRing = Two.SineRing = function(ox, oy, r, periods, amplitude, mod) {
+
+    var size = (periods * 2) + 1;
+    var angleStep = Math.PI / periods;
+    var bezierDelta = PI * r / periods / 2;
+    mod = mod || 1;
+
+    var points = [];
+    var theta = PI, x, y, lx, ly, rx, ry;
+
+    points.push(
+      new Two.Anchor(
+        sin(theta) * (r + (amplitude/2)),
+        cos(theta) * (r + (amplitude/2)),
+        0,0,0,0,
+        Two.Commands.move
+      )
+    );
+
+    for (var i = 0; i < size; i++) {
+
+      theta = (angleStep * i) + PI;
+
+      if ((i%2) === 0) {
+        x = Math.sin(theta) * (r + (amplitude/2));
+        y = Math.cos(theta) * (r + (amplitude/2));
+      } else {
+        x = Math.sin(theta) * (r - (amplitude/2));
+        y = Math.cos(theta) * (r - (amplitude/2));
+      }
+
+      lx = ((Math.sin(theta - (Math.PI/2))) * bezierDelta) * mod;
+      ly = ((Math.cos(theta - (Math.PI/2))) * bezierDelta) * mod;
+      rx = ((Math.sin(theta + (Math.PI/2))) * bezierDelta) * mod;
+      ry = ((Math.cos(theta + (Math.PI/2))) * bezierDelta) * mod;
+
+      if (i === 0) {
+        lx = ly = 0;
+      }
+
+      if (i === size - 1) {
+        rx = ry = 0;
+      }
+
+      points.push(new Two.Anchor(x, y, lx, ly, rx, ry, Two.Commands.curve));
+
+    }
+
+    Path.call(this, points, true, false, true);
+    this.translation.set(ox, oy);
+
+  };
+
+  _.extend(SineRing.prototype, Path.prototype);
+
+  Path.MakeObservable(SineRing.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path, TWO_PI = Math.PI * 2, cos = Math.cos, sin = Math.sin;
+
+  var Star = Two.Star = function(ox, oy, or, ir, sides) {
+
+    if (!_.isNumber(ir)) {
+      ir = or / 2;
+    }
+
+    if (!_.isNumber(sides) || sides <= 0) {
+      sides = 5;
+    }
+
+    var length = sides * 2;
+
+    var points = _.map(_.range(length), function(i) {
+      var pct = (i - 0.5) / length;
+      var theta = pct * TWO_PI;
+      var r = (i % 2 ? ir : or);
+      var x = r * cos(theta);
+      var y = r * sin(theta);
+      return new Two.Anchor(x, y);
+    });
+
+    Path.call(this, points, true);
+    this.translation.set(ox, oy);
+
+  };
+
+  _.extend(Star.prototype, Path.prototype);
+
+  Path.MakeObservable(Star.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Path = Two.Path;
+
+  var RoundedRectangle = Two.RoundedRectangle = function(ox, oy, width, height, radius) {
+
+    var w2 = width / 2;
+    var h2 = height / 2;
+    var x, y;
+
+    if (!_.isNumber(radius)) {
+      radius = Math.floor(Math.min(width, height) / 12);
+    }
+
+    var points = [
+      new Two.Anchor(- w2 + radius, - h2),
+      new Two.Anchor(w2 - radius, - h2)
+    ];
+
+    x = w2;
+    y = - h2;
+    points = roundCorner(points, x, y, radius, 1);
+
+    points.push(new Two.Anchor(w2, h2 - radius));
+
+    x = w2;
+    y = h2;
+    points = roundCorner(points, x, y, radius, 4);
+
+    points.push(new Two.Anchor(- w2 + radius, h2));
+
+    x = - w2;
+    y = h2;
+    points = roundCorner(points, x, y, radius, 3);
+
+    points.push(new Two.Anchor(- w2, - h2 + radius));
+
+    x = - w2;
+    y = - h2;
+    points = roundCorner(points, x, y, radius, 2);
+
+    points.pop();
+
+    Path.call(this, points, true);
+    this.translation.set(ox, oy);
+
+  };
+
+  _.extend(RoundedRectangle.prototype, Path.prototype);
+
+  Path.MakeObservable(RoundedRectangle.prototype);
+
+  function roundCorner(points, x, y, radius, quadrant) {
+
+    var start = 0, end = 0;
+    var length = Two.Resolution;
+
+    var a = points[points.length - 1];
+    var b = new Two.Anchor(x, y);
+
+    var xr = x < 0 ? - radius : radius;
+    var yr = y < 0 ? - radius : radius;
+
+    switch (quadrant) {
+      case 1:
+        start = - Math.PI / 2;
+        end = 0;
+        break;
+      case 2:
+        start = - Math.PI;
+        end = - Math.PI / 2;
+        break;
+      case 3:
+        start = - Math.PI * 1.5;
+        end = - Math.PI;
+        break;
+      case 4:
+        start = 0;
+        end = Math.PI / 2;
+        break;
+    }
+
+    var curve = _.map(_.range(length), function(i) {
+
+      var theta = map(length - i, 0, length, start, end);
+      var tx = radius * Math.cos(theta) + x - xr;
+      var ty = radius * Math.sin(theta) + y - yr;
+      var anchor = new Two.Anchor(tx, ty);
+
+      return anchor;
+
+    }).reverse();
+
+    return points.concat(curve);
+
+  }
+
+  function map(v, i1, i2, o1, o2) {
+    return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
+  }
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var Stop = Two.Stop = function(offset, color, opacity) {
+
+    this._renderer = {};
+
+    this.offset = _.isNumber(offset) ? offset
+      : Stop.Index <= 0 ? 0 : 1;
+
+    this.opacity = _.isNumber(opacity) ? opacity : 1;
+
+    this.color = _.isString(color) ? color
+      : Stop.Index <= 0 ? '#fff' : '#000';
+
+    Stop.Index = (Stop.Index + 1) % 2;
+
+  };
+
+  _.extend(Stop, {
+
+    Index: 0,
+
+    Properties: [
+      'offset',
+      'opacity',
+      'color'
+    ],
+
+    MakeObservable: function(object) {
+
+      _.each(Stop.Properties, function(property) {
+
+        var secret = '_' + property;
+        var flag = '_flag' + property.charAt(0).toUpperCase() + property.slice(1);
+
+        Object.defineProperty(object, property, {
+          get: function() {
+            return this[secret];
+          },
+          set: function(v) {
+            this[secret] = v;
+            this[flag] = true;
+            this.trigger(Two.Events.change);  // Unique to Gradient.Stop
+          }
+        });
+
+
+      });
+
+    }
+
+  });
+
+  _.extend(Stop.prototype, Backbone.Events, {
+
+    clone: function() {
+
+      var clone = new Stop();
+
+      _.each(Stop.Properties, function(property) {
+        clone[property] = this[property];
+      }, this);
+
+      return clone;
+
+    },
+
+    toObject: function() {
+
+      var result = {};
+
+      _.each(Stop.Properties, function(k) {
+        result[k] = this[k];
+      }, this);
+
+      return result;
+
+    },
+
+    flagReset: function() {
+
+      this._flagOffset = this._flagColor = this._flagOpacity = false;
+
+      return this;
+
+    }
+
+  });
+
+  Stop.MakeObservable(Stop.prototype);
+
+  var Gradient = Two.Gradient = function(stops) {
+
+    Two.Shape.call(this);
+
+    this._renderer.type = 'gradient';
+
+    this.spread = 'pad';
+
+    this.stops = stops;
+
+  };
+
+  _.extend(Gradient, {
+
+    Stop: Stop,
+
+    Properties: [
+      'spread'
+    ],
+
+    MakeObservable: function(object) {
+
+      Two.Shape.MakeObservable(object);
+
+      _.each(Gradient.Properties, Two.Utils.defineProperty, object);
+
+      Object.defineProperty(object, 'stops', {
+
+        get: function() {
+          return this._stops;
+        },
+
+        set: function(stops) {
+
+          var updateStops = _.bind(Gradient.FlagStops, this);
+
+          var bindStops = _.bind(function(items) {
+
+            // This function is called a lot
+            // when importing a large SVG
+            var i = items.length;
+            while(i--) {
+              items[i].bind(Two.Events.change, updateStops);
+            }
+
+            updateStops();
+
+          }, this);
+
+          var unbindStops = _.bind(function(items) {
+
+            _.each(items, function(v) {
+              v.unbind(Two.Events.change, updateStops);
+            }, this);
+
+            updateStops();
+
+          }, this);
+
+          // Remove previous listeners
+          if (this._stops) {
+            this._stops.unbind();
+          }
+
+          // Create new Collection with copy of Stops
+          this._stops = new Two.Utils.Collection((stops || []).slice(0));
+
+          // Listen for Collection changes and bind / unbind
+          this._stops.bind(Two.Events.insert, bindStops);
+          this._stops.bind(Two.Events.remove, unbindStops);
+
+          // Bind Initial Stops
+          bindStops(this._stops);
+
+        }
+
+      });
+
+    },
+
+    FlagStops: function() {
+      this._flagStops = true;
+    }
+
+  });
+
+  _.extend(Gradient.prototype, Two.Shape.prototype, {
+
+    clone: function(parent) {
+
+      parent = parent || this.parent;
+
+      var stops = _.map(this.stops, function(s) {
+        return s.clone();
+      });
+
+      var clone = new Gradient(stops);
+
+      _.each(Two.Gradient.Properties, function(k) {
+        clone[k] = this[k];
+      }, this);
+
+      clone.translation.copy(this.translation);
+      clone.rotation = this.rotation;
+      clone.scale = this.scale;
+
+      parent.add(clone);
+
+      return clone;
+
+    },
+
+    toObject: function() {
+
+      var result = {
+        stops: _.map(this.stops, function(s) {
+          return s.toObject();
+        })
+      };
+
+      _.each(Gradient.Properties, function(k) {
+        result[k] = this[k];
+      }, this);
+
+      return result;
+
+    },
+
+    flagReset: function() {
+
+      this._flagSpread = this._flagStops = false;
+
+      Two.Shape.prototype.flagReset.call(this);
+
+      return this;
+
+    }
+
+  });
+
+  Gradient.MakeObservable(Gradient.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var LinearGradient = Two.LinearGradient = function(x1, y1, x2, y2, stops) {
+
+    Two.Gradient.call(this, stops);
+
+    this._renderer.type = 'linear-gradient';
+
+    var flagEndPoints = _.bind(LinearGradient.FlagEndPoints, this);
+    this.left = new Two.Vector().bind(Two.Events.change, flagEndPoints);
+    this.right = new Two.Vector().bind(Two.Events.change, flagEndPoints);
+
+    if (_.isNumber(x1)) {
+      this.left.x = x1;
+    }
+    if (_.isNumber(y1)) {
+      this.left.y = y1;
+    }
+    if (_.isNumber(x2)) {
+      this.right.x = x2;
+    }
+    if (_.isNumber(y2)) {
+      this.right.y = y2;
+    }
+
+  };
+
+  _.extend(LinearGradient, {
+
+    Stop: Two.Gradient.Stop,
+
+    MakeObservable: function(object) {
+      Two.Gradient.MakeObservable(object);
+    },
+
+    FlagEndPoints: function() {
+      this._flagEndPoints = true;
+    }
+
+  });
+
+  _.extend(LinearGradient.prototype, Two.Gradient.prototype, {
+
+    _flagEndPoints: false,
+
+    clone: function(parent) {
+
+      parent = parent || this.parent;
+
+      var stops = _.map(this.stops, function(stop) {
+        return stop.clone();
+      });
+
+      var clone = new LinearGradient(this.left._x, this.left._y,
+        this.right._x, this.right._y, stops);
+
+      _.each(Two.Gradient.Properties, function(k) {
+        clone[k] = this[k];
+      }, this);
+
+      parent.add(clone);
+
+      return clone;
+
+    },
+
+    toObject: function() {
+
+      var result = Two.Gradient.prototype.toObject.call(this);
+
+      result.left = this.left.toObject();
+      result.right = this.right.toObject();
+
+      return result;
+
+    },
+
+    flagReset: function() {
+
+      this._flagEndPoints = false;
+
+      Two.Gradient.prototype.flagReset.call(this);
+
+      return this;
+
+    }
+
+  });
+
+  LinearGradient.MakeObservable(LinearGradient.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  var RadialGradient = Two.RadialGradient = function(cx, cy, r, stops, fx, fy) {
+
+    Two.Gradient.call(this, stops);
+
+    this._renderer.type = 'radial-gradient';
+
+    this.center = new Two.Vector()
+      .bind(Two.Events.change, _.bind(function() {
+        this._flagCenter = true;
+      }, this));
+
+    this.radius = _.isNumber(r) ? r : 20;
+
+    this.focal = new Two.Vector()
+      .bind(Two.Events.change, _.bind(function() {
+        this._flagFocal = true;
+      }, this));
+
+    if (_.isNumber(cx)) {
+      this.center.x = cx;
+    }
+    if (_.isNumber(cy)) {
+      this.center.y = cy;
+    }
+
+    this.focal.copy(this.center);
+
+    if (_.isNumber(fx)) {
+      this.focal.x = fx;
+    }
+    if (_.isNumber(fy)) {
+      this.focal.y = fy;
+    }
+
+  };
+
+  _.extend(RadialGradient, {
+
+    Stop: Two.Gradient.Stop,
+
+    Properties: [
+      'radius'
+    ],
+
+    MakeObservable: function(object) {
+
+      Two.Gradient.MakeObservable(object);
+
+      _.each(RadialGradient.Properties, Two.Utils.defineProperty, object);
+
+    }
+
+  });
+
+  _.extend(RadialGradient.prototype, Two.Gradient.prototype, {
+
+    _flagEndPoints: false,
+
+    clone: function(parent) {
+
+      parent = parent || this.parent;
+
+      var stops = _.map(this.stops, function(stop) {
+        return stop.clone();
+      });
+
+      var clone = new RadialGradient(this.center._x, this.center._y,
+          this._radius, stops, this.focal._x, this.focal._y);
+
+      _.each(Two.Gradient.Properties.concat(RadialGradient.Properties), function(k) {
+        clone[k] = this[k];
+      }, this);
+
+      parent.add(clone);
+
+      return clone;
+
+    },
+
+    toObject: function() {
+
+      var result = Two.Gradient.prototype.toObject.call(this);
+
+      _.each(RadialGradient.Properties, function(k) {
+        result[k] = this[k];
+      }, this);
+
+      result.center = this.center.toObject();
+      result.focal = this.focal.toObject();
+
+      return result;
+
+    },
+
+    flagReset: function() {
+
+      this._flagRadius = this._flagCenter = this._flagFocal = false;
+
+      Two.Gradient.prototype.flagReset.call(this);
+
+      return this;
+
+    }
+
+  });
+
+  RadialGradient.MakeObservable(RadialGradient.prototype);
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);
+
+(function(Two, _, Backbone, requestAnimationFrame) {
+
+  /**
+   * Constants
+   */
+  var min = Math.min, max = Math.max;
+
+  /**
+   * A children collection which is accesible both by index and by object id
+   * @constructor
+   */
+  var Children = function() {
+
+    Two.Utils.Collection.apply(this, arguments);
+
+    Object.defineProperty(this, '_events', {
+      value : {},
+      enumerable: false
+    });
+
+    this.ids = {};
+
+    this.on(Two.Events.insert, this.attach);
+    this.on(Two.Events.remove, this.detach);
+    Children.prototype.attach.apply(this, arguments);
+
+  };
+
+  Children.prototype = new Two.Utils.Collection();
+  Children.constructor = Children;
+
+  _.extend(Children.prototype, {
+
+    attach: function(children) {
+      for (var i = 0; i < children.length; i++) {
+        this.ids[children[i].id] = children[i];
+      }
+      return this;
+    },
+
+    detach: function(children) {
+      for (var i = 0; i < children.length; i++) {
+        delete this.ids[children[i].id];
+      }
+      return this;
+    }
+
+  });
+
+  var Group = Two.Group = function() {
+
+    Two.Shape.call(this, true);
+
+    this._renderer.type = 'group';
+
+    this.additions = [];
+    this.subtractions = [];
+
+    this._children = [];
+    this.children = arguments;
+
+  };
+
+  _.extend(Group, {
+
+    Children: Children,
+
+    InsertChildren: function(children) {
+      for (var i = 0; i < children.length; i++) {
+        replaceParent.call(this, children[i], this);
+      }
+    },
+
+    RemoveChildren: function(children) {
+      for (var i = 0; i < children.length; i++) {
+        replaceParent.call(this, children[i]);
+      }
+    },
+
+    OrderChildren: function(children) {
+      this._flagOrder = true;
+    },
+
+    MakeObservable: function(object) {
+
+      var properties = Two.Path.Properties.slice(0);
+      var oi = _.indexOf(properties, 'opacity');
+
+      if (oi >= 0) {
+
+        properties.splice(oi, 1);
+
+        Object.defineProperty(object, 'opacity', {
+
+          get: function() {
+            return this._opacity;
+          },
+
+          set: function(v) {
+            // Only set flag if there is an actual difference
+            this._flagOpacity = (this._opacity != v);
+            this._opacity = v;
+          }
+
+        });
+
+      }
+
+      Two.Shape.MakeObservable(object);
+      Group.MakeGetterSetters(object, properties);
+
+      Object.defineProperty(object, 'children', {
+        get: function() {
+          return this._collection;
+        },
+        set: function(children) {
+
+          var insertChildren = _.bind(Group.InsertChildren, this);
+          var removeChildren = _.bind(Group.RemoveChildren, this);
+          var orderChildren = _.bind(Group.OrderChildren, this);
+
+          if (this._collection) {
+            this._collection.unbind();
+          }
+
+          this._collection = new Children(children);
+          this._collection.bind(Two.Events.insert, insertChildren);
+          this._collection.bind(Two.Events.remove, removeChildren);
+          this._collection.bind(Two.Events.order, orderChildren);
+
+        }
+      });
+
+      Object.defineProperty(object, 'mask', {
+        get: function() {
+          return this._mask;
+        },
+        set: function(v) {
+          this._mask = v;
+          this._flagMask = true;
+          if (!v.clip) {
+            v.clip = true;
+          }
+        }
+      });
+
+    },
+
+    MakeGetterSetters: function(group, properties) {
+
+      if (!_.isArray(properties)) {
+        properties = [properties];
+      }
+
+      _.each(properties, function(k) {
+        Group.MakeGetterSetter(group, k);
+      });
+
+    },
+
+    MakeGetterSetter: function(group, k) {
+
+      var secret = '_' + k;
+
+      Object.defineProperty(group, k, {
+        get: function() {
+          return this[secret];
+        },
+        set: function(v) {
+          this[secret] = v;
+          _.each(this.children, function(child) { // Trickle down styles
+            child[k] = v;
+          });
+        }
+      });
+
+    }
+
+  });
+
+  _.extend(Group.prototype, Two.Shape.prototype, {
+
+    // Flags
+    // http://en.wikipedia.org/wiki/Flag
+
+    _flagAdditions: false,
+    _flagSubtractions: false,
+    _flagOrder: false,
+    _flagOpacity: true,
+
+    _flagMask: false,
+
+    // Underlying Properties
+
+    _fill: '#fff',
+    _stroke: '#000',
+    _linewidth: 1.0,
+    _opacity: 1.0,
+    _visible: true,
+
+    _cap: 'round',
+    _join: 'round',
+    _miter: 4,
+
+    _closed: true,
+    _curved: false,
+    _automatic: true,
+    _beginning: 0,
+    _ending: 1.0,
+
+    _mask: null,
+
+    /**
+     * TODO: Group has a gotcha in that it's at the moment required to be bound to
+     * an instance of two in order to add elements correctly. This needs to
+     * be rethought and fixed.
+     */
+    clone: function(parent) {
+
+      parent = parent || this.parent;
+
+      var group = new Group();
+      parent.add(group);
+
+      var children = _.map(this.children, function(child) {
+        return child.clone(group);
+      });
+
+      group.translation.copy(this.translation);
+      group.rotation = this.rotation;
+      group.scale = this.scale;
+
+      return group;
+
+    },
+
+    /**
+     * Export the data from the instance of Two.Group into a plain JavaScript
+     * object. This also makes all children plain JavaScript objects. Great
+     * for turning into JSON and storing in a database.
+     */
+    toObject: function() {
+
+      var result = {
+        children: {},
+        translation: this.translation.toObject(),
+        rotation: this.rotation,
+        scale: this.scale
+      };
+
+      _.each(this.children, function(child, i) {
+        result.children[i] = child.toObject();
+      }, this);
+
+      return result;
+
+    },
+
+    /**
+     * Anchor all children to the upper left hand corner
+     * of the group.
+     */
+    corner: function() {
+
+      var rect = this.getBoundingClientRect(true),
+       corner = { x: rect.left, y: rect.top };
+
+      this.children.forEach(function(child) {
+        child.translation.subSelf(corner);
+      });
+
+      return this;
+
+    },
+
+    /**
+     * Anchors all children around the center of the group,
+     * effectively placing the shape around the unit circle.
+     */
+    center: function() {
+
+      var rect = this.getBoundingClientRect(true);
+
+      rect.centroid = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+
+      this.children.forEach(function(child) {
+        child.translation.subSelf(rect.centroid);
+      });
+
+      // this.translation.copy(rect.centroid);
+
+      return this;
+
+    },
+
+    /**
+     * Recursively search for id. Returns the first element found.
+     * Returns null if none found.
+     */
+    getById: function (id) {
+      var search = function (node, id) {
+        if (node.id === id) {
+          return node;
+        } else if (node.children) {
+          var i = node.children.length;
+          while (i--) {
+            var found = search(node.children[i], id);
+            if (found) return found;
+          }
+        }
+
+      };
+      return search(this, id) || null;
+    },
+
+    /**
+     * Recursively search for classes. Returns an array of matching elements.
+     * Empty array if none found.
+     */
+    getByClassName: function (cl) {
+      var found = [];
+      var search = function (node, cl) {
+        if (node.classList.indexOf(cl) != -1) {
+          found.push(node);
+        } else if (node.children) {
+          node.children.forEach(function (child) {
+            search(child, cl);
+          });
+        }
+        return found;
+      };
+      return search(this, cl);
+    },
+
+    /**
+     * Recursively search for children of a specific type,
+     * e.g. Two.Polygon. Pass a reference to this type as the param.
+     * Returns an empty array if none found.
+     */
+    getByType: function(type) {
+      var found = [];
+      var search = function (node, type) {
+        for (var id in node.children) {
+          if (node.children[id] instanceof type) {
+            found.push(node.children[id]);
+          } else if (node.children[id] instanceof Two.Group) {
+            search(node.children[id], type);
+          }
+        }
+        return found;
+      };
+      return search(this, type);
+    },
+
+    /**
+     * Add objects to the group.
+     */
+    add: function(objects) {
+
+      // Allow to pass multiple objects either as array or as multiple arguments
+      // If it's an array also create copy of it in case we're getting passed
+      // a childrens array directly.
+      if (!(objects instanceof Array)) {
+        objects = _.toArray(arguments);
+      } else {
+        objects = objects.slice();
+      }
+
+      // Add the objects
+      for (var i = 0; i < objects.length; i++) {
+        if (!(objects[i] && objects[i].id)) continue;
+        this.children.push(objects[i]);
+      }
+
+      return this;
+
+    },
+
+    /**
+     * Remove objects from the group.
+     */
+    remove: function(objects) {
+
+      var l = arguments.length,
+        grandparent = this.parent;
+
+      // Allow to call remove without arguments
+      // This will detach the object from the scene.
+      if (l <= 0 && grandparent) {
+        grandparent.remove(this);
+        return this;
+      }
+
+      // Allow to pass multiple objects either as array or as multiple arguments
+      // If it's an array also create copy of it in case we're getting passed
+      // a childrens array directly.
+      if (!(objects instanceof Array)) {
+        objects = _.toArray(arguments);
+      } else {
+        objects = objects.slice();
+      }
+
+      // Remove the objects
+      for (var i = 0; i < objects.length; i++) {
+        if (!objects[i] || !(this.children.ids[objects[i].id])) continue;
+        this.children.splice(_.indexOf(this.children, objects[i]), 1);
+      }
+
+      return this;
+
+    },
+
+    /**
+     * Return an object with top, left, right, bottom, width, and height
+     * parameters of the group.
+     */
+    getBoundingClientRect: function(shallow) {
+      var rect;
+
+      // TODO: Update this to not __always__ update. Just when it needs to.
+      this._update(true);
+
+      // Variables need to be defined here, because of nested nature of groups.
+      var left = Infinity, right = -Infinity,
+          top = Infinity, bottom = -Infinity;
+
+      this.children.forEach(function(child) {
+
+        if (/(linear-gradient|radial-gradient|gradient)/.test(child._renderer.type)) {
+          return;
+        }
+
+        rect = child.getBoundingClientRect(shallow);
+
+        if (!_.isNumber(rect.top)   || !_.isNumber(rect.left)   ||
+            !_.isNumber(rect.right) || !_.isNumber(rect.bottom)) {
+          return;
+        }
+
+        top = min(rect.top, top);
+        left = min(rect.left, left);
+        right = max(rect.right, right);
+        bottom = max(rect.bottom, bottom);
+
+      }, this);
+
+      return {
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+        width: right - left,
+        height: bottom - top
+      };
+
+    },
+
+    /**
+     * Trickle down of noFill
+     */
+    noFill: function() {
+      this.children.forEach(function(child) {
+        child.noFill();
+      });
+      return this;
+    },
+
+    /**
+     * Trickle down of noStroke
+     */
+    noStroke: function() {
+      this.children.forEach(function(child) {
+        child.noStroke();
+      });
+      return this;
+    },
+
+    /**
+     * Trickle down subdivide
+     */
+    subdivide: function() {
+      var args = arguments;
+      this.children.forEach(function(child) {
+        child.subdivide.apply(child, args);
+      });
+      return this;
+    },
+
+    flagReset: function() {
+
+      if (this._flagAdditions) {
+        this.additions.length = 0;
+        this._flagAdditions = false;
+      }
+
+      if (this._flagSubtractions) {
+        this.subtractions.length = 0;
+        this._flagSubtractions = false;
+      }
+
+      this._flagOrder = this._flagMask = this._flagOpacity = false;
+
+      Two.Shape.prototype.flagReset.call(this);
+
+      return this;
+
+    }
+
+  });
+
+  Group.MakeObservable(Group.prototype);
+
+  /**
+   * Helper function used to sync parent-child relationship within the
+   * `Two.Group.children` object.
+   *
+   * Set the parent of the passed object to another object
+   * and updates parent-child relationships
+   * Calling with one arguments will simply remove the parenting
+   */
+  function replaceParent(child, newParent) {
+
+    var parent = child.parent;
+    var index;
+
+    if (parent && parent.children.ids[child.id]) {
+
+      index = _.indexOf(parent.children, child);
+      parent.children.splice(index, 1);
+
+      // If we're passing from one parent to another...
+      index = _.indexOf(parent.additions, child);
+
+      if (index >= 0) {
+        parent.additions.splice(index, 1);
+      } else {
+        parent.subtractions.push(child);
+        parent._flagSubtractions = true;
+      }
+
+    }
+
+    if (newParent) {
+      child.parent = newParent;
+      this.additions.push(child);
+      this._flagAdditions = true;
+      return;
+    }
+
+    // If we're passing from one parent to another...
+    index = _.indexOf(this.additions, child);
+
+    if (index >= 0) {
+      this.additions.splice(index, 1);
+    } else {
+      this.subtractions.push(child);
+      this._flagSubtractions = true;
+    }
+
+    delete child.parent;
+
+  }
+
+})(
+  Two,
+  typeof require === 'function' ? require('underscore') : _,
+  typeof require === 'function' ? require('backbone') : Backbone,
+  window.requestAnimationFrame
+);

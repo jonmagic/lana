@@ -1,0 +1,18 @@
+{
+  "name": "logic_analyzer_gui",
+  "version": "1.0.0",
+  "description": "A logic analyzer gui",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Jonathan Hoyt",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "raf": "^3.1.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  }
+}
