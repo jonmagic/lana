@@ -1,0 +1,4 @@
+{
+  "ignore": ["app/two.js"],
+  "presets": ["es2015"]
+}
