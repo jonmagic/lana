@@ -1,5 +1,5 @@
 describe("FileLoader", ()=>{
   it("is true", ()=>{
-    expect(true).toBe(true)
+    expect(`${true}`).toBe("true")
   })
 })
