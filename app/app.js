@@ -1,5 +1,6 @@
+import Two from "./two.js"
+
 var multiplier = 50000;
-require("./two");
 var remote = require('remote');
 var dialog = remote.require('dialog');
 var fs = require('fs');
